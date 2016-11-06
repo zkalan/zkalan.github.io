@@ -28,11 +28,11 @@ your_name: zkalan
 email: zkalan9@gmail.com
 
 navigation:
-  - text: Home
+  - text: 首页
     url: /
-  - text: Docs
+  - text: 文章
     url: /docs
-  - text: Examples
+  - text: 有趣的
     url: /examples
 
 projects:
