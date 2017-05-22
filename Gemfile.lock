@@ -3,6 +3,7 @@ GEM
   specs:
     colorator (1.1.0)
     ffi (1.9.14)
+    ffi (1.9.14-x86-mingw32)
     forwardable-extended (2.6.0)
     jekyll (3.2.0)
       colorator (~> 1.0)
@@ -37,10 +38,11 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   jekyll
   jekyll-seo-tag
 
 BUNDLED WITH
-   1.13.1
+   1.15.0
