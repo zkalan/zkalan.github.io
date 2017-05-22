@@ -1,27 +1,16 @@
-# jekyll-theme-hackcss
+# jekyll-simple
 
-[Dead simple CSS framework](http://hackcss.com/) now with Jekyll.
+## simple
+simple is a theme designed for blogger using static site generator like jekyll, Hexo etc.
 
-Mobile-ready, modern, stylish, simple.
+Especially for those who writes in both Chinese and English. The font-type setting looks really good when writers use Chinese mixed with English.
 
-## Theme modes
+Supposedly, this could work with Japanese as well but never had a chance to try.
 
-This theme comes in three modes, which could be configured in `_config.yml`.
+## Story behind this theme
 
-![Markdown](https://raw.githubusercontent.com/wemake-services/jekyll-theme-hackcss/3cbe97b71a56a19eba386dd928e125b71e50c71e/images/markdown.png)
+It has been long that using font with Chinese in web was a tedious and time-consuming work. It would be almost impossible to make different OS or devices to look the same.
 
-![Standard](https://raw.githubusercontent.com/wemake-services/jekyll-theme-hackcss/3cbe97b71a56a19eba386dd928e125b71e50c71e/images/standard.png)
+iOS 9 has pulished some new fonts in Chinese and I decided to make one theme that looks good on iOS devices, at the same time, making it acceptable on computers using other fonts.
 
-![Dark](https://raw.githubusercontent.com/wemake-services/jekyll-theme-hackcss/3cbe97b71a56a19eba386dd928e125b71e50c71e/images/dark.png)
-
-## Installation
-
-Clone this repo. Create your own website. Easy.
-
-## Configuration
-
-See [docs](https://github.com/wemake-services/jekyll-theme-hackcss/blob/gh-pages/docs.md).
-
-## License
-
-GNU PGL 3. See [LICENSE](https://github.com/wemake-services/jekyll-theme-hackcss/blob/3cbe97b71a56a19eba386dd928e125b71e50c71e/LICENSE) for more information.
+So mobile goes first, then the macOS.
