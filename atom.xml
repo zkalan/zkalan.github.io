@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>麻绳先生</title>
+  
+  <subtitle>做一些记录性的工作</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.zkalan.com/"/>
+  <updated>2019-10-16T12:34:05.675Z</updated>
+  <id>http://www.zkalan.com/</id>
+  
+  <author>
+    <name>Zhang Kai</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java笔记：包装类</title>
+    <link href="http://www.zkalan.com/java%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%8C%85%E8%A3%85%E7%B1%BB.html"/>
+    <id>http://www.zkalan.com/java笔记：包装类.html</id>
+    <published>2019-10-16T12:29:20.000Z</published>
+    <updated>2019-10-16T12:34:05.675Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th align="left">基本数据类型</th><th align="left">包装类型</th></tr></thead><tbody><tr><td align="left">byte</td><td align="left">java.lang.Byte</td></tr><tr><td align="left">short</td><td align="left">java.lang.Short</td></tr><tr><td align="left">int</td><td align="left">java.lang.Integer</td></tr><tr><td align="left">long</td><td align="left">java.lang.Long</td></tr><tr><td align="left">boolean</td><td align="left">java.lang.Boolean</td></tr><tr><td align="left">char</td><td align="left">java.lang.Character</td></tr><tr><td align="left">float</td><td align="left">java.lang.Float</td></tr><tr><td align="left">double</td><td align="left">java.lang.Double</td></tr></tbody></table><p>关于包装类的内容在新版java中有变化，最好查阅文档里哦阿姐情况。例如jdk5之后的自动装箱和自动拆箱，基本数据类型和包装类型自动转化。</p><p>还知道整形常量池（-128-127）和字符串常量池吗？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;基本数据类型&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;包装类型&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;byte&lt;/td&gt;
+&lt;td align
+      
+    
+    </summary>
+    
+    
+      <category term="java笔记" scheme="http://www.zkalan.com/categories/java%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="java" scheme="http://www.zkalan.com/tags/java/"/>
+    
+      <category term="常量池" scheme="http://www.zkalan.com/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
+    
+      <category term="包装类" scheme="http://www.zkalan.com/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux下脚本安装node+npm</title>
+    <link href="http://www.zkalan.com/linux%E4%B8%8B%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85node-npm.html"/>
+    <id>http://www.zkalan.com/linux下脚本安装node-npm.html</id>
+    <published>2019-10-14T10:15:02.000Z</published>
+    <updated>2019-10-16T12:34:41.146Z</updated>
+    
+    <content type="html"><![CDATA[<p>linux下通过包管理器很难安装最新版的node和npm，幸运的是，nodesource提供了多个shell脚本，方便用户简单的安装最新版node和npm。<br>官方github主页：<a href="https://github.com/nodesource/distributions" target="_blank" rel="noopener">https://github.com/nodesource/distributions</a><br>例如在ubuntu下安装Node.js v10.x版本，通过命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure><p>简单方便，不能再完美。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;linux下通过包管理器很难安装最新版的node和npm，幸运的是，nodesource提供了多个shell脚本，方便用户简单的安装最新版node和npm。&lt;br&gt;官方github主页：&lt;a href=&quot;https://github.com/nodesource/distr
+      
+    
+    </summary>
+    
+    
+      <category term="脚本" scheme="http://www.zkalan.com/categories/%E8%84%9A%E6%9C%AC/"/>
+    
+    
+      <category term="linux" scheme="http://www.zkalan.com/tags/linux/"/>
+    
+      <category term="脚本" scheme="http://www.zkalan.com/tags/%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="node" scheme="http://www.zkalan.com/tags/node/"/>
+    
+      <category term="npm" scheme="http://www.zkalan.com/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://www.zkalan.com/hello-world.html"/>
+    <id>http://www.zkalan.com/hello-world.html</id>
+    <published>2019-10-14T09:24:09.629Z</published>
+    <updated>2019-10-14T09:24:09.629Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
