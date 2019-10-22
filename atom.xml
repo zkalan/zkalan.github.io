@@ -5,9 +5,9 @@
   <subtitle>做一些记录性的工作</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.zkalan.com/"/>
+  <link href="http://zkalan.com/"/>
   <updated>2019-10-16T12:34:05.675Z</updated>
-  <id>http://www.zkalan.com/</id>
+  <id>http://zkalan.com/</id>
   
   <author>
     <name>Zhang Kai</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>java笔记：包装类</title>
-    <link href="http://www.zkalan.com/java%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%8C%85%E8%A3%85%E7%B1%BB.html"/>
-    <id>http://www.zkalan.com/java笔记：包装类.html</id>
+    <link href="http://zkalan.com/java%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%8C%85%E8%A3%85%E7%B1%BB.html"/>
+    <id>http://zkalan.com/java笔记：包装类.html</id>
     <published>2019-10-16T12:29:20.000Z</published>
     <updated>2019-10-16T12:34:05.675Z</updated>
     
@@ -44,21 +44,21 @@
     </summary>
     
     
-      <category term="java笔记" scheme="http://www.zkalan.com/categories/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="http://zkalan.com/categories/java%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="java" scheme="http://www.zkalan.com/tags/java/"/>
+      <category term="java" scheme="http://zkalan.com/tags/java/"/>
     
-      <category term="常量池" scheme="http://www.zkalan.com/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
+      <category term="常量池" scheme="http://zkalan.com/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
     
-      <category term="包装类" scheme="http://www.zkalan.com/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/"/>
+      <category term="包装类" scheme="http://zkalan.com/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/"/>
     
   </entry>
   
   <entry>
     <title>linux下脚本安装node+npm</title>
-    <link href="http://www.zkalan.com/linux%E4%B8%8B%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85node-npm.html"/>
-    <id>http://www.zkalan.com/linux下脚本安装node-npm.html</id>
+    <link href="http://zkalan.com/linux%E4%B8%8B%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85node-npm.html"/>
+    <id>http://zkalan.com/linux下脚本安装node-npm.html</id>
     <published>2019-10-14T10:15:02.000Z</published>
     <updated>2019-10-16T12:34:41.146Z</updated>
     
@@ -74,23 +74,23 @@
     </summary>
     
     
-      <category term="脚本" scheme="http://www.zkalan.com/categories/%E8%84%9A%E6%9C%AC/"/>
+      <category term="脚本" scheme="http://zkalan.com/categories/%E8%84%9A%E6%9C%AC/"/>
     
     
-      <category term="linux" scheme="http://www.zkalan.com/tags/linux/"/>
+      <category term="linux" scheme="http://zkalan.com/tags/linux/"/>
     
-      <category term="脚本" scheme="http://www.zkalan.com/tags/%E8%84%9A%E6%9C%AC/"/>
+      <category term="脚本" scheme="http://zkalan.com/tags/%E8%84%9A%E6%9C%AC/"/>
     
-      <category term="node" scheme="http://www.zkalan.com/tags/node/"/>
+      <category term="node" scheme="http://zkalan.com/tags/node/"/>
     
-      <category term="npm" scheme="http://www.zkalan.com/tags/npm/"/>
+      <category term="npm" scheme="http://zkalan.com/tags/npm/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://www.zkalan.com/hello-world.html"/>
-    <id>http://www.zkalan.com/hello-world.html</id>
+    <link href="http://zkalan.com/hello-world.html"/>
+    <id>http://zkalan.com/hello-world.html</id>
     <published>2019-10-14T09:24:09.629Z</published>
     <updated>2019-10-14T09:24:09.629Z</updated>
     
