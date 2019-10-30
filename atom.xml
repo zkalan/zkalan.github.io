@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-10-30T04:19:35.056Z</updated>
+  <updated>2019-10-30T04:20:27.073Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://zkalan.com/bean%E7%9A%84%E7%AC%94%E8%AE%B0.html"/>
     <id>http://zkalan.com/bean的笔记.html</id>
     <published>2019-10-30T03:32:11.000Z</published>
-    <updated>2019-10-30T04:19:35.056Z</updated>
+    <updated>2019-10-30T04:20:27.073Z</updated>
     
     <content type="html"><![CDATA[<h2 id="spring对bean的管理细节"><a href="#spring对bean的管理细节" class="headerlink" title="spring对bean的管理细节"></a>spring对bean的管理细节</h2><h3 id="创建bean的三种方式"><a href="#创建bean的三种方式" class="headerlink" title="创建bean的三种方式"></a>创建bean的三种方式</h3><h4 id="使用默认构造函数创建"><a href="#使用默认构造函数创建" class="headerlink" title="使用默认构造函数创建"></a>使用默认构造函数创建</h4><p>在spring的配置文件中使用bean标签，配以id和class属性之后，且没有其他属性和标签时，采用的是默认构造函数创建对象，此时必须存在无参数构造函数；</p><h4 id="使用普通工厂中的方法创建对象，并存入spring容器"><a href="#使用普通工厂中的方法创建对象，并存入spring容器" class="headerlink" title="使用普通工厂中的方法创建对象，并存入spring容器"></a>使用普通工厂中的方法创建对象，并存入spring容器</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"instanceFactory"</span> <span class="attr">class</span>=<span class="string">"com.factory.InstanceFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">factory-bean</span>=<span class="string">"instanceFactory"</span> <span class="attr">factory-method</span>=<span class="string">"getAccountService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="使用工厂中的静态方法创建对象"><a href="#使用工厂中的静态方法创建对象" class="headerlink" title="使用工厂中的静态方法创建对象"></a>使用工厂中的静态方法创建对象</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">class</span>=<span class="string">"com.factory.StaticFactory"</span> <span class="attr">factory-method</span>=<span class="string">"staticgetAccountService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="bean对象的作用范围"><a href="#bean对象的作用范围" class="headerlink" title="bean对象的作用范围"></a>bean对象的作用范围</h3><h4 id="bean标签的scope属性"><a href="#bean标签的scope属性" class="headerlink" title="bean标签的scope属性"></a>bean标签的scope属性</h4><ul><li>作用：用于指定bean的作用范围</li><li>取值：<ul><li>singleton：单例，默认值</li><li>prototype：多例</li><li>request：作用于web应用的请求范围</li><li>session：作用于web应用的会话范围</li><li>global-session：作用于集群的会话范围</li></ul></li></ul><h3 id="bean对象的生命周期"><a href="#bean对象的生命周期" class="headerlink" title="bean对象的生命周期"></a>bean对象的生命周期</h3><ol><li>单例对象：容器创建时对象创建，声明周期和容器相同；</li><li>多例对象：使用时spring框架创建对象，对象回收由JVM负责；</li></ol>]]></content>
     
