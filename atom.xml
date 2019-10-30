@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-10-16T12:34:05.675Z</updated>
+  <updated>2019-10-30T03:32:40.785Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>bean的笔记</title>
+    <link href="http://zkalan.com/bean%E7%9A%84%E7%AC%94%E8%AE%B0.html"/>
+    <id>http://zkalan.com/bean的笔记.html</id>
+    <published>2019-10-30T03:32:11.000Z</published>
+    <updated>2019-10-30T03:32:40.785Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="bean" scheme="http://zkalan.com/tags/bean/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring的IOC概述</title>
+    <link href="http://zkalan.com/Spring%E7%9A%84IOC%E6%A6%82%E8%BF%B0.html"/>
+    <id>http://zkalan.com/Spring的IOC概述.html</id>
+    <published>2019-10-29T09:18:55.000Z</published>
+    <updated>2019-10-30T03:30:05.475Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="通过工厂模式"><a href="#通过工厂模式" class="headerlink" title="通过工厂模式"></a>通过工厂模式</h2><p>通过工厂模式，应用和资源得以分开，降低耦合。</p><h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><p>把创建对象的权利交给框架或工厂，它包括依赖注入和依赖查找。</p><h2 id="spring基于XML的IOC环境搭建和入门"><a href="#spring基于XML的IOC环境搭建和入门" class="headerlink" title="spring基于XML的IOC环境搭建和入门"></a>spring基于XML的IOC环境搭建和入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取核心容器对象</span></span><br><span class="line">ApplicationContent ac = <span class="keyword">new</span> ClassPathXmlApplicationContent(<span class="string">"bena.xml"</span>);</span><br><span class="line"><span class="comment">//根据id获取Bean对象</span></span><br><span class="line">IAccountService as = (IAccountService)as.getBean(<span class="string">"accountService"</span>);</span><br><span class="line">IAccountDao adao = ac.getBean(<span class="string">"accountDao"</span>, IAccountDao.class);</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jpa</span>=<span class="string">"http://www.springframework.org/schema/data/jpa"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans/spring-beans.xsd&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;!--把对象的创建交给spring来管理--&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;bean id="</span><span class="attr">accountService</span>" <span class="attr">class</span>=<span class="string">"com.service.impl.AccountServiceImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"com.dao.impl.AccountDaoImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="核心容器的两个接口"><a href="#核心容器的两个接口" class="headerlink" title="核心容器的两个接口"></a>核心容器的两个接口</h2><h3 id="ApplicationContent"><a href="#ApplicationContent" class="headerlink" title="ApplicationContent"></a>ApplicationContent</h3><p>在构建核心容器时，创建对象采用立即加载的方式；单例对象适用；</p><h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><p>在构建核心容器时，创建对象采用延时加载的范式；多例对象适用；</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;通过工厂模式&quot;&gt;&lt;a href=&quot;#通过工厂模式&quot; class=&quot;headerlink&quot; title=&quot;通过工厂模式&quot;&gt;&lt;/a&gt;通过工厂模式&lt;/h2&gt;&lt;p&gt;通过工厂模式，应用和资源得以分开，降低耦合。&lt;/p&gt;
+&lt;h2 id=&quot;控制反转&quot;&gt;&lt;a href=&quot;#控制反
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="IOC" scheme="http://zkalan.com/tags/IOC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring概述</title>
+    <link href="http://zkalan.com/Spring%E6%A6%82%E8%BF%B0.html"/>
+    <id>http://zkalan.com/Spring概述.html</id>
+    <published>2019-10-29T07:43:58.000Z</published>
+    <updated>2019-10-29T09:17:58.315Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="spring是什么"><a href="#spring是什么" class="headerlink" title="spring是什么"></a>spring是什么</h2><p>spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaEE企业应用开源框架。</p><h2 id="spring两大核心"><a href="#spring两大核心" class="headerlink" title="spring两大核心"></a>spring两大核心</h2><p>IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）</p><h2 id="spring发展历程和优势"><a href="#spring发展历程和优势" class="headerlink" title="spring发展历程和优势"></a>spring发展历程和优势</h2><ul><li>方便解耦，简化开发</li><li>AOP编程的支持</li><li>声明式事务编程</li><li>方便程序测试</li><li>方便集成各种优秀框架</li><li>降低Java API的使用难度<h2 id="spring体系结构"><a href="#spring体系结构" class="headerlink" title="spring体系结构"></a>spring体系结构</h2></li></ul><h2 id="程序的耦合"><a href="#程序的耦合" class="headerlink" title="程序的耦合"></a>程序的耦合</h2><ol><li>内容耦合：当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另一个模块时，这样的耦合被称为内容耦合，内容耦合是最高程度的耦合，应该避免使用。</li><li>公共耦合：两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合，在具有大量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。</li><li>外部耦合：一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</li><li>控制耦合：一组模块通过接口向另一个模块传递一个控制信号，接收信号的模块根据信号值而进行适当的动作，这种耦合称为控制耦合。</li><li>标记耦合：若一个模块A通过接口向另外两个模块B和C传递一个公共参数，那么模块B和C之间存在标记耦合。</li><li>数据耦合：模块之间通过参数来传递数据，那么被称为数据耦合，数据耦合是最低的一种耦合形式。系统中一般都存在这种类型的耦合，因为为了完成一种有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。</li><li>非直接耦合：两个模块之间没有直接关系，他们之间的联系完全是通过主模块的控制和调用来实现的。<h2 id="解耦的思路"><a href="#解耦的思路" class="headerlink" title="解耦的思路"></a>解耦的思路</h2>第一步，应该采用反射来创建对象，避免使用new关键字；<br>第二步，通过读取配置文件来获取要创建的对象全限定类名；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br></pre></td></tr></table></figure></li></ol><p><strong>计算机语言中，bean有可重用组件的意思。</strong></p><h3 id="工厂模式解耦"><a href="#工厂模式解耦" class="headerlink" title="工厂模式解耦"></a>工厂模式解耦</h3><p>巧妙的使用properties配置文件和反射机制，通过map存储beans，将该map声明为static就能实现单例模式，它的作用被称为容器container。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;spring是什么&quot;&gt;&lt;a href=&quot;#spring是什么&quot; class=&quot;headerlink&quot; title=&quot;spring是什么&quot;&gt;&lt;/a&gt;spring是什么&lt;/h2&gt;&lt;p&gt;spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inver
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="概述" scheme="http://zkalan.com/tags/%E6%A6%82%E8%BF%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>java笔记：包装类</title>
