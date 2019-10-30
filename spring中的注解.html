@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Spring概述 | 麻绳先生</title>
+  <title>spring中的注解 | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="spring是什么spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaE">
-<meta name="keywords" content="spring,概述">
+  <meta name="description" content="用于创建对象的注解12@component(value=&quot;accountService&quot;)puclic class AccountServiceImpl implements IAccountService&amp;#123;&amp;#125;   作用：用于当前类对象存入spring容器中 属性value用于指定bean的id，默认为当前类名，并且首字母小写  1&amp;lt;content:component-s">
+<meta name="keywords" content="spring,注解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring概述">
-<meta property="og:url" content="http://zkalan.com/Spring概述.html">
+<meta property="og:title" content="spring中的注解">
+<meta property="og:url" content="http://zkalan.com/spring中的注解.html">
 <meta property="og:site_name" content="麻绳先生">
-<meta property="og:description" content="spring是什么spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaE">
+<meta property="og:description" content="用于创建对象的注解12@component(value=&quot;accountService&quot;)puclic class AccountServiceImpl implements IAccountService&amp;#123;&amp;#125;   作用：用于当前类对象存入spring容器中 属性value用于指定bean的id，默认为当前类名，并且首字母小写  1&amp;lt;content:component-s">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-10-29T09:17:58.315Z">
+<meta property="og:updated_time" content="2019-10-30T12:27:15.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring概述">
-<meta name="twitter:description" content="spring是什么spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaE">
+<meta name="twitter:title" content="spring中的注解">
+<meta name="twitter:description" content="用于创建对象的注解12@component(value=&quot;accountService&quot;)puclic class AccountServiceImpl implements IAccountService&amp;#123;&amp;#125;   作用：用于当前类对象存入spring容器中 属性value用于指定bean的id，默认为当前类名，并且首字母小写  1&amp;lt;content:component-s">
   
   
   
@@ -90,13 +90,13 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          <article id="post-Spring概述" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-spring中的注解" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
     
   
     <h1 class="article-title" itemprop="name">
-      Spring概述
+      spring中的注解
     </h1>
   
 
@@ -105,7 +105,7 @@
 
   <div class="article-meta">
     <div class="article-datetime">
-  <a href="/Spring概述.html" class="article-date"><time datetime="2019-10-29T07:43:58.000Z" itemprop="datePublished">2019-10-29</time></a>
+  <a href="/spring中的注解.html" class="article-date"><time datetime="2019-10-30T09:16:45.000Z" itemprop="datePublished">2019-10-30</time></a>
 </div>
 
     <div class="article-author">团麻</div>
@@ -120,29 +120,41 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="spring是什么"><a href="#spring是什么" class="headerlink" title="spring是什么"></a>spring是什么</h2><p>spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaEE企业应用开源框架。</p>
-<h2 id="spring两大核心"><a href="#spring两大核心" class="headerlink" title="spring两大核心"></a>spring两大核心</h2><p>IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）</p>
-<h2 id="spring发展历程和优势"><a href="#spring发展历程和优势" class="headerlink" title="spring发展历程和优势"></a>spring发展历程和优势</h2><ul>
-<li>方便解耦，简化开发</li>
-<li>AOP编程的支持</li>
-<li>声明式事务编程</li>
-<li>方便程序测试</li>
-<li>方便集成各种优秀框架</li>
-<li>降低Java API的使用难度<h2 id="spring体系结构"><a href="#spring体系结构" class="headerlink" title="spring体系结构"></a>spring体系结构</h2></li>
-</ul>
-<h2 id="程序的耦合"><a href="#程序的耦合" class="headerlink" title="程序的耦合"></a>程序的耦合</h2><ol>
-<li>内容耦合：当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另一个模块时，这样的耦合被称为内容耦合，内容耦合是最高程度的耦合，应该避免使用。</li>
-<li>公共耦合：两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合，在具有大量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。</li>
-<li>外部耦合：一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</li>
-<li>控制耦合：一组模块通过接口向另一个模块传递一个控制信号，接收信号的模块根据信号值而进行适当的动作，这种耦合称为控制耦合。</li>
-<li>标记耦合：若一个模块A通过接口向另外两个模块B和C传递一个公共参数，那么模块B和C之间存在标记耦合。</li>
-<li>数据耦合：模块之间通过参数来传递数据，那么被称为数据耦合，数据耦合是最低的一种耦合形式。系统中一般都存在这种类型的耦合，因为为了完成一种有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。</li>
-<li>非直接耦合：两个模块之间没有直接关系，他们之间的联系完全是通过主模块的控制和调用来实现的。<h2 id="解耦的思路"><a href="#解耦的思路" class="headerlink" title="解耦的思路"></a>解耦的思路</h2>第一步，应该采用反射来创建对象，避免使用new关键字；<br>第二步，通过读取配置文件来获取要创建的对象全限定类名；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br></pre></td></tr></table></figure>
+        <h3 id="用于创建对象的注解"><a href="#用于创建对象的注解" class="headerlink" title="用于创建对象的注解"></a>用于创建对象的注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@component</span>(value=<span class="string">"accountService"</span>)</span><br><span class="line">puclic <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<p><strong>计算机语言中，bean有可重用组件的意思。</strong></p>
-<h3 id="工厂模式解耦"><a href="#工厂模式解耦" class="headerlink" title="工厂模式解耦"></a>工厂模式解耦</h3><p>巧妙的使用properties配置文件和反射机制，通过map存储beans，将该map声明为static就能实现单例模式，它的作用被称为容器container。</p>
+<ul>
+<li>作用：用于当前类对象存入spring容器中</li>
+<li>属性value用于指定bean的id，默认为当前类名，并且首字母小写</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">content:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.package"</span>&gt;</span><span class="tag">&lt;/<span class="name">content:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Controller（表现层）、Service（业务层）、Repository（持久层）作用和属性与component完全一致，区分的意义在于使得三层对象更加清晰。</p>
+<h3 id="用于注入数据的注解"><a href="#用于注入数据的注解" class="headerlink" title="用于注入数据的注解"></a>用于注入数据的注解</h3><p>@Autowired</p>
+<ul>
+<li>作用：自动按照类型注入。只要容器中有唯一的bean对象类型和要注入的变量类型匹配；可以是变量上注解，也可以是方法上；如果ioc容器中没有任何bean和要注入的类型匹配，则报错；如果ioc容器中有多个类型匹配时，变量名和某个bean的id匹配时也可注入成功；</li>
+<li>在使用注解注入时，set方法是不必要的</li>
+</ul>
+<p>@Qualifier</p>
+<ul>
+<li>作用：在按照类型注入的基础上再按照名称注入，它在给类成员变量注入时不能单独使用，要和autowired组合；但是在给成员方法参数进行注入时可以单独使用；</li>
+<li>属性value用于指定注入的bean的id</li>
+</ul>
+<p>@Resource</p>
+<ul>
+<li>作用：直接按照bean的id注入，可以单独使用</li>
+<li>属性name用于指定bean的id<br>以上三个注解只能注入其他bean类型数据，而基本类型和String类型无法使用上述注解实现，另外，集合类型的注入只能通过xml来实现。</li>
+</ul>
+<p>@Value</p>
+<ul>
+<li>作用：用于注入基本数据类型和String类型的数据</li>
+<li>属性value用于指定数据的值，它可以使用spring中的SpEL，也就是spring的el表达式，SpEL的写法：${表达式}</li>
+</ul>
+<h3 id="用于改变作用范围的注解"><a href="#用于改变作用范围的注解" class="headerlink" title="用于改变作用范围的注解"></a>用于改变作用范围的注解</h3><p>@Scope</p>
+<ul>
+<li>作用：用于指定bean的作用范围</li>
+<li>属性value指定范围的取值，singleton、prototype</li>
+</ul>
+<h3 id="和生命周期有关的注解"><a href="#和生命周期有关的注解" class="headerlink" title="和生命周期有关的注解"></a>和生命周期有关的注解</h3><p>@PreDestroy：指定销毁方法<br>@PostConstruct：指定初始化方法</p>
 
       
     </div>
@@ -153,12 +165,12 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/Spring概述.html" data-id="ck2d96jh700019o54xd78kfko" class="article-share-link">
+      <a data-url="http://zkalan.com/spring中的注解.html" data-id="ck2d96jhe00059o54e216kcv4" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概述/">概述</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注解/">注解</a></li></ul>
 
 
     </footer>
@@ -168,19 +180,12 @@
 <ul id="article-nav" class="nav nav-pills nav-justified">
   
   <li role="presentation">
-    <a href="/java笔记：包装类.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/spring中的依赖注入.html" id="article-nav-older" class="article-nav-link-wrap">
       <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">java笔记：包装类</span>
+      <span class="article-nav-link-title">spring中的依赖注入</span>
     </a>
   </li>
   
-  
-  <li role="presentation">
-    <a href="/Spring的IOC概述.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">Spring的IOC概述</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
   
 </ul>
 
