@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2019/11 | 麻绳先生</title>
+  <title>spring整合junit | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麻绳先生">
-<meta property="og:url" content="http://zkalan.com/archives/2019/11/index.html">
+  <meta name="description" content="测试人员和开发人员关注的内容是不同的。例如junit测试人员并不会关注他将要测试的程序是否是由Spring框架搭建的，所以开发人员不应该期望测试程序能够存在对开发框架的依赖性代码。而Spring框架需要IOC核心容器，junit如何处理这个问题呢？ 配置方法 导入spring整合junit的jar文件  12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.s">
+<meta name="keywords" content="spring,junit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring整合junit">
+<meta property="og:url" content="http://zkalan.com/spring整合junit.html">
 <meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="测试人员和开发人员关注的内容是不同的。例如junit测试人员并不会关注他将要测试的程序是否是由Spring框架搭建的，所以开发人员不应该期望测试程序能够存在对开发框架的依赖性代码。而Spring框架需要IOC核心容器，junit如何处理这个问题呢？ 配置方法 导入spring整合junit的jar文件  12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.s">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-01T12:09:52.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麻绳先生">
+<meta name="twitter:title" content="spring整合junit">
+<meta name="twitter:description" content="测试人员和开发人员关注的内容是不同的。例如junit测试人员并不会关注他将要测试的程序是否是由Spring框架搭建的，所以开发人员不应该期望测试程序能够存在对开发框架的依赖性代码。而Spring框架需要IOC核心容器，junit如何处理这个问题呢？ 配置方法 导入spring整合junit的jar文件  12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.s">
   
   
   
@@ -55,7 +60,7 @@
           <li><a class=""
                  href="/index.html">Home</a></li>
         
-          <li><a class="active"
+          <li><a class=""
                  href="/archives/">Archives</a></li>
         
           <li><a class=""
@@ -85,60 +90,103 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-spring整合junit" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/spring整合junit.html">spring整合junit</a>
+    <h1 class="article-title" itemprop="name">
+      spring整合junit
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/spring整合junit.html" class="archive-article-date"><time datetime="2019-11-01T11:44:08.000Z" itemprop="datePublished">十一月 1日</time></a>
+  <a href="/spring整合junit.html" class="article-date"><time datetime="2019-11-01T11:44:08.000Z" itemprop="datePublished">2019-11-01</time></a>
 </div>
 
-  </header>
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>测试人员和开发人员关注的内容是不同的。例如junit测试人员并不会关注他将要测试的程序是否是由Spring框架搭建的，所以开发人员不应该期望测试程序能够存在对开发框架的依赖性代码。而Spring框架需要IOC核心容器，junit如何处理这个问题呢？</p>
+<h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><ol>
+<li>导入spring整合junit的jar文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用junit提供的一个注解@RunWith把原有的main方法替换，替换为spring提供的</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContentConfiguration</span>(classes = SpringConfiguration.class)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>告知spring运行器，spring和ioc创建是基于文件还是注解，并说明位置信息</li>
+</ol>
+<p><strong>@ContextConfiguration</strong></p>
+<ul>
+<li>locations：指定xml文件的位置，加上classpath关键字，表示在类路径下</li>
+<li>classes：指定注解类所在位置</li>
+</ul>
+<p><del>当Spring版本为5.x版本时，要求junit版本不低于4.12</del></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/spring整合junit.html" data-id="ck2g3hxjo000oo454ktvt3hsu" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/junit/">junit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/spring中的注解二.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">spring中的注解二</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
 </article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/spring中的注解二.html">spring中的注解二</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/spring中的注解二.html" class="archive-article-date"><time datetime="2019-11-01T10:27:48.000Z" itemprop="datePublished">十一月 1日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-  
-    </div></section>
-  
 
 
 
