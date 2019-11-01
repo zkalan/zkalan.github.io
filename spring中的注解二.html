@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2019/10 | 麻绳先生</title>
+  <title>spring中的注解二 | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麻绳先生">
-<meta property="og:url" content="http://zkalan.com/archives/2019/10/index.html">
+  <meta name="description" content="前文中的注解能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。 创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。 @Configuration作用：指定当前类是一个配置类细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略">
+<meta name="keywords" content="spring,注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring中的注解二">
+<meta property="og:url" content="http://zkalan.com/spring中的注解二.html">
 <meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="前文中的注解能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。 创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。 @Configuration作用：指定当前类是一个配置类细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-01T11:40:43.846Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麻绳先生">
+<meta name="twitter:title" content="spring中的注解二">
+<meta name="twitter:description" content="前文中的注解能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。 创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。 @Configuration作用：指定当前类是一个配置类细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略">
   
   
   
@@ -55,7 +60,7 @@
           <li><a class=""
                  href="/index.html">Home</a></li>
         
-          <li><a class="active"
+          <li><a class=""
                  href="/archives/">Archives</a></li>
         
           <li><a class=""
@@ -85,180 +90,98 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
+          <article id="post-spring中的注解二" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
+  
+    <h1 class="article-title" itemprop="name">
+      spring中的注解二
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/spring中的注解二.html" class="article-date"><time datetime="2019-11-01T10:27:48.000Z" itemprop="datePublished">2019-11-01</time></a>
+</div>
+
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><a href="http://www.zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html" target="_blank" rel="noopener">前文中的注解</a>能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。</strong></p>
+<p>创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>作用：指定当前类是一个配置类<br>细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略</p>
+<h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><p>作用：用于通过注解指定spring在创建容器时需要扫描的包路径<br>属性：value，它和basePackages的作用一致，都是用于指定创建容器时扫描的包路径，它替代了xml配置文件中的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.zkalan"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.zkalan"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfigurtaion</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>作用：用于把当前方法的返回值作为bean对象存入到spring中的ioc容器中<br>属性：name，用于指定bean的id，当不写时，默认值是当前方法的名字<br>细节：当我们使用注解配置方法时，如果方法有参数，spring矿建回去容器中查找有没有可用的bean对象，查找方式和@AutoWired注解一样</p>
+<p><strong>使用纯注解方式时，使用AnnotationConfigApplicationContext方法获取容器对象。</strong></p>
+<h3 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h3><p>设置bean对象的实现模式，例如singleton、prototype</p>
+<h2 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h2><p>作用：用于导入其他的配置类<br>属性：value，用于指定其他配置类的字节码；有Import注解的类是父配置类，被import的是子配置类</p>
+<h2 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:config.properties"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在实际中，自己写的类使用注解更方便，第三方类使用XML配置更方便。</p>
+
+      
+    </div>
+
     
       
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/spring中的注解二.html" data-id="ck2g2gs8m00007854p98hs5wn" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注解/">注解</a></li></ul>
+
+
+    </footer>
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/spring中的注解.html">spring中的注解</a>
-    </h1>
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/spring中的注解.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">spring中的注解</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
   
 
-
-    <div class="article-datetime">
-  <a href="/spring中的注解.html" class="archive-article-date"><time datetime="2019-10-30T09:16:45.000Z" itemprop="datePublished">十月 30日</time></a>
-</div>
-
-  </header>
+  
+  
+  
+  
+  
+  
+  
+  
 </article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/spring中的依赖注入.html">spring中的依赖注入</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/spring中的依赖注入.html" class="archive-article-date"><time datetime="2019-10-30T07:22:34.000Z" itemprop="datePublished">十月 30日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/bean的笔记.html">bean的笔记</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/bean的笔记.html" class="archive-article-date"><time datetime="2019-10-30T03:32:11.000Z" itemprop="datePublished">十月 30日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Spring的IOC概述.html">Spring的IOC概述</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/Spring的IOC概述.html" class="archive-article-date"><time datetime="2019-10-29T09:18:55.000Z" itemprop="datePublished">十月 29日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Spring概述.html">Spring概述</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/Spring概述.html" class="archive-article-date"><time datetime="2019-10-29T07:43:58.000Z" itemprop="datePublished">十月 29日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/java笔记：包装类.html">java笔记：包装类</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/java笔记：包装类.html" class="archive-article-date"><time datetime="2019-10-16T12:29:20.000Z" itemprop="datePublished">十月 16日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/linux下脚本安装node-npm.html">linux下脚本安装node+npm</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/linux下脚本安装node-npm.html" class="archive-article-date"><time datetime="2019-10-14T10:15:02.000Z" itemprop="datePublished">十月 14日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/hello-world.html">Hello World</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/hello-world.html" class="archive-article-date"><time datetime="2019-10-14T09:24:09.629Z" itemprop="datePublished">十月 14日</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-  
-    </div></section>
-  
 
 
 

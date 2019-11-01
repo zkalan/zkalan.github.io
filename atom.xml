@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-11-01T03:15:37.247Z</updated>
+  <updated>2019-11-01T11:40:43.846Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring中的注解二</title>
+    <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3%E4%BA%8C.html"/>
+    <id>http://zkalan.com/spring中的注解二.html</id>
+    <published>2019-11-01T10:27:48.000Z</published>
+    <updated>2019-11-01T11:40:43.846Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong><a href="http://www.zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html" target="_blank" rel="noopener">前文中的注解</a>能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。</strong></p><p>创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。</p><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>作用：指定当前类是一个配置类<br>细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略</p><h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><p>作用：用于通过注解指定spring在创建容器时需要扫描的包路径<br>属性：value，它和basePackages的作用一致，都是用于指定创建容器时扫描的包路径，它替代了xml配置文件中的</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.zkalan"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.zkalan"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfigurtaion</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure><h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>作用：用于把当前方法的返回值作为bean对象存入到spring中的ioc容器中<br>属性：name，用于指定bean的id，当不写时，默认值是当前方法的名字<br>细节：当我们使用注解配置方法时，如果方法有参数，spring矿建回去容器中查找有没有可用的bean对象，查找方式和@AutoWired注解一样</p><p><strong>使用纯注解方式时，使用AnnotationConfigApplicationContext方法获取容器对象。</strong></p><h3 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h3><p>设置bean对象的实现模式，例如singleton、prototype</p><h2 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h2><p>作用：用于导入其他的配置类<br>属性：value，用于指定其他配置类的字节码；有Import注解的类是父配置类，被import的是子配置类</p><h2 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:config.properties"</span>)</span><br></pre></td></tr></table></figure><p>在实际中，自己写的类使用注解更方便，第三方类使用XML配置更方便。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;前文中的注解&lt;/a&gt;能够对自己实现的
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="注解" scheme="http://zkalan.com/tags/%E6%B3%A8%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>spring中的注解</title>

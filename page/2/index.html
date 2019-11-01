@@ -87,6 +87,95 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-Spring概述" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Spring概述.html">Spring概述</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/Spring概述.html" class="article-date"><time datetime="2019-10-29T07:43:58.000Z" itemprop="datePublished">2019-10-29</time></a>
+</div>
+
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="spring是什么"><a href="#spring是什么" class="headerlink" title="spring是什么"></a>spring是什么</h2><p>spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaEE企业应用开源框架。</p>
+<h2 id="spring两大核心"><a href="#spring两大核心" class="headerlink" title="spring两大核心"></a>spring两大核心</h2><p>IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）</p>
+<h2 id="spring发展历程和优势"><a href="#spring发展历程和优势" class="headerlink" title="spring发展历程和优势"></a>spring发展历程和优势</h2><ul>
+<li>方便解耦，简化开发</li>
+<li>AOP编程的支持</li>
+<li>声明式事务编程</li>
+<li>方便程序测试</li>
+<li>方便集成各种优秀框架</li>
+<li>降低Java API的使用难度<h2 id="spring体系结构"><a href="#spring体系结构" class="headerlink" title="spring体系结构"></a>spring体系结构</h2></li>
+</ul>
+<h2 id="程序的耦合"><a href="#程序的耦合" class="headerlink" title="程序的耦合"></a>程序的耦合</h2><ol>
+<li>内容耦合：当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另一个模块时，这样的耦合被称为内容耦合，内容耦合是最高程度的耦合，应该避免使用。</li>
+<li>公共耦合：两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合，在具有大量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。</li>
+<li>外部耦合：一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</li>
+<li>控制耦合：一组模块通过接口向另一个模块传递一个控制信号，接收信号的模块根据信号值而进行适当的动作，这种耦合称为控制耦合。</li>
+<li>标记耦合：若一个模块A通过接口向另外两个模块B和C传递一个公共参数，那么模块B和C之间存在标记耦合。</li>
+<li>数据耦合：模块之间通过参数来传递数据，那么被称为数据耦合，数据耦合是最低的一种耦合形式。系统中一般都存在这种类型的耦合，因为为了完成一种有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。</li>
+<li>非直接耦合：两个模块之间没有直接关系，他们之间的联系完全是通过主模块的控制和调用来实现的。<h2 id="解耦的思路"><a href="#解耦的思路" class="headerlink" title="解耦的思路"></a>解耦的思路</h2>第一步，应该采用反射来创建对象，避免使用new关键字；<br>第二步，通过读取配置文件来获取要创建的对象全限定类名；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>计算机语言中，bean有可重用组件的意思。</strong></p>
+<h3 id="工厂模式解耦"><a href="#工厂模式解耦" class="headerlink" title="工厂模式解耦"></a>工厂模式解耦</h3><p>巧妙的使用properties配置文件和反射机制，通过map存储beans，将该map声明为static就能实现单例模式，它的作用被称为容器container。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/Spring概述.html" data-id="ck2g2gf4l0000uk54lw801bm9" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概述/">概述</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
     <article id="post-java笔记：包装类" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -169,7 +258,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/java笔记：包装类.html" data-id="ck2fxe169000xd054b5dgz0fg" class="article-share-link">
+      <a data-url="http://zkalan.com/java笔记：包装类.html" data-id="ck2g2gf530006uk54btkxk5tf" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -239,7 +328,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/linux下脚本安装node-npm.html" data-id="ck2fxe16a000yd054njh30vgt" class="article-share-link">
+      <a data-url="http://zkalan.com/linux下脚本安装node-npm.html" data-id="ck2g2gf530007uk544dm0vbhm" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -314,7 +403,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/hello-world.html" data-id="ck2fxe167000vd054c5t0a77o" class="article-share-link">
+      <a data-url="http://zkalan.com/hello-world.html" data-id="ck2g2gf55000auk54fyhti8f4" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -359,7 +448,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -367,7 +456,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -376,7 +465,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 10px;">注解</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a>
+      <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 15px;">注解</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a>
     </p>
   </div>
 
@@ -384,7 +473,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
   </div>
 
 
@@ -393,6 +482,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/spring中的注解二.html">spring中的注解二</a>
+        </li>
       
         <li>
           <a href="/spring中的注解.html">spring中的注解</a>
@@ -408,10 +501,6 @@
       
         <li>
           <a href="/Spring的IOC概述.html">Spring的IOC概述</a>
-        </li>
-      
-        <li>
-          <a href="/Spring概述.html">Spring概述</a>
         </li>
       
     </ul>
