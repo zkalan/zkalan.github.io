@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-11-01T12:09:52.306Z</updated>
+  <updated>2019-11-04T11:29:18.350Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘</title>
+    <link href="http://zkalan.com/%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%94%AF%E6%8C%81%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85%E9%80%9A%E8%BF%87usb%E6%88%96IEEE-1394%E7%AB%AF%E5%8F%A3%E9%93%BE%E6%8E%A5%E7%9A%84%E7%A3%81%E7%9B%98.html"/>
+    <id>http://zkalan.com/安装程序不支持配置安装通过usb或IEEE-1394端口链接的磁盘.html</id>
+    <published>2019-11-04T11:20:43.000Z</published>
+    <updated>2019-11-04T11:29:18.350Z</updated>
+    
+    <content type="html"><![CDATA[<p>无意中得到一台外星人Alpha，不过并没有硬盘，于是拆了一个1T机械作为系统盘，这个机械硬盘<br>只能通过USB的方式连接到电脑，所以也只能通过USB安装系统到硬盘，于是发生了上述错误“安装<br>程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘”，这个问题并没有找到太多解决办法，<br>网上大多采用“windows to go”的解决办法，我试了一试，很方便，不过和安装介质有些关系，一<br>开始的u盘总是出错，换成硬盘就好了。</p><p>参考链接：<a href="https://bbs.luobotou.org/thread-2427-1-1.html" target="_blank" rel="noopener">https://bbs.luobotou.org/thread-2427-1-1.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;无意中得到一台外星人Alpha，不过并没有硬盘，于是拆了一个1T机械作为系统盘，这个机械硬盘&lt;br&gt;只能通过USB的方式连接到电脑，所以也只能通过USB安装系统到硬盘，于是发生了上述错误“安装&lt;br&gt;程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘”，这个问题
+      
+    
+    </summary>
+    
+    
+      <category term="杂项" scheme="http://zkalan.com/categories/%E6%9D%82%E9%A1%B9/"/>
+    
+    
+      <category term="装系统" scheme="http://zkalan.com/tags/%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="windows to go" scheme="http://zkalan.com/tags/windows-to-go/"/>
+    
+  </entry>
   
   <entry>
     <title>spring整合junit</title>
