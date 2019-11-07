@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Tag: bean | 麻绳先生</title>
+  <title>AOP相关概念 | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麻绳先生">
-<meta property="og:url" content="http://zkalan.com/tags/bean/index.html">
+  <meta name="description" content="动态代理特点：字节码随用随创建，随用随加载作用：不修改源码的基础上对方法增强分类：基于接口的动态代理和基于子类的动态代理 基于接口的动态代理使用Proxy类中的newProxyInstance方法创建代理对象，被代理类至少实现一个接口，否则不能使用。newProxyInstance方法有三个参数，  ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法； Cla">
+<meta name="keywords" content="AOP,动态代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AOP相关概念">
+<meta property="og:url" content="http://zkalan.com/AOP相关概念.html">
 <meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="动态代理特点：字节码随用随创建，随用随加载作用：不修改源码的基础上对方法增强分类：基于接口的动态代理和基于子类的动态代理 基于接口的动态代理使用Proxy类中的newProxyInstance方法创建代理对象，被代理类至少实现一个接口，否则不能使用。newProxyInstance方法有三个参数，  ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法； Cla">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-06T13:09:27.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麻绳先生">
+<meta name="twitter:title" content="AOP相关概念">
+<meta name="twitter:description" content="动态代理特点：字节码随用随创建，随用随加载作用：不修改源码的基础上对方法增强分类：基于接口的动态代理和基于子类的动态代理 基于接口的动态代理使用Proxy类中的newProxyInstance方法创建代理对象，被代理类至少实现一个接口，否则不能使用。newProxyInstance方法有三个参数，  ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法； Cla">
   
   
   
@@ -76,40 +81,113 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-AOP相关概念" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/bean的笔记.html">bean的笔记</a>
+    <h1 class="article-title" itemprop="name">
+      AOP相关概念
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/bean的笔记.html" class="archive-article-date"><time datetime="2019-10-30T03:32:11.000Z" itemprop="datePublished">十月 30日</time></a>
+  <a href="/AOP相关概念.html" class="article-date"><time datetime="2019-11-06T03:13:52.000Z" itemprop="datePublished">2019-11-06</time></a>
 </div>
 
-  </header>
-</article>
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>特点：字节码随用随创建，随用随加载<br>作用：不修改源码的基础上对方法增强<br>分类：基于接口的动态代理和基于子类的动态代理</p>
+<h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>使用Proxy类中的newProxyInstance方法创建代理对象，<strong>被代理类至少实现一个接口，否则不能使用</strong>。newProxyInstance方法有三个参数，</p>
+<ul>
+<li>ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法；</li>
+<li>Class[]：用于让代理对象和被代理对象有相同的方法，固定写法；</li>
+<li>InvocationHandler：用于增强的代码，一般都是写一个接口的实现类，通常情况下是匿名内部类，但不是必须的，此接口的实现类都是谁用谁写；</li>
+</ul>
+<h3 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h3><p>使用Enhancer类中的create方法，要求 被代理类不能是最终类。该create方法有两个参数，</p>
+<ul>
+<li>class：用于指定被代理对象的字节码</li>
+<li>callback：用于提供增强代码</li>
+</ul>
+<h2 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h2><p>通过预编译方式和运行期动态代理实现程序功能的统一维护。是函数式编程的一种衍生范型。利用AOP可以对业务逻辑各个部分进行隔离，从而使业务逻辑各部分耦合度降低，提高程序可重用性，提高开发效率。</p>
+<p>作用：在程序运行期间，不修改源码对已有方法进行增强；<br>优势：</p>
+<ul>
+<li>减少重复代码</li>
+<li>提高开发效率</li>
+<li>维护方便</li>
+</ul>
+<p>实现方式：动态代理技术</p>
+<h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul>
+<li>Joinpoint连接点：指那些被拦截到的点</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/AOP相关概念.html" data-id="ck2on5lvw000jf854p66uzppd" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AOP/">AOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态代理/">动态代理</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/安装程序不支持配置安装通过usb或IEEE-1394端口链接的磁盘.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">安装程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/特殊的日期.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">特殊的日期</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
 
   
   
-    </div></section>
+
   
+  
+  
+  
+  
+  
+  
+  
+</article>
 
 
 
