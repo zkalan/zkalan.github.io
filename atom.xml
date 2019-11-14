@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-11-07T11:41:55.987Z</updated>
+  <updated>2019-11-14T12:07:52.747Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring基于XML的AOP</title>
+    <link href="http://zkalan.com/spring%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP.html"/>
+    <id>http://zkalan.com/spring基于XML的AOP.html</id>
+    <published>2019-11-11T12:12:00.000Z</published>
+    <updated>2019-11-14T12:07:52.747Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><ol><li>把通知bean也交给spring管理；</li><li>使用aop:config标签表明开始AOP配置；</li><li>使用aop:aspect标签表明配置切面；<ul><li>id属性：给切面提供一个唯一标识</li><li>ref属性：指定通知类bean的id</li></ul></li><li>在aop:aspect标签的内部使用对应标签配置通知的类型；<ul><li>aop:before：表示配置前置通知<ul><li>method：用于指定切面中哪个方法是前置通知；</li><li>pointcut：用于指定切入点表达式，该表达式的含义是指对业务层中哪些方法进行增强</li></ul></li><li>切入点表达式的写法：<ul><li>关键字：execution(表达式)</li><li>表达式：访问修饰符 返回值 类名.方法名(参数列表)<ul><li>访问修饰符可以省略</li><li>返回值可以使用通配符，表示任意返回类型</li><li>包名可以使用通配符，但包的层级需要和通配符一致</li><li>包名可以使用..表示包名及其子包</li><li>类名和方法名可以使用通配符</li><li>全通配写法：* *..*.*(..)</li></ul></li></ul></li></ul></li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">class</span>=<span class="string">"com.service.impl.AccountServiceImpl&gt;&lt;/bean&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;bean id="</span><span class="attr">logger</span>" <span class="attr">class</span>=<span class="string">"com.utils.Logger"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAdvice"</span> <span class="attr">ref</span>=<span class="string">"logger"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"printlog"</span> <span class="attr">pointcut</span>=<span class="string">"execution(public void com.service.AccountServiceImpl.saveAccount())"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="四种常用通知类型"><a href="#四种常用通知类型" class="headerlink" title="四种常用通知类型"></a>四种常用通知类型</h2><ul><li>aop:before：前置通知，再切入点方法之前执行；</li><li>aop:after-returning：后置通知，在切入点方法正确执行之后执行，它和异常通知永远只有一个执行；</li><li>aop:after-throwing：异常通知，在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个；</li><li>aop:after：最终通知，无论切入点方法是否正确执行它都会在其后面执行；</li><li>aop:pointcut：配置切入点表达式，id属性用于指定表达式的唯一标识，expression属性用于指定表达式的内容；此标签写在aop:aspect内部时只能当前切面使用，将其写在aop:aspect外面时，所有前面可用；</li><li>aop:around：配置环绕通知；</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;配置步骤&quot;&gt;&lt;a href=&quot;#配置步骤&quot; class=&quot;headerlink&quot; title=&quot;配置步骤&quot;&gt;&lt;/a&gt;配置步骤&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;把通知bean也交给spring管理；&lt;/li&gt;
+&lt;li&gt;使用aop:config标签表明开始AOP配置；&lt;/l
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+  </entry>
   
   <entry>
     <title>特殊的日期</title>
@@ -46,9 +76,9 @@
     <link href="http://zkalan.com/AOP%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5.html"/>
     <id>http://zkalan.com/AOP相关概念.html</id>
     <published>2019-11-06T03:13:52.000Z</published>
-    <updated>2019-11-06T13:09:27.214Z</updated>
+    <updated>2019-11-08T03:29:06.063Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>特点：字节码随用随创建，随用随加载<br>作用：不修改源码的基础上对方法增强<br>分类：基于接口的动态代理和基于子类的动态代理</p><h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>使用Proxy类中的newProxyInstance方法创建代理对象，<strong>被代理类至少实现一个接口，否则不能使用</strong>。newProxyInstance方法有三个参数，</p><ul><li>ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法；</li><li>Class[]：用于让代理对象和被代理对象有相同的方法，固定写法；</li><li>InvocationHandler：用于增强的代码，一般都是写一个接口的实现类，通常情况下是匿名内部类，但不是必须的，此接口的实现类都是谁用谁写；</li></ul><h3 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h3><p>使用Enhancer类中的create方法，要求 被代理类不能是最终类。该create方法有两个参数，</p><ul><li>class：用于指定被代理对象的字节码</li><li>callback：用于提供增强代码</li></ul><h2 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h2><p>通过预编译方式和运行期动态代理实现程序功能的统一维护。是函数式编程的一种衍生范型。利用AOP可以对业务逻辑各个部分进行隔离，从而使业务逻辑各部分耦合度降低，提高程序可重用性，提高开发效率。</p><p>作用：在程序运行期间，不修改源码对已有方法进行增强；<br>优势：</p><ul><li>减少重复代码</li><li>提高开发效率</li><li>维护方便</li></ul><p>实现方式：动态代理技术</p><h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul><li>Joinpoint连接点：指那些被拦截到的点</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>特点：字节码随用随创建，随用随加载<br>作用：不修改源码的基础上对方法增强<br>分类：基于接口的动态代理和基于子类的动态代理</p><h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>使用Proxy类中的newProxyInstance方法创建代理对象，<strong>被代理类至少实现一个接口，否则不能使用</strong>。newProxyInstance方法有三个参数，</p><ul><li>ClassLoader：用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法；</li><li>Class[]：用于让代理对象和被代理对象有相同的方法，固定写法；</li><li>InvocationHandler：用于增强的代码，一般都是写一个接口的实现类，通常情况下是匿名内部类，但不是必须的，此接口的实现类都是谁用谁写；</li></ul><h3 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h3><p>使用Enhancer类中的create方法，要求 被代理类不能是最终类。该create方法有两个参数，</p><ul><li>class：用于指定被代理对象的字节码</li><li>callback：用于提供增强代码</li></ul><h2 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h2><p>通过预编译方式和运行期动态代理实现程序功能的统一维护。是函数式编程的一种衍生范型。利用AOP可以对业务逻辑各个部分进行隔离，从而使业务逻辑各部分耦合度降低，提高程序可重用性，提高开发效率。</p><p>作用：在程序运行期间，不修改源码对已有方法进行增强；<br>优势：</p><ul><li>减少重复代码</li><li>提高开发效率</li><li>维护方便</li></ul><p>实现方式：动态代理技术</p><h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul><li>Joinpoint连接点：指那些被拦截到的点</li><li>Pointout切入点：要对哪些joinpoint进行拦截的定义，被增强的连接点成为切入点</li><li>Advice通知或增强：通知是指拦截到joinpoint之后所要做的事情就是通知。通知的类型有前置通知、后置通知、异常通知、最终通知、环绕通知。环绕通知中有明确的切入点方法调用。</li><li>Introduction引介：是一种特殊的通知在不修改类代码的前提下，introduction可以再运行期为类动态地添加一些方法或field</li><li>Target目标对象：代理的目标对象</li><li>Weaving织入：指把增强应用到目标对象来创建新的代理对象的过程。spring采用动态代理织入，而aspectj采用编译期织入和类装载期织入。、</li><li>Proxy代理：一个类被AOP织入增强后，被产生一个结果代理类。</li><li>Aspect切面：是切入点和通知（引介）的结合</li></ul>]]></content>
     
     <summary type="html">
     
