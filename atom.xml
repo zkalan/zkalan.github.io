@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-11-14T12:07:52.747Z</updated>
+  <updated>2019-12-03T03:39:14.194Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven</title>
+    <link href="http://zkalan.com/maven.html"/>
+    <id>http://zkalan.com/maven.html</id>
+    <published>2019-12-02T13:28:29.000Z</published>
+    <updated>2019-12-03T03:39:14.194Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="目前存在的问题"><a href="#目前存在的问题" class="headerlink" title="目前存在的问题"></a>目前存在的问题</h2><ol><li>一个项目就是一个工程<br>如果项目非常庞大，就不适用package来划分模块，最好每一个模块对应一个工程，利于分工协作。借助于maven就可以将一个项目拆分为多个工程。</li><li>项目中需要的jar包需要手动管理<br>同样的文件出现在不同的工程中，浪费存储，让文件结构冗余。</li><li>jar包来源复杂，难以维护</li><li>jar包依赖的其他文件仍需手动管理</li></ol><h2 id="什么是maven"><a href="#什么是maven" class="headerlink" title="什么是maven"></a>什么是maven</h2><p>是一款服务于java平台的自动化构建工具。</p><h2 id="什么是构建"><a href="#什么是构建" class="headerlink" title="什么是构建"></a>什么是构建</h2><p>以“java源文件”、“框架配置文件”、JSP、HTML、图片等资源为原材料产生一个可运行的项目的过程。</p><ul><li>清理：将之前编译生成的字节码文件删除，为下一次编译做准备</li><li>编译：将java源程序编程为class字节码文件</li><li>测试：自动测试，自动调用junit程序</li><li>报告：测试程序执行的结果</li><li>打包：动态web工程war包，java工程jar包</li><li>安装：maven特定的概念，将打包得到的文件复制到仓库中指定位置</li><li>部署：将动态web工程生成的war包复制到servlet容器的指定目录下</li></ul><h2 id="安装maven核心程序"><a href="#安装maven核心程序" class="headerlink" title="安装maven核心程序"></a>安装maven核心程序</h2><ul><li><strong>检查JAVA_HOME环境变量</strong></li><li>解压maven核心程序压缩包，英文无空格目录</li><li>配置maven相关环境变量<ul><li>MAVEN_HOME或M2_HOME（bin目录上一级）</li><li>path（通常带bin目录）</li></ul></li><li>运行mvn -v验证配置</li></ul><h2 id="maven核心概念"><a href="#maven核心概念" class="headerlink" title="maven核心概念"></a>maven核心概念</h2><h3 id="约定的目录"><a href="#约定的目录" class="headerlink" title="约定的目录"></a>约定的目录</h3><ul><li>根目录：工程名<ul><li>以配置的方式告诉框架自定义文件：<param-value>classpath:spring-content.xml</param-value></li></ul></li><li>src目录：存放源码</li><li>pom.xml：maven工程核心配置文件</li><li>main目录：存放主程序</li><li>test目录：存放测试程序</li><li>java目录：存放java源码</li><li>resources目录：存放框架或其他工具的配置文件</li></ul><p><em>约定大于配置，配置大于编码</em></p><h3 id="POM"><a href="#POM" class="headerlink" title="POM"></a>POM</h3><p>含义：project object model项目对象模型</p><h3 id="坐标（gav）"><a href="#坐标（gav）" class="headerlink" title="坐标（gav）"></a>坐标（gav）</h3><ul><li>groupid：公司组织域名倒序+项目名</li><li>artifactid：模块名</li><li>version：版本</li></ul><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul><li>对于自己的maven工程，使用install命令将其安装到仓库。</li><li>依赖的范围<ul><li>compile：对主程序有效，对测试程序有效，参与打包</li><li>test：对主程序无效，对测试程序有效，不参与打包</li><li>provided：对主程序有效，对测试程序有效，不参与打包，不参与部署，例如servlet-api.jar</li></ul></li><li>scope</li></ul><h3 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h3><h3 id="生命周期-插件-目标"><a href="#生命周期-插件-目标" class="headerlink" title="生命周期/插件/目标"></a>生命周期/插件/目标</h3><ul><li>各个构建环节执行的顺序是既定的；</li><li>maven核心程序中定义了抽象的生命周期；</li><li>不论执行哪个命令，maven都会从生命周期最开始的位置执行；</li></ul><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><h2 id="常用maven命令"><a href="#常用maven命令" class="headerlink" title="常用maven命令"></a>常用maven命令</h2><p><em>首先进入pom.xml目录</em></p><ul><li>mvn clean：清理</li><li>mvn compile：编译主程序</li><li>mvn test-compile：编译测试程序</li><li>mvn test：执行测试</li><li>mvn package：打包</li><li>mvn install：安装</li><li>mvn site：生成站点</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;目前存在的问题&quot;&gt;&lt;a href=&quot;#目前存在的问题&quot; class=&quot;headerlink&quot; title=&quot;目前存在的问题&quot;&gt;&lt;/a&gt;目前存在的问题&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;一个项目就是一个工程&lt;br&gt;如果项目非常庞大，就不适用package来划分模块，最好每一
+      
+    
+    </summary>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/categories/spring-boot/"/>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/tags/spring-boot/"/>
+    
+      <category term="入门" scheme="http://zkalan.com/tags/%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring boot入门</title>
+    <link href="http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html"/>
+    <id>http://zkalan.com/spring-boot入门.html</id>
+    <published>2019-12-02T09:08:16.000Z</published>
+    <updated>2019-12-02T13:28:54.847Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h2><p>简化spring开发流程，J2EE开发的一站式解决方案。</p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>快速创建独立运行spring项目以及与主流框架集成</li><li>使用嵌入式servlet容器，应用无需达成war包</li><li>starters自动依赖与版本控制</li><li>大量的自动配置，简化开发，也可以修改默认值</li><li>无需配置XML，无代码生成</li><li>准生产环境的运行时应用监控</li><li>与云计算天然集成</li></ul><h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>是一种架构风格，其认为一个应用应该是一组小型服务，可以用过HTTP的方式通信。</p><p>每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;spring简介&quot;&gt;&lt;a href=&quot;#spring简介&quot; class=&quot;headerlink&quot; title=&quot;spring简介&quot;&gt;&lt;/a&gt;spring简介&lt;/h2&gt;&lt;p&gt;简化spring开发流程，J2EE开发的一站式解决方案。&lt;/p&gt;
+&lt;h3 id=&quot;优点&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/categories/spring-boot/"/>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/tags/spring-boot/"/>
+    
+      <category term="入门" scheme="http://zkalan.com/tags/%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring的声明式事务控制</title>
+    <link href="http://zkalan.com/spring%E7%9A%84%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6.html"/>
+    <id>http://zkalan.com/spring的声明式事务控制.html</id>
+    <published>2019-11-15T12:18:11.000Z</published>
+    <updated>2019-11-18T13:29:41.915Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基于XML的声明式事务控制"><a href="#基于XML的声明式事务控制" class="headerlink" title="基于XML的声明式事务控制"></a>基于XML的声明式事务控制</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置步骤--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务管理器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"tansactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务的通知，此时需要导入事务的约束--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManger"</span>&gt;</span><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务的属性</span></span><br><span class="line"><span class="comment">        isolation：用于指定事务的隔离等级，默认是DEFAULT，表示使用数据库的默认隔离等级；</span></span><br><span class="line"><span class="comment">        propagation：用于指定事务的</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span> <span class="attr">read-only</span>=<span class="string">"false"</span>/&gt;</span><span class="tag">&lt;/<span class="name">tx:method</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">propagation</span>=<span class="string">"SUPPORTS"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span><span class="tag">&lt;/<span class="name">tx:method</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置AOP中的通用切入点表达式--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--建立食物通知和切入点表达式的对应关系--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务的属性，在事物的通知tx:advice标签内--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切入点表达式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcout</span> <span class="attr">id</span>=<span class="string">"pt1"</span> <span class="attr">execution</span>(* <span class="attr">com.service.impl.</span>*<span class="attr">.</span>*(<span class="attr">..</span>))"&gt;</span><span class="tag">&lt;/<span class="name">aop:pointcut</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--建立切入点表达式和事务通知的对应关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="基于纯注解的声明式事务控制"><a href="#基于纯注解的声明式事务控制" class="headerlink" title="基于纯注解的声明式事务控制"></a>基于纯注解的声明式事务控制</h2><ol><li>配置事务管理器；</li><li>开启spring对注解事务的支持；<ul><li>&lt;tx:annotation-driven transaction-manager=”transactionManager”&gt;</li></ul></li><li>在需要事物支持的地方使用@Transactional</li></ol><h2 id="基于编程式事务控制"><a href="#基于编程式事务控制" class="headerlink" title="基于编程式事务控制"></a>基于编程式事务控制</h2><p>不够灵活</p><h2 id="spring5新特性"><a href="#spring5新特性" class="headerlink" title="spring5新特性"></a>spring5新特性</h2><ul><li>与JDK相关升级；</li><li>核心容器更新；</li><li>JetBrains Kotlin语言支持；<ul><li>运行于在JVM上，独立语言；</li></ul></li><li>响应式编程风格；</li><li>Junit5支持；</li><li>依赖类库的更新；</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;基于XML的声明式事务控制&quot;&gt;&lt;a href=&quot;#基于XML的声明式事务控制&quot; class=&quot;headerlink&quot; title=&quot;基于XML的声明式事务控制&quot;&gt;&lt;/a&gt;基于XML的声明式事务控制&lt;/h2&gt;&lt;figure class=&quot;highlight xml&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="声明式事务控制" scheme="http://zkalan.com/tags/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring中的JdbctTemplate</title>
+    <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84JdbctTemplate.html"/>
+    <id>http://zkalan.com/spring中的JdbctTemplate.html</id>
+    <published>2019-11-14T12:50:49.000Z</published>
+    <updated>2019-11-15T12:15:58.147Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>是spring框架中提供的一个对象，是对原始Jdbc API对象的简单封装，spring框架提供了许多操作模板类。</strong></p><ul><li>操作关系型数据<ul><li>JdbcTemplate</li><li>HibernateTemplate</li></ul></li><li>操作nosql数据库<ul><li>RedisTemplate</li></ul></li><li>操作消息队列<ul><li>JmsTemplate</li></ul></li></ul><h2 id="JdbcTemplate作用"><a href="#JdbcTemplate作用" class="headerlink" title="JdbcTemplate作用"></a>JdbcTemplate作用</h2><p>和数据库交互的模板类</p><h2 id="JdbcTemplate基本用法"><a href="#JdbcTemplate基本用法" class="headerlink" title="JdbcTemplate基本用法"></a>JdbcTemplate基本用法</h2><p>首先通过XML文件配置必要信息，这块是spring框架必要的IOC手法；</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置JdbcTemplate--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/databasename"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取容器</span></span><br><span class="line">ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean.xml"</span>);</span><br><span class="line"><span class="comment">//获取对象</span></span><br><span class="line">JdbcTemplate jt = ac.getBean(<span class="string">"jdbcTemplate"</span>, JdbcTemplate.class);</span><br><span class="line"><span class="comment">//执行操作</span></span><br><span class="line">jt.execute(<span class="string">"insert into account(name, money) values ('name', 222)"</span>);</span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">jt.update(<span class="string">"insert into account(name, money) values (?, ?)"</span>, <span class="string">"name"</span>, <span class="number">333</span>);</span><br><span class="line"><span class="comment">//更新</span></span><br><span class="line">jt.update(<span class="string">"update account set name=?, money=?, where id=?"</span>,<span class="string">"test"</span>,<span class="number">2345</span>,<span class="number">3</span>);</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line">jt.update(<span class="string">"delete from account where id=?"</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">//查询所有</span></span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where money &gt; ?"</span>, <span class="keyword">new</span> AccountRowMapper(), <span class="number">1000f</span>);</span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where money &gt; ?"</span>, <span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class), <span class="number">1000f</span>);</span><br><span class="line"><span class="keyword">for</span>(Account account : accounts)&#123;</span><br><span class="line">    System.out.println(account);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查询一个</span></span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where id = ?"</span>, <span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class), <span class="number">1</span>);</span><br><span class="line"><span class="comment">//查询返回一行一列（使用聚合函数，但是不加group by子句</span></span><br><span class="line">Long count = jt.queryForObject(<span class="string">"select count(*) from account where money &gt; ?"</span>, Long.class, <span class="number">1000f</span>);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;是spring框架中提供的一个对象，是对原始Jdbc API对象的简单封装，spring框架提供了许多操作模板类。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作关系型数据&lt;ul&gt;
+&lt;li&gt;JdbcTemplate&lt;/li&gt;
+&lt;li&gt;HibernateTe
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="JdbcTemplate" scheme="http://zkalan.com/tags/JdbcTemplate/"/>
+    
+  </entry>
   
   <entry>
     <title>spring基于XML的AOP</title>
