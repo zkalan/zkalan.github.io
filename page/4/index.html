@@ -78,6 +78,80 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-Spring的IOC概述" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Spring的IOC概述.html">Spring的IOC概述</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/Spring的IOC概述.html" class="article-date"><time datetime="2019-10-29T09:18:55.000Z" itemprop="datePublished">2019-10-29</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="通过工厂模式"><a href="#通过工厂模式" class="headerlink" title="通过工厂模式"></a>通过工厂模式</h2><p>通过工厂模式，应用和资源得以分开，降低耦合。</p>
+<h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><p>把创建对象的权利交给框架或工厂，它包括依赖注入和依赖查找。</p>
+<h2 id="spring基于XML的IOC环境搭建和入门"><a href="#spring基于XML的IOC环境搭建和入门" class="headerlink" title="spring基于XML的IOC环境搭建和入门"></a>spring基于XML的IOC环境搭建和入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取核心容器对象</span></span><br><span class="line">ApplicationContent ac = <span class="keyword">new</span> ClassPathXmlApplicationContent(<span class="string">"bena.xml"</span>);</span><br><span class="line"><span class="comment">//根据id获取Bean对象</span></span><br><span class="line">IAccountService as = (IAccountService)as.getBean(<span class="string">"accountService"</span>);</span><br><span class="line">IAccountDao adao = ac.getBean(<span class="string">"accountDao"</span>, IAccountDao.class);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jpa</span>=<span class="string">"http://www.springframework.org/schema/data/jpa"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans/spring-beans.xsd&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;!--把对象的创建交给spring来管理--&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;bean id="</span><span class="attr">accountService</span>" <span class="attr">class</span>=<span class="string">"com.service.impl.AccountServiceImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"com.dao.impl.AccountDaoImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="核心容器的两个接口"><a href="#核心容器的两个接口" class="headerlink" title="核心容器的两个接口"></a>核心容器的两个接口</h2><h3 id="ApplicationContent"><a href="#ApplicationContent" class="headerlink" title="ApplicationContent"></a>ApplicationContent</h3><p>在构建核心容器时，创建对象采用立即加载的方式；单例对象适用；</p>
+<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><p>在构建核心容器时，创建对象采用延时加载的范式；多例对象适用；</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/Spring的IOC概述.html" data-id="ck3soz4ek000jf8543hrsplgz" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
     <article id="post-Spring概述" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -141,7 +215,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/Spring概述.html" data-id="ck3s5vyyp000mkw54xylk3e4u" class="article-share-link">
+      <a data-url="http://zkalan.com/Spring概述.html" data-id="ck3soz4eb0008f854drrmz08p" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -249,7 +323,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/java笔记：包装类.html" data-id="ck3s5vyyn000lkw54j47g6mv1" class="article-share-link">
+      <a data-url="http://zkalan.com/java笔记：包装类.html" data-id="ck3soz4ee000bf854u2m943l8" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -319,7 +393,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/linux下脚本安装node-npm.html" data-id="ck3s5vyys000rkw54jxvy8s2l" class="article-share-link">
+      <a data-url="http://zkalan.com/linux下脚本安装node-npm.html" data-id="ck3soz4ep000tf854l2njrpyy" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -394,7 +468,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/hello-world.html" data-id="ck3s5vyym000kkw54xy54jrs7" class="article-share-link">
+      <a data-url="http://zkalan.com/hello-world.html" data-id="ck3soz4ef000cf854ndwyl4xr" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -464,7 +538,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
   </div>
 
 
@@ -473,6 +547,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/YAML.html">YAML</a>
+        </li>
       
         <li>
           <a href="/gradle.html">gradle</a>
@@ -488,10 +566,6 @@
       
         <li>
           <a href="/spring的声明式事务控制.html">spring的声明式事务控制</a>
-        </li>
-      
-        <li>
-          <a href="/spring中的JdbctTemplate.html">spring中的JdbctTemplate</a>
         </li>
       
     </ul>

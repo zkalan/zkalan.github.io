@@ -78,6 +78,66 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-YAML" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/YAML.html">YAML</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/YAML.html" class="article-date"><time datetime="2019-12-05T12:23:40.000Z" itemprop="datePublished">2019-12-05</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/YAML.html" data-id="ck3soz4dy0000f854wd2scxhs" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
     <article id="post-gradle" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -137,7 +197,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/gradle.html" data-id="ck3s5vyyi000fkw54vc893yp9" class="article-share-link">
+      <a data-url="http://zkalan.com/gradle.html" data-id="ck3soz4e80006f854yl61e7cg" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -305,7 +365,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/maven.html" data-id="ck3s5vyyw000vkw54rhy8houw" class="article-share-link">
+      <a data-url="http://zkalan.com/maven.html" data-id="ck3soz4er000wf854sw9d0arr" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -373,7 +433,14 @@
 </ul>
 <h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>是一种架构风格，其认为一个应用应该是一组小型服务，可以用过HTTP的方式通信。</p>
 <p>每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h2 id="spring-boot-starter"><a href="#spring-boot-starter" class="headerlink" title="spring-boot-starter"></a>spring-boot-starter</h2><p>启动器，spring-boot官方提供了一系列启动器。将所有的功能场景抽取出来，只要在项目里面引入这些starter，相关依赖就会自动导入。</p>
+<h2 id="主程序类"><a href="#主程序类" class="headerlink" title="主程序类"></a>主程序类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@SpringBootApplication</span>标注这是spring boot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldMainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//spring应用启动</span></span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span><span class="comment">//表示这是一个Spring Boot的配置类</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span><span class="comment">//开启自动配置功能</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(</span><br><span class="line">    excludeFilters = &#123;<span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), <span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication</span><br></pre></td></tr></table></figure>
+
+<p>@SpringBootConfiguration:表示这是一个Spring Boot的配置类；<br>@Configuration：配置类上，表示配置类也是容器中的一个组件@Component</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AutoConfigurationPackage</span><span class="comment">//自动配置包</span></span><br><span class="line"><span class="meta">@Import</span>(EnableAutoConfigurationImportSelector.class)</span><br></pre></td></tr></table></figure>
+
+<p>spring-boot的注释没事可以看看。</p>
+
       
     </div>
 
@@ -383,7 +450,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring-boot入门.html" data-id="ck3s5vyz00012kw54mvmromrs" class="article-share-link">
+      <a data-url="http://zkalan.com/spring-boot入门.html" data-id="ck3soz4e90007f854343ahctf" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -471,100 +538,12 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring的声明式事务控制.html" data-id="ck3s5vyz4001akw546bdb3xaj" class="article-share-link">
+      <a data-url="http://zkalan.com/spring的声明式事务控制.html" data-id="ck3soz4fi002ef854tyd4fthy" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/声明式事务控制/">声明式事务控制</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-</article>
-
-
-
-  
-    <article id="post-spring中的JdbctTemplate" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/spring中的JdbctTemplate.html">spring中的JdbctTemplate</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/spring中的JdbctTemplate.html" class="article-date"><time datetime="2019-11-14T12:50:49.000Z" itemprop="datePublished">2019-11-14</time></a>
-</div>
-
-    <div class="article-author">团麻</div>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Spring/">Spring</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>是spring框架中提供的一个对象，是对原始Jdbc API对象的简单封装，spring框架提供了许多操作模板类。</strong></p>
-<ul>
-<li>操作关系型数据<ul>
-<li>JdbcTemplate</li>
-<li>HibernateTemplate</li>
-</ul>
-</li>
-<li>操作nosql数据库<ul>
-<li>RedisTemplate</li>
-</ul>
-</li>
-<li>操作消息队列<ul>
-<li>JmsTemplate</li>
-</ul>
-</li>
-</ul>
-<h2 id="JdbcTemplate作用"><a href="#JdbcTemplate作用" class="headerlink" title="JdbcTemplate作用"></a>JdbcTemplate作用</h2><p>和数据库交互的模板类</p>
-<h2 id="JdbcTemplate基本用法"><a href="#JdbcTemplate基本用法" class="headerlink" title="JdbcTemplate基本用法"></a>JdbcTemplate基本用法</h2><p>首先通过XML文件配置必要信息，这块是spring框架必要的IOC手法；</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置JdbcTemplate--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/databasename"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取容器</span></span><br><span class="line">ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean.xml"</span>);</span><br><span class="line"><span class="comment">//获取对象</span></span><br><span class="line">JdbcTemplate jt = ac.getBean(<span class="string">"jdbcTemplate"</span>, JdbcTemplate.class);</span><br><span class="line"><span class="comment">//执行操作</span></span><br><span class="line">jt.execute(<span class="string">"insert into account(name, money) values ('name', 222)"</span>);</span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">jt.update(<span class="string">"insert into account(name, money) values (?, ?)"</span>, <span class="string">"name"</span>, <span class="number">333</span>);</span><br><span class="line"><span class="comment">//更新</span></span><br><span class="line">jt.update(<span class="string">"update account set name=?, money=?, where id=?"</span>,<span class="string">"test"</span>,<span class="number">2345</span>,<span class="number">3</span>);</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line">jt.update(<span class="string">"delete from account where id=?"</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">//查询所有</span></span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where money &gt; ?"</span>, <span class="keyword">new</span> AccountRowMapper(), <span class="number">1000f</span>);</span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where money &gt; ?"</span>, <span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class), <span class="number">1000f</span>);</span><br><span class="line"><span class="keyword">for</span>(Account account : accounts)&#123;</span><br><span class="line">    System.out.println(account);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查询一个</span></span><br><span class="line">List&lt;Account&gt; accounts = jt.query(<span class="string">"select * from account where id = ?"</span>, <span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class), <span class="number">1</span>);</span><br><span class="line"><span class="comment">//查询返回一行一列（使用聚合函数，但是不加group by子句</span></span><br><span class="line">Long count = jt.queryForObject(<span class="string">"select count(*) from account where money &gt; ?"</span>, Long.class, <span class="number">1000f</span>);</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring中的JdbctTemplate.html" data-id="ck3s5vyz20016kw54ax19m0ia" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
 
 
     </footer>
@@ -631,7 +610,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
   </div>
 
 
@@ -640,6 +619,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/YAML.html">YAML</a>
+        </li>
       
         <li>
           <a href="/gradle.html">gradle</a>
@@ -655,10 +638,6 @@
       
         <li>
           <a href="/spring的声明式事务控制.html">spring的声明式事务控制</a>
-        </li>
-      
-        <li>
-          <a href="/spring中的JdbctTemplate.html">spring中的JdbctTemplate</a>
         </li>
       
     </ul>

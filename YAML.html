@@ -3,20 +3,16 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>spring的声明式事务控制 | 麻绳先生</title>
+  <title>YAML | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基于XML的声明式事务控制1234567891011121314151617181920212223242526&amp;lt;!--配置步骤--&amp;gt;&amp;lt;!--配置事务管理器--&amp;gt;&amp;lt;bean id=&quot;tansactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&amp;gt">
-<meta name="keywords" content="spring,声明式事务控制">
-<meta property="og:type" content="article">
-<meta property="og:title" content="spring的声明式事务控制">
-<meta property="og:url" content="http://zkalan.com/spring的声明式事务控制.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="YAML">
+<meta property="og:url" content="http://zkalan.com/YAML.html">
 <meta property="og:site_name" content="麻绳先生">
-<meta property="og:description" content="基于XML的声明式事务控制1234567891011121314151617181920212223242526&amp;lt;!--配置步骤--&amp;gt;&amp;lt;!--配置事务管理器--&amp;gt;&amp;lt;bean id=&quot;tansactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&amp;gt">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-11-18T13:29:41.915Z">
+<meta property="og:updated_time" content="2019-12-05T12:23:40.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring的声明式事务控制">
-<meta name="twitter:description" content="基于XML的声明式事务控制1234567891011121314151617181920212223242526&amp;lt;!--配置步骤--&amp;gt;&amp;lt;!--配置事务管理器--&amp;gt;&amp;lt;bean id=&quot;tansactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&amp;gt">
+<meta name="twitter:title" content="YAML">
   
   
   
@@ -81,13 +77,13 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          <article id="post-spring的声明式事务控制" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-YAML" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
     
   
     <h1 class="article-title" itemprop="name">
-      spring的声明式事务控制
+      YAML
     </h1>
   
 
@@ -96,44 +92,18 @@
 
   <div class="article-meta">
     <div class="article-datetime">
-  <a href="/spring的声明式事务控制.html" class="article-date"><time datetime="2019-11-15T12:18:11.000Z" itemprop="datePublished">2019-11-15</time></a>
+  <a href="/YAML.html" class="article-date"><time datetime="2019-12-05T12:23:40.000Z" itemprop="datePublished">2019-12-05</time></a>
 </div>
 
-    <div class="article-author">团麻</div>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Spring/">Spring</a>
-  </div>
-
+    
 
   </div>
   <div class="article-inner">
 
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基于XML的声明式事务控制"><a href="#基于XML的声明式事务控制" class="headerlink" title="基于XML的声明式事务控制"></a>基于XML的声明式事务控制</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置步骤--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务管理器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"tansactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务的通知，此时需要导入事务的约束--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManger"</span>&gt;</span><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务的属性</span></span><br><span class="line"><span class="comment">        isolation：用于指定事务的隔离等级，默认是DEFAULT，表示使用数据库的默认隔离等级；</span></span><br><span class="line"><span class="comment">        propagation：用于指定事务的</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span> <span class="attr">read-only</span>=<span class="string">"false"</span>/&gt;</span><span class="tag">&lt;/<span class="name">tx:method</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">propagation</span>=<span class="string">"SUPPORTS"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span><span class="tag">&lt;/<span class="name">tx:method</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置AOP中的通用切入点表达式--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--建立食物通知和切入点表达式的对应关系--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务的属性，在事物的通知tx:advice标签内--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切入点表达式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcout</span> <span class="attr">id</span>=<span class="string">"pt1"</span> <span class="attr">execution</span>(* <span class="attr">com.service.impl.</span>*<span class="attr">.</span>*(<span class="attr">..</span>))"&gt;</span><span class="tag">&lt;/<span class="name">aop:pointcut</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--建立切入点表达式和事务通知的对应关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="基于纯注解的声明式事务控制"><a href="#基于纯注解的声明式事务控制" class="headerlink" title="基于纯注解的声明式事务控制"></a>基于纯注解的声明式事务控制</h2><ol>
-<li>配置事务管理器；</li>
-<li>开启spring对注解事务的支持；<ul>
-<li>&lt;tx:annotation-driven transaction-manager=”transactionManager”&gt;</li>
-</ul>
-</li>
-<li>在需要事物支持的地方使用@Transactional</li>
-</ol>
-<h2 id="基于编程式事务控制"><a href="#基于编程式事务控制" class="headerlink" title="基于编程式事务控制"></a>基于编程式事务控制</h2><p>不够灵活</p>
-<h2 id="spring5新特性"><a href="#spring5新特性" class="headerlink" title="spring5新特性"></a>spring5新特性</h2><ul>
-<li>与JDK相关升级；</li>
-<li>核心容器更新；</li>
-<li>JetBrains Kotlin语言支持；<ul>
-<li>运行于在JVM上，独立语言；</li>
-</ul>
-</li>
-<li>响应式编程风格；</li>
-<li>Junit5支持；</li>
-<li>依赖类库的更新；</li>
-</ul>
-
+        
       
     </div>
 
@@ -143,13 +113,11 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring的声明式事务控制.html" data-id="ck3soz4fi002ef854tyd4fthy" class="article-share-link">
+      <a data-url="http://zkalan.com/YAML.html" data-id="ck3soz4dy0000f854wd2scxhs" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/声明式事务控制/">声明式事务控制</a></li></ul>
-
 
     </footer>
   </div>
@@ -158,19 +126,12 @@
 <ul id="article-nav" class="nav nav-pills nav-justified">
   
   <li role="presentation">
-    <a href="/spring中的JdbctTemplate.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/gradle.html" id="article-nav-older" class="article-nav-link-wrap">
       <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">spring中的JdbctTemplate</span>
+      <span class="article-nav-link-title">gradle</span>
     </a>
   </li>
   
-  
-  <li role="presentation">
-    <a href="/spring-boot入门.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">spring boot入门</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
   
 </ul>
 

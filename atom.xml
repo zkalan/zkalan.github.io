@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-12-05T03:17:34.327Z</updated>
+  <updated>2019-12-05T12:23:40.459Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YAML</title>
+    <link href="http://zkalan.com/YAML.html"/>
+    <id>http://zkalan.com/YAML.html</id>
+    <published>2019-12-05T12:23:40.000Z</published>
+    <updated>2019-12-05T12:23:40.459Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>gradle</title>
@@ -82,9 +97,9 @@
     <link href="http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html"/>
     <id>http://zkalan.com/spring-boot入门.html</id>
     <published>2019-12-02T09:08:16.000Z</published>
-    <updated>2019-12-02T13:28:54.847Z</updated>
+    <updated>2019-12-05T09:00:37.433Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h2><p>简化spring开发流程，J2EE开发的一站式解决方案。</p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>快速创建独立运行spring项目以及与主流框架集成</li><li>使用嵌入式servlet容器，应用无需达成war包</li><li>starters自动依赖与版本控制</li><li>大量的自动配置，简化开发，也可以修改默认值</li><li>无需配置XML，无代码生成</li><li>准生产环境的运行时应用监控</li><li>与云计算天然集成</li></ul><h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>是一种架构风格，其认为一个应用应该是一组小型服务，可以用过HTTP的方式通信。</p><p>每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h2><p>简化spring开发流程，J2EE开发的一站式解决方案。</p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>快速创建独立运行spring项目以及与主流框架集成</li><li>使用嵌入式servlet容器，应用无需达成war包</li><li>starters自动依赖与版本控制</li><li>大量的自动配置，简化开发，也可以修改默认值</li><li>无需配置XML，无代码生成</li><li>准生产环境的运行时应用监控</li><li>与云计算天然集成</li></ul><h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>是一种架构风格，其认为一个应用应该是一组小型服务，可以用过HTTP的方式通信。</p><p>每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h2 id="spring-boot-starter"><a href="#spring-boot-starter" class="headerlink" title="spring-boot-starter"></a>spring-boot-starter</h2><p>启动器，spring-boot官方提供了一系列启动器。将所有的功能场景抽取出来，只要在项目里面引入这些starter，相关依赖就会自动导入。</p><h2 id="主程序类"><a href="#主程序类" class="headerlink" title="主程序类"></a>主程序类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@SpringBootApplication</span>标注这是spring boot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldMainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//spring应用启动</span></span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span><span class="comment">//表示这是一个Spring Boot的配置类</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span><span class="comment">//开启自动配置功能</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(</span><br><span class="line">    excludeFilters = &#123;<span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), <span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication</span><br></pre></td></tr></table></figure><p>@SpringBootConfiguration:表示这是一个Spring Boot的配置类；<br>@Configuration：配置类上，表示配置类也是容器中的一个组件@Component</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AutoConfigurationPackage</span><span class="comment">//自动配置包</span></span><br><span class="line"><span class="meta">@Import</span>(EnableAutoConfigurationImportSelector.class)</span><br></pre></td></tr></table></figure><p>spring-boot的注释没事可以看看。</p>]]></content>
     
     <summary type="html">
     

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zkalan.com/YAML.html</loc>
+    
+    <lastmod>2019-12-05T12:23:40.459Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html</loc>
+    
+    <lastmod>2019-12-05T09:00:37.433Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zkalan.com/gradle.html</loc>
     
     <lastmod>2019-12-05T03:17:34.327Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://zkalan.com/maven.html</loc>
     
     <lastmod>2019-12-03T08:59:18.520Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html</loc>
-    
-    <lastmod>2019-12-02T13:28:54.847Z</lastmod>
     
   </url>
   
