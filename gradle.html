@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Category: Spring | 麻绳先生</title>
+  <title>gradle | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麻绳先生">
-<meta property="og:url" content="http://zkalan.com/categories/Spring/page/2/index.html">
+  <meta name="description" content="基于JVM的构建工具，有一些特性  和maven一样基于约定优于配置的构建框架 强大的多工程构建支持 强大的依赖管理，基于apachelvy 支持已有的maven和ivy仓库 支持传递性依赖管理，不需要远程仓库或pom.xml等配置文件  gradle安装先决条件 gradle需要1.5或更高版本的JDK； gradle自带groovy库，忽略已安装grooy  配置环境变量 将GRADLE_HO">
+<meta name="keywords" content="gradle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gradle">
+<meta property="og:url" content="http://zkalan.com/gradle.html">
 <meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="基于JVM的构建工具，有一些特性  和maven一样基于约定优于配置的构建框架 强大的多工程构建支持 强大的依赖管理，基于apachelvy 支持已有的maven和ivy仓库 支持传递性依赖管理，不需要远程仓库或pom.xml等配置文件  gradle安装先决条件 gradle需要1.5或更高版本的JDK； gradle自带groovy库，忽略已安装grooy  配置环境变量 将GRADLE_HO">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-12-05T03:17:34.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麻绳先生">
+<meta name="twitter:title" content="gradle">
+<meta name="twitter:description" content="基于JVM的构建工具，有一些特性  和maven一样基于约定优于配置的构建框架 强大的多工程构建支持 强大的依赖管理，基于apachelvy 支持已有的maven和ivy仓库 支持传递性依赖管理，不需要远程仓库或pom.xml等配置文件  gradle安装先决条件 gradle需要1.5或更高版本的JDK； gradle自带groovy库，忽略已安装grooy  配置环境变量 将GRADLE_HO">
   
   
   
@@ -76,45 +81,103 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-gradle" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Spring概述.html">Spring概述</a>
+    <h1 class="article-title" itemprop="name">
+      gradle
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/Spring概述.html" class="archive-article-date"><time datetime="2019-10-29T07:43:58.000Z" itemprop="datePublished">十月 29日</time></a>
+  <a href="/gradle.html" class="article-date"><time datetime="2019-12-03T08:59:57.000Z" itemprop="datePublished">2019-12-03</time></a>
 </div>
 
-  </header>
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gradle/">gradle</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>基于JVM的构建工具，有一些特性</p>
+<ul>
+<li>和maven一样基于约定优于配置的构建框架</li>
+<li>强大的多工程构建支持</li>
+<li>强大的依赖管理，基于apachelvy</li>
+<li>支持已有的maven和ivy仓库</li>
+<li>支持传递性依赖管理，不需要远程仓库或pom.xml等配置文件</li>
+</ul>
+<h2 id="gradle安装"><a href="#gradle安装" class="headerlink" title="gradle安装"></a>gradle安装</h2><h3 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h3><ul>
+<li>gradle需要1.5或更高版本的JDK；</li>
+<li>gradle自带groovy库，忽略已安装grooy</li>
+</ul>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><ul>
+<li>将GRADLE_HOME/bin添加到PATH变量中</li>
+<li>使用命令gradle -v命令测试</li>
+</ul>
+<h2 id="构建基础"><a href="#构建基础" class="headerlink" title="构建基础"></a>构建基础</h2><h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><h3 id="project"><a href="#project" class="headerlink" title="project"></a>project</h3><h2 id="groovy中的闭包"><a href="#groovy中的闭包" class="headerlink" title="groovy中的闭包"></a>groovy中的闭包</h2><p>就是一段代码块，在gradle中，主要将闭包作为参数使用。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个闭包</span></span><br><span class="line"><span class="keyword">def</span> bb = &#123;</span><br><span class="line">    println <span class="string">"hello, bb"</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义一个方法，方法的参数是闭包类型</span></span><br><span class="line"><span class="keyword">def</span> method(Closure closure)&#123;</span><br><span class="line">    closure()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用该方法</span></span><br><span class="line">method(bb)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个闭包，带参数</span></span><br><span class="line"><span class="keyword">def</span> closure2 = &#123;</span><br><span class="line">    v -&gt; println <span class="string">"hello, $&#123;v&#125;"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个需要闭包的方法</span></span><br><span class="line"><span class="keyword">def</span> method2(Closure closure)&#123;</span><br><span class="line">    closure(<span class="string">"world"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">method2(closure2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h2><h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allproject&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/gradle.html" data-id="ck3s5vyyi000fkw54vc893yp9" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/maven.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">maven</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
 </article>
 
-  
-  
-    </div></section>
-  
-
-
-  <div id="page-nav">
-    <nav><ul class="pagination"><li><a class="page-prev" rel="prev" href="/categories/Spring/"><i class="fa fa-chevron-left"></i> Prev</a></li><li><a class="page-number" href="/categories/Spring/">1</a></li><li class="active"><span class="page-number">2</span></li><li class="disabled"><span class="page-next">Next <i class="fa fa-chevron-right"></i></a></li></ul></nav>
-  </div>
 
 
 

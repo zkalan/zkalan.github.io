@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zkalan.com/gradle.html</loc>
+    
+    <lastmod>2019-12-05T03:17:34.327Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zkalan.com/maven.html</loc>
     
-    <lastmod>2019-12-03T03:39:14.194Z</lastmod>
+    <lastmod>2019-12-03T08:59:18.520Z</lastmod>
     
   </url>
   
