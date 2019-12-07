@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-12-05T13:20:18.543Z</updated>
+  <updated>2019-12-07T13:32:44.824Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring-boot和web开发</title>
+    <link href="http://zkalan.com/spring-boot%E5%92%8Cweb%E5%BC%80%E5%8F%91.html"/>
+    <id>http://zkalan.com/spring-boot和web开发.html</id>
+    <published>2019-12-06T13:33:07.000Z</published>
+    <updated>2019-12-07T13:32:44.824Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="web开发"><a href="#web开发" class="headerlink" title="web开发"></a>web开发</h2><p>如何使用spring boot：</p><ol><li>创建spring boot应用，选中需要的模块；</li><li>spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行；</li><li>编写业务代码；</li></ol><p><em>自动配置原理</em></p><h2 id="webjars和静态资源映射规则"><a href="#webjars和静态资源映射规则" class="headerlink" title="webjars和静态资源映射规则"></a>webjars和静态资源映射规则</h2><ol><li><p>所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；<br>webjars：以jar包方式引入静态资源。</p></li><li><p>“/**”访问当前项目的任何资源，静态资源文件夹</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"classpath:/MEAT-INF/resources/",</span><br><span class="line">"classpath:/resources/",</span><br><span class="line">"calsspath:/static/",</span><br><span class="line">"calsspath:/puclic/",</span><br><span class="line">"/":当前目录的根目录</span><br></pre></td></tr></table></figure></li><li><p>欢迎页：静态资源文件夹下的所有index.html页面，被”/**”映射；</p></li><li><p>所有的**/favicon.ico都是在静态资源文件夹下查找；</p></li></ol><h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>JSP、</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.9.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="thymeleaf"><a href="#thymeleaf" class="headerlink" title="thymeleaf"></a>thymeleaf</h3><h4 id="导入语法空间"><a href="#导入语法空间" class="headerlink" title="导入语法空间"></a>导入语法空间</h4><h4 id="thymeleaf语法规则"><a href="#thymeleaf语法规则" class="headerlink" title="thymeleaf语法规则"></a>thymeleaf语法规则</h4><ul><li>片段包含：jsp:include<ul><li>th:insert</li><li>th:replace</li></ul></li><li>遍历:c:forEach<ul><li>th:each</li></ul></li><li>条件判断c:if<ul><li>th:if</li><li>th:unless</li><li>th:switch</li><li>th:case</li></ul></li><li>声明变量c:set<ul><li>th:object</li><li>th:with</li></ul></li><li>任意属性修改支持prepend,append<ul><li>th:attr</li><li>th:attrprepend</li><li>th:attrappend</li></ul></li><li>修改指定属性默认值<ul><li>th:value</li><li>th:href</li><li>th:src</li></ul></li><li>修改标签体内容<ul><li>th:text不转义</li><li>th:utext转义</li></ul></li><li>声明片段<ul><li>th:fragment</li></ul></li><li>…</li></ul><h4 id="thymeleaf表达式"><a href="#thymeleaf表达式" class="headerlink" title="thymeleaf表达式"></a>thymeleaf表达式</h4><ul><li>Simple expressions:<ul><li>Variable Expressions: ${…}</li><li>Selection Variable Expressions: *{…}</li><li>Message Expressions: #{…}</li><li>Link URL Expressions: @{…}</li><li>Fragment Expressions: ~{…}</li></ul></li><li>Literals<ul><li>Text literals: ‘one text’ , ‘Another one!’ ,…</li><li>Number literals: 0 , 34 , 3.0 , 12.3 ,…</li><li>Boolean literals: true , false</li><li>Null literal: null</li><li>Literal tokens: one , sometext , main ,…</li></ul></li><li>Text operations:<ul><li>String concatenation: +</li><li>Literal substitutions: |The name is ${name}|</li></ul></li><li>Arithmetic operations:<ul><li>Binary operators: + , - , * , / , %</li><li>Minus sign (unary operator): -</li></ul></li><li>Boolean operations:<ul><li>Binary operators: and , or</li><li>Boolean negation (unary operator): ! , not</li></ul></li><li>Comparisons and equality:<ul><li>Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )</li><li>Equality operators: == , != ( eq , ne )</li></ul></li><li>Conditional operators:<ul><li>If-then: (if) ? (then)</li><li>If-then-else: (if) ? (then) : (else)</li><li>Default: (value) ?: (defaultvalue)</li></ul></li><li>Special tokens:<ul><li>No-Operation: _</li></ul></li></ul><h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;web开发&quot;&gt;&lt;a href=&quot;#web开发&quot; class=&quot;headerlink&quot; title=&quot;web开发&quot;&gt;&lt;/a&gt;web开发&lt;/h2&gt;&lt;p&gt;如何使用spring boot：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建spring boot应用，选中需要的模块；&lt;/li
+      
+    
+    </summary>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/categories/spring-boot/"/>
+    
+    
+      <category term="spring-boot" scheme="http://zkalan.com/tags/spring-boot/"/>
+    
+      <category term="web开发" scheme="http://zkalan.com/tags/web%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>YAML</title>
@@ -222,9 +252,9 @@
       <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
     
     
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
       <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
+    
+      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
     
   </entry>
   
@@ -575,28 +605,6 @@
       <category term="node" scheme="http://zkalan.com/tags/node/"/>
     
       <category term="npm" scheme="http://zkalan.com/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://zkalan.com/hello-world.html"/>
-    <id>http://zkalan.com/hello-world.html</id>
-    <published>2019-10-14T09:24:09.629Z</published>
-    <updated>2019-10-14T09:24:09.629Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
-    
     
   </entry>
   

@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Tag: windows to go | 麻绳先生</title>
+  <title>spring-boot和web开发 | 麻绳先生</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麻绳先生">
-<meta property="og:url" content="http://zkalan.com/tags/windows-to-go/index.html">
+  <meta name="description" content="web开发如何使用spring boot：  创建spring boot应用，选中需要的模块； spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行； 编写业务代码；  自动配置原理 webjars和静态资源映射规则 所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；webjars：以jar包方式">
+<meta name="keywords" content="spring-boot,web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-boot和web开发">
+<meta property="og:url" content="http://zkalan.com/spring-boot和web开发.html">
 <meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="web开发如何使用spring boot：  创建spring boot应用，选中需要的模块； spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行； 编写业务代码；  自动配置原理 webjars和静态资源映射规则 所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；webjars：以jar包方式">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-12-07T13:32:44.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麻绳先生">
+<meta name="twitter:title" content="spring-boot和web开发">
+<meta name="twitter:description" content="web开发如何使用spring boot：  创建spring boot应用，选中需要的模块； spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行； 编写业务代码；  自动配置原理 webjars和静态资源映射规则 所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；webjars：以jar包方式">
   
   
   
@@ -76,40 +81,197 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-spring-boot和web开发" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/安装程序不支持配置安装通过usb或IEEE-1394端口链接的磁盘.html">安装程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘</a>
+    <h1 class="article-title" itemprop="name">
+      spring-boot和web开发
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/安装程序不支持配置安装通过usb或IEEE-1394端口链接的磁盘.html" class="archive-article-date"><time datetime="2019-11-04T11:20:43.000Z" itemprop="datePublished">十一月 4日</time></a>
+  <a href="/spring-boot和web开发.html" class="article-date"><time datetime="2019-12-06T13:33:07.000Z" itemprop="datePublished">2019-12-06</time></a>
 </div>
 
-  </header>
-</article>
+    <div class="article-author">tuanma</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring-boot/">spring-boot</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="web开发"><a href="#web开发" class="headerlink" title="web开发"></a>web开发</h2><p>如何使用spring boot：</p>
+<ol>
+<li>创建spring boot应用，选中需要的模块；</li>
+<li>spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行；</li>
+<li>编写业务代码；</li>
+</ol>
+<p><em>自动配置原理</em></p>
+<h2 id="webjars和静态资源映射规则"><a href="#webjars和静态资源映射规则" class="headerlink" title="webjars和静态资源映射规则"></a>webjars和静态资源映射规则</h2><ol>
+<li><p>所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；<br>webjars：以jar包方式引入静态资源。</p>
+</li>
+<li><p>“/**”访问当前项目的任何资源，静态资源文件夹</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"classpath:/MEAT-INF/resources/",</span><br><span class="line">"classpath:/resources/",</span><br><span class="line">"calsspath:/static/",</span><br><span class="line">"calsspath:/puclic/",</span><br><span class="line">"/":当前目录的根目录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>欢迎页：静态资源文件夹下的所有index.html页面，被”/**”映射；</p>
+</li>
+<li><p>所有的**/favicon.ico都是在静态资源文件夹下查找；</p>
+</li>
+</ol>
+<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>JSP、</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.9.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="thymeleaf"><a href="#thymeleaf" class="headerlink" title="thymeleaf"></a>thymeleaf</h3><h4 id="导入语法空间"><a href="#导入语法空间" class="headerlink" title="导入语法空间"></a>导入语法空间</h4><h4 id="thymeleaf语法规则"><a href="#thymeleaf语法规则" class="headerlink" title="thymeleaf语法规则"></a>thymeleaf语法规则</h4><ul>
+<li>片段包含：jsp:include<ul>
+<li>th:insert</li>
+<li>th:replace</li>
+</ul>
+</li>
+<li>遍历:c:forEach<ul>
+<li>th:each</li>
+</ul>
+</li>
+<li>条件判断c:if<ul>
+<li>th:if</li>
+<li>th:unless</li>
+<li>th:switch</li>
+<li>th:case</li>
+</ul>
+</li>
+<li>声明变量c:set<ul>
+<li>th:object</li>
+<li>th:with</li>
+</ul>
+</li>
+<li>任意属性修改支持prepend,append<ul>
+<li>th:attr</li>
+<li>th:attrprepend</li>
+<li>th:attrappend</li>
+</ul>
+</li>
+<li>修改指定属性默认值<ul>
+<li>th:value</li>
+<li>th:href</li>
+<li>th:src</li>
+</ul>
+</li>
+<li>修改标签体内容<ul>
+<li>th:text不转义</li>
+<li>th:utext转义</li>
+</ul>
+</li>
+<li>声明片段<ul>
+<li>th:fragment</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+<h4 id="thymeleaf表达式"><a href="#thymeleaf表达式" class="headerlink" title="thymeleaf表达式"></a>thymeleaf表达式</h4><ul>
+<li>Simple expressions:<ul>
+<li>Variable Expressions: ${…}</li>
+<li>Selection Variable Expressions: *{…}</li>
+<li>Message Expressions: #{…}</li>
+<li>Link URL Expressions: @{…}</li>
+<li>Fragment Expressions: ~{…}</li>
+</ul>
+</li>
+<li>Literals<ul>
+<li>Text literals: ‘one text’ , ‘Another one!’ ,…</li>
+<li>Number literals: 0 , 34 , 3.0 , 12.3 ,…</li>
+<li>Boolean literals: true , false</li>
+<li>Null literal: null</li>
+<li>Literal tokens: one , sometext , main ,…</li>
+</ul>
+</li>
+<li>Text operations:<ul>
+<li>String concatenation: +</li>
+<li>Literal substitutions: |The name is ${name}|</li>
+</ul>
+</li>
+<li>Arithmetic operations:<ul>
+<li>Binary operators: + , - , * , / , %</li>
+<li>Minus sign (unary operator): -</li>
+</ul>
+</li>
+<li>Boolean operations:<ul>
+<li>Binary operators: and , or</li>
+<li>Boolean negation (unary operator): ! , not</li>
+</ul>
+</li>
+<li>Comparisons and equality:<ul>
+<li>Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )</li>
+<li>Equality operators: == , != ( eq , ne )</li>
+</ul>
+</li>
+<li>Conditional operators:<ul>
+<li>If-then: (if) ? (then)</li>
+<li>If-then-else: (if) ? (then) : (else)</li>
+<li>Default: (value) ?: (defaultvalue)</li>
+</ul>
+</li>
+<li>Special tokens:<ul>
+<li>No-Operation: _</li>
+</ul>
+</li>
+</ul>
+<h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3>
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/spring-boot和web开发.html" data-id="ck3vmaww900091k5431pkg05u" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring-boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web开发/">web开发</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/YAML.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">YAML</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
 
   
   
-    </div></section>
+
   
+  
+  
+  
+  
+  
+  
+  
+</article>
 
 
 
