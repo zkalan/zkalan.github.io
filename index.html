@@ -108,7 +108,19 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Docker是一个开源的应用容器引擎；支持将软件编译成一个镜像，然后在镜像中做好各种软件的配置工作，随后将镜像发不出去，其他使用者可以直接使用该镜像；运行中的这个镜像成为容器，其优点在于启动速度。</p>
+<h2 id="Docker核心概念"><a href="#Docker核心概念" class="headerlink" title="Docker核心概念"></a>Docker核心概念</h2><h3 id="Docker主机Host"><a href="#Docker主机Host" class="headerlink" title="Docker主机Host"></a>Docker主机Host</h3><p>一个物理或虚拟的机器，用于执行Docker守护进程和容器；</p>
+<h3 id="Docker镜像Images"><a href="#Docker镜像Images" class="headerlink" title="Docker镜像Images"></a>Docker镜像Images</h3><p>Docker镜像是用于创建Docker容器的模板；</p>
+<h3 id="Docker容器Container"><a href="#Docker容器Container" class="headerlink" title="Docker容器Container"></a>Docker容器Container</h3><p>容器是独立运行的一个或一组应用；</p>
+<h3 id="Docker客户端Client"><a href="#Docker客户端Client" class="headerlink" title="Docker客户端Client"></a>Docker客户端Client</h3><p>客户端通过命令行或者其他工具使用Docker API和Docker的守护进程通信；</p>
+<h3 id="Docker仓库Registry"><a href="#Docker仓库Registry" class="headerlink" title="Docker仓库Registry"></a>Docker仓库Registry</h3><p>Docker仓库用来保存镜像，可以理解为代码控制中的代码仓库，Docker Hub提供了庞大的镜像集合使用；</p>
+<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br><span class="line">docker -v</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search mysql #搜索mysql image</span><br><span class="line">docker pull mysql #拉取镜像</span><br><span class="line">docker images #查看镜像列表</span><br><span class="line">docker rmi images-id #移除镜像</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mymysql -d mysql:TAG #启动容器</span><br><span class="line">docker ps #查看运行中的容器</span><br><span class="line">docker ps -a #查看所有容器</span><br><span class="line">docker stop container-id #停止容器</span><br><span class="line">docker rm -a # 删除所有容器</span><br><span class="line">docker run --name container-name iamge-name -d -p 1008:8080 #-p进行端口映射</span><br><span class="line">docker logs container-id/container-name</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3>
       
     </div>
 
@@ -118,7 +130,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/Docker.html" data-id="ck3zjeneg00006854by48wjk6" class="article-share-link">
+      <a data-url="http://zkalan.com/Docker.html" data-id="ck3zm55xy0000n454o9k5ceji" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -348,7 +360,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring-boot和web开发.html" data-id="ck3zjenfo00146854w83vqjx0" class="article-share-link">
+      <a data-url="http://zkalan.com/spring-boot和web开发.html" data-id="ck3zm55yd000bn454y1bcyxbv" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -448,7 +460,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/YAML.html" data-id="ck3zjenfk001168547vhp8ymq" class="article-share-link">
+      <a data-url="http://zkalan.com/YAML.html" data-id="ck3zm55yc000an4547zgsnbg6" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -533,7 +545,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/gradle.html" data-id="ck3zjenfs00166854q6nda3c7" class="article-share-link">
+      <a data-url="http://zkalan.com/gradle.html" data-id="ck3zm55yg000gn4545ca7l7sh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -701,7 +713,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/maven.html" data-id="ck3zjenfv001a6854arrio4wh" class="article-share-link">
+      <a data-url="http://zkalan.com/maven.html" data-id="ck3zm55yf000fn454lwx6teg4" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
