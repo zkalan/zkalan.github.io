@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-12-07T13:32:44.824Z</updated>
+  <updated>2019-12-10T07:22:08.806Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -17,13 +17,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Docker</title>
+    <link href="http://zkalan.com/Docker.html"/>
+    <id>http://zkalan.com/Docker.html</id>
+    <published>2019-12-10T07:18:05.000Z</published>
+    <updated>2019-12-10T07:22:08.806Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Docker" scheme="http://zkalan.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://zkalan.com/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
     <title>spring-boot和web开发</title>
     <link href="http://zkalan.com/spring-boot%E5%92%8Cweb%E5%BC%80%E5%8F%91.html"/>
     <id>http://zkalan.com/spring-boot和web开发.html</id>
     <published>2019-12-06T13:33:07.000Z</published>
-    <updated>2019-12-07T13:32:44.824Z</updated>
+    <updated>2019-12-09T14:52:47.226Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="web开发"><a href="#web开发" class="headerlink" title="web开发"></a>web开发</h2><p>如何使用spring boot：</p><ol><li>创建spring boot应用，选中需要的模块；</li><li>spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行；</li><li>编写业务代码；</li></ol><p><em>自动配置原理</em></p><h2 id="webjars和静态资源映射规则"><a href="#webjars和静态资源映射规则" class="headerlink" title="webjars和静态资源映射规则"></a>webjars和静态资源映射规则</h2><ol><li><p>所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；<br>webjars：以jar包方式引入静态资源。</p></li><li><p>“/**”访问当前项目的任何资源，静态资源文件夹</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"classpath:/MEAT-INF/resources/",</span><br><span class="line">"classpath:/resources/",</span><br><span class="line">"calsspath:/static/",</span><br><span class="line">"calsspath:/puclic/",</span><br><span class="line">"/":当前目录的根目录</span><br></pre></td></tr></table></figure></li><li><p>欢迎页：静态资源文件夹下的所有index.html页面，被”/**”映射；</p></li><li><p>所有的**/favicon.ico都是在静态资源文件夹下查找；</p></li></ol><h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>JSP、</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.9.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="thymeleaf"><a href="#thymeleaf" class="headerlink" title="thymeleaf"></a>thymeleaf</h3><h4 id="导入语法空间"><a href="#导入语法空间" class="headerlink" title="导入语法空间"></a>导入语法空间</h4><h4 id="thymeleaf语法规则"><a href="#thymeleaf语法规则" class="headerlink" title="thymeleaf语法规则"></a>thymeleaf语法规则</h4><ul><li>片段包含：jsp:include<ul><li>th:insert</li><li>th:replace</li></ul></li><li>遍历:c:forEach<ul><li>th:each</li></ul></li><li>条件判断c:if<ul><li>th:if</li><li>th:unless</li><li>th:switch</li><li>th:case</li></ul></li><li>声明变量c:set<ul><li>th:object</li><li>th:with</li></ul></li><li>任意属性修改支持prepend,append<ul><li>th:attr</li><li>th:attrprepend</li><li>th:attrappend</li></ul></li><li>修改指定属性默认值<ul><li>th:value</li><li>th:href</li><li>th:src</li></ul></li><li>修改标签体内容<ul><li>th:text不转义</li><li>th:utext转义</li></ul></li><li>声明片段<ul><li>th:fragment</li></ul></li><li>…</li></ul><h4 id="thymeleaf表达式"><a href="#thymeleaf表达式" class="headerlink" title="thymeleaf表达式"></a>thymeleaf表达式</h4><ul><li>Simple expressions:<ul><li>Variable Expressions: ${…}</li><li>Selection Variable Expressions: *{…}</li><li>Message Expressions: #{…}</li><li>Link URL Expressions: @{…}</li><li>Fragment Expressions: ~{…}</li></ul></li><li>Literals<ul><li>Text literals: ‘one text’ , ‘Another one!’ ,…</li><li>Number literals: 0 , 34 , 3.0 , 12.3 ,…</li><li>Boolean literals: true , false</li><li>Null literal: null</li><li>Literal tokens: one , sometext , main ,…</li></ul></li><li>Text operations:<ul><li>String concatenation: +</li><li>Literal substitutions: |The name is ${name}|</li></ul></li><li>Arithmetic operations:<ul><li>Binary operators: + , - , * , / , %</li><li>Minus sign (unary operator): -</li></ul></li><li>Boolean operations:<ul><li>Binary operators: and , or</li><li>Boolean negation (unary operator): ! , not</li></ul></li><li>Comparisons and equality:<ul><li>Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )</li><li>Equality operators: == , != ( eq , ne )</li></ul></li><li>Conditional operators:<ul><li>If-then: (if) ? (then)</li><li>If-then-else: (if) ? (then) : (else)</li><li>Default: (value) ?: (defaultvalue)</li></ul></li><li>Special tokens:<ul><li>No-Operation: _</li></ul></li></ul><h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3>]]></content>
+    <content type="html"><![CDATA[<h2 id="web开发"><a href="#web开发" class="headerlink" title="web开发"></a>web开发</h2><p>如何使用spring boot：</p><ol><li>创建spring boot应用，选中需要的模块；</li><li>spring boot已经默认将这些场景配置好，只需要在配置文件中指定少量配置就可与运行；</li><li>编写业务代码；</li></ol><p><em>自动配置原理</em></p><h2 id="webjars和静态资源映射规则"><a href="#webjars和静态资源映射规则" class="headerlink" title="webjars和静态资源映射规则"></a>webjars和静态资源映射规则</h2><ol><li><p>所有/webjars/**，都去classpath:/META-INF/resources/webjars查找资源；<br>webjars：以jar包方式引入静态资源。</p></li><li><p>“/**”访问当前项目的任何资源，静态资源文件夹</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"classpath:/MEAT-INF/resources/",</span><br><span class="line">"classpath:/resources/",</span><br><span class="line">"calsspath:/static/",</span><br><span class="line">"calsspath:/puclic/",</span><br><span class="line">"/":当前目录的根目录</span><br></pre></td></tr></table></figure></li><li><p>欢迎页：静态资源文件夹下的所有index.html页面，被”/**”映射；</p></li><li><p>所有的**/favicon.ico都是在静态资源文件夹下查找；</p></li></ol><h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>JSP、</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.9.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="thymeleaf"><a href="#thymeleaf" class="headerlink" title="thymeleaf"></a>thymeleaf</h3><h4 id="导入语法空间"><a href="#导入语法空间" class="headerlink" title="导入语法空间"></a>导入语法空间</h4><h4 id="thymeleaf语法规则"><a href="#thymeleaf语法规则" class="headerlink" title="thymeleaf语法规则"></a>thymeleaf语法规则</h4><ul><li>片段包含：jsp:include<ul><li>th:insert</li><li>th:replace</li></ul></li><li>遍历:c:forEach<ul><li>th:each</li></ul></li><li>条件判断c:if<ul><li>th:if</li><li>th:unless</li><li>th:switch</li><li>th:case</li></ul></li><li>声明变量c:set<ul><li>th:object</li><li>th:with</li></ul></li><li>任意属性修改支持prepend,append<ul><li>th:attr</li><li>th:attrprepend</li><li>th:attrappend</li></ul></li><li>修改指定属性默认值<ul><li>th:value</li><li>th:href</li><li>th:src</li></ul></li><li>修改标签体内容<ul><li>th:text不转义</li><li>th:utext转义</li></ul></li><li>声明片段<ul><li>th:fragment</li></ul></li><li>…</li></ul><h4 id="thymeleaf表达式"><a href="#thymeleaf表达式" class="headerlink" title="thymeleaf表达式"></a>thymeleaf表达式</h4><ul><li>Simple expressions:<ul><li>Variable Expressions: ${…}</li><li>Selection Variable Expressions: *{…}</li><li>Message Expressions: #{…}</li><li>Link URL Expressions: @{…}</li><li>Fragment Expressions: ~{…}</li></ul></li><li>Literals<ul><li>Text literals: ‘one text’ , ‘Another one!’ ,…</li><li>Number literals: 0 , 34 , 3.0 , 12.3 ,…</li><li>Boolean literals: true , false</li><li>Null literal: null</li><li>Literal tokens: one , sometext , main ,…</li></ul></li><li>Text operations:<ul><li>String concatenation: +</li><li>Literal substitutions: |The name is ${name}|</li></ul></li><li>Arithmetic operations:<ul><li>Binary operators: + , - , * , / , %</li><li>Minus sign (unary operator): -</li></ul></li><li>Boolean operations:<ul><li>Binary operators: and , or</li><li>Boolean negation (unary operator): ! , not</li></ul></li><li>Comparisons and equality:<ul><li>Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )</li><li>Equality operators: == , != ( eq , ne )</li></ul></li><li>Conditional operators:<ul><li>If-then: (if) ? (then)</li><li>If-then-else: (if) ? (then) : (else)</li><li>Default: (value) ?: (defaultvalue)</li></ul></li><li>Special tokens:<ul><li>No-Operation: _</li></ul></li></ul><h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><ul><li>Inclusion of ContentNegotiatingViewResolver and BeanNameViewResolver beans;</li><li>Support for serving static resourcces, including support for Webjars;</li><li>Automatic registration of Converter, GenericConverter, Formatter beans;</li><li>Support for HttpMessageConerters;</li><li>Automatic registration of MessageCodeResolver;</li><li>Static index.html support;</li><li>Custom Favicon support;</li><li>Automatic use of a ConfigurableWebBindingInitializer bean;</li></ul><h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h3><p>默认的区域信息是通过浏览器请求报文获取的。可以通过链接提交区域信息。<br>自己的信息解析器需要实现Localeresolver。</p><ol><li>编写国际化配置文件，抽取页面需要配置的国际化信息；</li><li>使用ResourceBundleMessageSource管理国际化资源信息；</li><li>在页面使用fml:message获取国际化内容；</li><li>可以自己编写区域信息解析器，替换Spring Boot默认的解析器ResourceBundleMessageSource；</li></ol><p><strong>模板引擎要实时生效，需要禁用模板缓存，页面修改要ctrl+F9重新编译</strong></p><h3 id="登陆状态检查需要拦截器"><a href="#登陆状态检查需要拦截器" class="headerlink" title="登陆状态检查需要拦截器"></a>登陆状态检查需要拦截器</h3><h3 id="thymeleaf公共页面元素抽取"><a href="#thymeleaf公共页面元素抽取" class="headerlink" title="thymeleaf公共页面元素抽取"></a>thymeleaf公共页面元素抽取</h3><ol><li>抽取公共片段<div th:fragment="copy"></div></li><li>引入公共片段<div th:insert="~{footer::copy}"></div></li><li>不同替换效果有th:insert、th:replace、th:include</li></ol><h3 id="错误处理的自动配置"><a href="#错误处理的自动配置" class="headerlink" title="错误处理的自动配置"></a>错误处理的自动配置</h3><p>可以参照ErrorMVCAutoConfiguration；容器中有如下组件：</p><ol><li>DefaultErrorAttributes</li><li>BasicErrorController</li><li>ErrorPageCustomizer</li><li>DefaultErrorViewResolver</li></ol><h2 id="注册Servlet、Filter、Linstener"><a href="#注册Servlet、Filter、Linstener" class="headerlink" title="注册Servlet、Filter、Linstener"></a>注册Servlet、Filter、Linstener</h2><p>Spring Boot默认是以jar包的方式启动嵌入式的Servlet容器来启动Spring Boot的web应用，没有web.xml文件；<br>注册三大组件使用ServletRegistrationBean, FilterRegistrationBean, ServletListenerRegistrationBean。</p><h3 id="其他嵌入式Servlet容器"><a href="#其他嵌入式Servlet容器" class="headerlink" title="其他嵌入式Servlet容器"></a>其他嵌入式Servlet容器</h3><h4 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h4><p>适合长连接</p><h4 id="Undertow"><a href="#Undertow" class="headerlink" title="Undertow"></a>Undertow</h4><p>后置处理器会获取所有容器中的定制器，以此配置Servlet容器，自己定义容器就是将自定义的定制器加到Bean工厂中。</p><h2 id="嵌入式Servlet容器启动原理"><a href="#嵌入式Servlet容器启动原理" class="headerlink" title="嵌入式Servlet容器启动原理"></a>嵌入式Servlet容器启动原理</h2><ol><li>Spring Boot应用启动运行run方法；</li><li>refreshContext(context);Spring Boot刷新IOC容器，创建IOC容器对象，并初始化容器，创建容器中的每一个组件，还判断了是否是web应用；</li><li>refresh(context);刷新刚才创建好的ioc容器；</li><li>onRefresh();web的IOC容器重写了onRefresh方法；</li><li>web IOC容器会创建嵌入式的Servlet容器；createEmbeddedServletContainer();</li><li>获取嵌入式的Servlet容器工厂；TomcatEmbeddedServletContainerFactory创建对象，后置处理器随后获取所有的定制器来定制Servlet容器的相关配置；</li><li>使用容器工厂获取嵌入式的Servlet容器；</li><li>嵌入式的Servlet容器创建对象并启动Servlet容器；先启动嵌入式的Servlet容器，再将IOC容器中剩下的对象获取；</li></ol><h2 id="使用外置的Servlet容器"><a href="#使用外置的Servlet容器" class="headerlink" title="使用外置的Servlet容器"></a>使用外置的Servlet容器</h2><p>嵌入式Servlet容器优点在于简单、便携，缺点在于默认不支持JSP，优化定制不够复杂；使用定制器、自己编写嵌入式Servlet容器的创建工厂；</p><ol><li>必须创建一个war项目，利用idea创建目录结构；</li><li>将嵌入式的Tomcat指定为provided；</li><li>必须编写一个SpringBootServletInitializer的子类，并调用configure方法；</li><li>启动tomcat；</li></ol>]]></content>
     
     <summary type="html">
     
@@ -252,9 +271,9 @@
       <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
     
     
-      <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
-    
       <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
     
   </entry>
   
@@ -573,38 +592,6 @@
       <category term="常量池" scheme="http://zkalan.com/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
     
       <category term="包装类" scheme="http://zkalan.com/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux下脚本安装node+npm</title>
-    <link href="http://zkalan.com/linux%E4%B8%8B%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85node-npm.html"/>
-    <id>http://zkalan.com/linux下脚本安装node-npm.html</id>
-    <published>2019-10-14T10:15:02.000Z</published>
-    <updated>2019-10-16T12:34:41.146Z</updated>
-    
-    <content type="html"><![CDATA[<p>linux下通过包管理器很难安装最新版的node和npm，幸运的是，nodesource提供了多个shell脚本，方便用户简单的安装最新版node和npm。<br>官方github主页：<a href="https://github.com/nodesource/distributions" target="_blank" rel="noopener">https://github.com/nodesource/distributions</a><br>例如在ubuntu下安装Node.js v10.x版本，通过命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure><p>简单方便，不能再完美。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;linux下通过包管理器很难安装最新版的node和npm，幸运的是，nodesource提供了多个shell脚本，方便用户简单的安装最新版node和npm。&lt;br&gt;官方github主页：&lt;a href=&quot;https://github.com/nodesource/distr
-      
-    
-    </summary>
-    
-    
-      <category term="脚本" scheme="http://zkalan.com/categories/%E8%84%9A%E6%9C%AC/"/>
-    
-    
-      <category term="linux" scheme="http://zkalan.com/tags/linux/"/>
-    
-      <category term="脚本" scheme="http://zkalan.com/tags/%E8%84%9A%E6%9C%AC/"/>
-    
-      <category term="node" scheme="http://zkalan.com/tags/node/"/>
-    
-      <category term="npm" scheme="http://zkalan.com/tags/npm/"/>
     
   </entry>
   

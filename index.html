@@ -78,6 +78,72 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-Docker" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Docker.html">Docker</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/Docker.html" class="article-date"><time datetime="2019-12-10T07:18:05.000Z" itemprop="datePublished">2019-12-10</time></a>
+</div>
+
+    <div class="article-author">tuanma</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Docker/">Docker</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/Docker.html" data-id="ck3zjeneg00006854by48wjk6" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
     <article id="post-spring-boot和web开发" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -222,7 +288,57 @@
 </ul>
 </li>
 </ul>
-<h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3>
+<h2 id="Spring-Boot自动配置Spring-MVC"><a href="#Spring-Boot自动配置Spring-MVC" class="headerlink" title="Spring Boot自动配置Spring MVC"></a>Spring Boot自动配置Spring MVC</h2><ul>
+<li>Inclusion of ContentNegotiatingViewResolver and BeanNameViewResolver beans;</li>
+<li>Support for serving static resourcces, including support for Webjars;</li>
+<li>Automatic registration of Converter, GenericConverter, Formatter beans;</li>
+<li>Support for HttpMessageConerters;</li>
+<li>Automatic registration of MessageCodeResolver;</li>
+<li>Static index.html support;</li>
+<li>Custom Favicon support;</li>
+<li>Automatic use of a ConfigurableWebBindingInitializer bean;</li>
+</ul>
+<h3 id="修改Spring-Boot默认配置"><a href="#修改Spring-Boot默认配置" class="headerlink" title="修改Spring Boot默认配置"></a>修改Spring Boot默认配置</h3><h3 id="扩展Spring-MVC"><a href="#扩展Spring-MVC" class="headerlink" title="扩展Spring MVC"></a>扩展Spring MVC</h3><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h3><p>默认的区域信息是通过浏览器请求报文获取的。可以通过链接提交区域信息。<br>自己的信息解析器需要实现Localeresolver。</p>
+<ol>
+<li>编写国际化配置文件，抽取页面需要配置的国际化信息；</li>
+<li>使用ResourceBundleMessageSource管理国际化资源信息；</li>
+<li>在页面使用fml:message获取国际化内容；</li>
+<li>可以自己编写区域信息解析器，替换Spring Boot默认的解析器ResourceBundleMessageSource；</li>
+</ol>
+<p><strong>模板引擎要实时生效，需要禁用模板缓存，页面修改要ctrl+F9重新编译</strong></p>
+<h3 id="登陆状态检查需要拦截器"><a href="#登陆状态检查需要拦截器" class="headerlink" title="登陆状态检查需要拦截器"></a>登陆状态检查需要拦截器</h3><h3 id="thymeleaf公共页面元素抽取"><a href="#thymeleaf公共页面元素抽取" class="headerlink" title="thymeleaf公共页面元素抽取"></a>thymeleaf公共页面元素抽取</h3><ol>
+<li>抽取公共片段<div th:fragment="copy"></div></li>
+<li>引入公共片段<div th:insert="~{footer::copy}"></div></li>
+<li>不同替换效果有th:insert、th:replace、th:include</li>
+</ol>
+<h3 id="错误处理的自动配置"><a href="#错误处理的自动配置" class="headerlink" title="错误处理的自动配置"></a>错误处理的自动配置</h3><p>可以参照ErrorMVCAutoConfiguration；容器中有如下组件：</p>
+<ol>
+<li>DefaultErrorAttributes</li>
+<li>BasicErrorController</li>
+<li>ErrorPageCustomizer</li>
+<li>DefaultErrorViewResolver</li>
+</ol>
+<h2 id="注册Servlet、Filter、Linstener"><a href="#注册Servlet、Filter、Linstener" class="headerlink" title="注册Servlet、Filter、Linstener"></a>注册Servlet、Filter、Linstener</h2><p>Spring Boot默认是以jar包的方式启动嵌入式的Servlet容器来启动Spring Boot的web应用，没有web.xml文件；<br>注册三大组件使用ServletRegistrationBean, FilterRegistrationBean, ServletListenerRegistrationBean。</p>
+<h3 id="其他嵌入式Servlet容器"><a href="#其他嵌入式Servlet容器" class="headerlink" title="其他嵌入式Servlet容器"></a>其他嵌入式Servlet容器</h3><h4 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h4><p>适合长连接</p>
+<h4 id="Undertow"><a href="#Undertow" class="headerlink" title="Undertow"></a>Undertow</h4><p>后置处理器会获取所有容器中的定制器，以此配置Servlet容器，自己定义容器就是将自定义的定制器加到Bean工厂中。</p>
+<h2 id="嵌入式Servlet容器启动原理"><a href="#嵌入式Servlet容器启动原理" class="headerlink" title="嵌入式Servlet容器启动原理"></a>嵌入式Servlet容器启动原理</h2><ol>
+<li>Spring Boot应用启动运行run方法；</li>
+<li>refreshContext(context);Spring Boot刷新IOC容器，创建IOC容器对象，并初始化容器，创建容器中的每一个组件，还判断了是否是web应用；</li>
+<li>refresh(context);刷新刚才创建好的ioc容器；</li>
+<li>onRefresh();web的IOC容器重写了onRefresh方法；</li>
+<li>web IOC容器会创建嵌入式的Servlet容器；createEmbeddedServletContainer();</li>
+<li>获取嵌入式的Servlet容器工厂；TomcatEmbeddedServletContainerFactory创建对象，后置处理器随后获取所有的定制器来定制Servlet容器的相关配置；</li>
+<li>使用容器工厂获取嵌入式的Servlet容器；</li>
+<li>嵌入式的Servlet容器创建对象并启动Servlet容器；先启动嵌入式的Servlet容器，再将IOC容器中剩下的对象获取；</li>
+</ol>
+<h2 id="使用外置的Servlet容器"><a href="#使用外置的Servlet容器" class="headerlink" title="使用外置的Servlet容器"></a>使用外置的Servlet容器</h2><p>嵌入式Servlet容器优点在于简单、便携，缺点在于默认不支持JSP，优化定制不够复杂；使用定制器、自己编写嵌入式Servlet容器的创建工厂；</p>
+<ol>
+<li>必须创建一个war项目，利用idea创建目录结构；</li>
+<li>将嵌入式的Tomcat指定为provided；</li>
+<li>必须编写一个SpringBootServletInitializer的子类，并调用configure方法；</li>
+<li>启动tomcat；</li>
+</ol>
+
       
     </div>
 
@@ -232,7 +348,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring-boot和web开发.html" data-id="ck3vmaww900091k5431pkg05u" class="article-share-link">
+      <a data-url="http://zkalan.com/spring-boot和web开发.html" data-id="ck3zjenfo00146854w83vqjx0" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -332,7 +448,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/YAML.html" data-id="ck3vmawvv00001k549i0yx4rz" class="article-share-link">
+      <a data-url="http://zkalan.com/YAML.html" data-id="ck3zjenfk001168547vhp8ymq" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -417,7 +533,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/gradle.html" data-id="ck3vmaww100011k54xa98d4sr" class="article-share-link">
+      <a data-url="http://zkalan.com/gradle.html" data-id="ck3zjenfs00166854q6nda3c7" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -585,92 +701,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/maven.html" data-id="ck3vmawwj000l1k54l44gfwy9" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring-boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门/">入门</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-</article>
-
-
-
-  
-    <article id="post-spring-boot入门" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/spring-boot入门.html">spring boot入门</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/spring-boot入门.html" class="article-date"><time datetime="2019-12-02T09:08:16.000Z" itemprop="datePublished">2019-12-02</time></a>
-</div>
-
-    <div class="article-author">tuanma</div>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/spring-boot/">spring-boot</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h2><p>简化spring开发流程，J2EE开发的一站式解决方案。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>快速创建独立运行spring项目以及与主流框架集成</li>
-<li>使用嵌入式servlet容器，应用无需达成war包</li>
-<li>starters自动依赖与版本控制</li>
-<li>大量的自动配置，简化开发，也可以修改默认值</li>
-<li>无需配置XML，无代码生成</li>
-<li>准生产环境的运行时应用监控</li>
-<li>与云计算天然集成</li>
-</ul>
-<h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>是一种架构风格，其认为一个应用应该是一组小型服务，可以用过HTTP的方式通信。</p>
-<p>每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h2 id="spring-boot-starter"><a href="#spring-boot-starter" class="headerlink" title="spring-boot-starter"></a>spring-boot-starter</h2><p>启动器，spring-boot官方提供了一系列启动器。将所有的功能场景抽取出来，只要在项目里面引入这些starter，相关依赖就会自动导入。</p>
-<h2 id="主程序类"><a href="#主程序类" class="headerlink" title="主程序类"></a>主程序类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@SpringBootApplication</span>标注这是spring boot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldMainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//spring应用启动</span></span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span><span class="comment">//表示这是一个Spring Boot的配置类</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span><span class="comment">//开启自动配置功能</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(</span><br><span class="line">    excludeFilters = &#123;<span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), <span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication</span><br></pre></td></tr></table></figure>
-
-<p>@SpringBootConfiguration:表示这是一个Spring Boot的配置类；<br>@Configuration：配置类上，表示配置类也是容器中的一个组件@Component</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AutoConfigurationPackage</span><span class="comment">//自动配置包</span></span><br><span class="line"><span class="meta">@Import</span>(EnableAutoConfigurationImportSelector.class)</span><br></pre></td></tr></table></figure>
-
-<p>spring-boot的注释没事可以看看。</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://zkalan.com/spring-boot入门.html" data-id="ck3vmawwm000o1k54uefmmyxb" class="article-share-link">
+      <a data-url="http://zkalan.com/maven.html" data-id="ck3zjenfv001a6854arrio4wh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -717,7 +748,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/杂项/">杂项</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/杂项/">杂项</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -725,7 +756,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/AOP/">AOP</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/junit/">junit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/web开发/">web开发</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/windows-to-go/">windows to go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/yaml/">yaml</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/入门/">入门</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/动态代理/">动态代理</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/声明式事务控制/">声明式事务控制</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/特殊的日期/">特殊的日期</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/装系统/">装系统</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/AOP/">AOP</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/junit/">junit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/web开发/">web开发</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/windows-to-go/">windows to go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/yaml/">yaml</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/入门/">入门</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/动态代理/">动态代理</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/声明式事务控制/">声明式事务控制</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/特殊的日期/">特殊的日期</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/装系统/">装系统</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -734,7 +765,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/AOP/" style="font-size: 13.33px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 16.67px;">spring-boot</a> <a href="/tags/web开发/" style="font-size: 10px;">web开发</a> <a href="/tags/windows-to-go/" style="font-size: 10px;">windows to go</a> <a href="/tags/yaml/" style="font-size: 10px;">yaml</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/入门/" style="font-size: 13.33px;">入门</a> <a href="/tags/动态代理/" style="font-size: 10px;">动态代理</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/声明式事务控制/" style="font-size: 10px;">声明式事务控制</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 13.33px;">注解</a> <a href="/tags/特殊的日期/" style="font-size: 10px;">特殊的日期</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a> <a href="/tags/装系统/" style="font-size: 10px;">装系统</a>
+      <a href="/tags/AOP/" style="font-size: 13.33px;">AOP</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 16.67px;">spring-boot</a> <a href="/tags/web开发/" style="font-size: 10px;">web开发</a> <a href="/tags/windows-to-go/" style="font-size: 10px;">windows to go</a> <a href="/tags/yaml/" style="font-size: 10px;">yaml</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/入门/" style="font-size: 13.33px;">入门</a> <a href="/tags/动态代理/" style="font-size: 10px;">动态代理</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/声明式事务控制/" style="font-size: 10px;">声明式事务控制</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 13.33px;">注解</a> <a href="/tags/特殊的日期/" style="font-size: 10px;">特殊的日期</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a> <a href="/tags/装系统/" style="font-size: 10px;">装系统</a>
     </p>
   </div>
 
@@ -742,7 +773,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
   </div>
 
 
@@ -751,6 +782,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/Docker.html">Docker</a>
+        </li>
       
         <li>
           <a href="/spring-boot和web开发.html">spring-boot和web开发</a>
@@ -766,10 +801,6 @@
       
         <li>
           <a href="/maven.html">maven</a>
-        </li>
-      
-        <li>
-          <a href="/spring-boot入门.html">spring boot入门</a>
         </li>
       
     </ul>
