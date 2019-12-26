@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2019-12-10T08:38:26.107Z</updated>
+  <updated>2019-12-26T06:53:21.784Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javaCV初步使用之rtmp推流和在线播放</title>
+    <link href="http://zkalan.com/javaCV%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8%E4%B9%8Brtmp%E6%8E%A8%E6%B5%81%E5%92%8C%E5%9C%A8%E7%BA%BF%E6%92%AD%E6%94%BE.html"/>
+    <id>http://zkalan.com/javaCV初步使用之rtmp推流和在线播放.html</id>
+    <published>2019-12-26T06:06:07.000Z</published>
+    <updated>2019-12-26T06:53:21.784Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="从设备获取视频流"><a href="#从设备获取视频流" class="headerlink" title="从设备获取视频流"></a>从设备获取视频流</h2><blockquote><p>参考链接<br><a href="https://blog.csdn.net/eguid_1/article/details/52678775" target="_blank" rel="noopener">https://blog.csdn.net/eguid_1/article/details/52678775</a></p></blockquote><p>这块内容主要是javaCV基本API的使用，代码非常简单，我将其写在了一个类中，位于<br>src/main/java/com/zkalan/capture下，然后再demo类中调用测试；需要注意的是，网<br>上的很多代码将画板canvas的销毁方式设置为EXIT_ON_CLOSE，这会导致java虚拟机直接<br>推出，资源无法释放。我认为正确的写法应该是DISPOSED_ON_CLOSE。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);</span><br></pre></td></tr></table></figure><h2 id="搭建rtmp推流服务器"><a href="#搭建rtmp推流服务器" class="headerlink" title="搭建rtmp推流服务器"></a>搭建rtmp推流服务器</h2><p>通过nginx服务器和nginx-rtmp-module可以简单的搭建一个rtmp服务器，我将使用的nginx<br>编译版本放在了<a href="https://download.csdn.net/download/bucuo12345/12054279" target="_blank" rel="noopener">这里</a><br>，这是已经包含了nginx-rtmp-module的版本，使用非常简单，首先在配置文件，例如<br>nginx-win-rtmp.conf中，添加一段rtmp配置项</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 1935;</span><br><span class="line">        chunk_size 4000;</span><br><span class="line">        #mylive就是直播项目名</span><br><span class="line">        application mylive &#123;</span><br><span class="line">             live on;</span><br><span class="line"> </span><br><span class="line">             # record first 1K of stream</span><br><span class="line">             record all;</span><br><span class="line">             record_path /tmp/av;</span><br><span class="line">             record_max_size 1K;</span><br><span class="line"> </span><br><span class="line">             # append current timestamp to each flv</span><br><span class="line">             record_unique on;</span><br><span class="line"> </span><br><span class="line">             # publish only from localhost</span><br><span class="line">             #allow publish 127.0.0.1;</span><br><span class="line">             #deny publish all;</span><br><span class="line"> </span><br><span class="line">             #allow play all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后在命令行中启动nginx服务器，例如命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start nginx.exe -c conf\nginx-win-rtmp.conf</span><br></pre></td></tr></table></figure><p>最后，启动第一部分写好的demo程序，注意publish address应该是这样的格式<br>rtmp://localhost:port/mylive/，使用potplayer或者vlc访问该链接，测试推流是否成功。</p><h2 id="在网页播放rtmp流"><a href="#在网页播放rtmp流" class="headerlink" title="在网页播放rtmp流"></a>在网页播放rtmp流</h2><blockquote><p>参考链接<br><a href="https://blog.csdn.net/qq_30152271/article/details/84334734" target="_blank" rel="noopener">https://blog.csdn.net/qq_30152271/article/details/84334734</a></p></blockquote><p>操作起来很简单，就是创建一个静态网页，放到服务器目录下，启动任何一个静态服务器，例如<br>上文的nginx，访问该静态网页，只要地址填写正确，就可以观看推流内容了。</p><font color="#99CC00">然而需要注意的是，videojs虽然声称是一个html5播放器，但它的5.x版本播放rtmp流时依然需要flash支持，并且6.x及以后版本不支持rtmp播放，也许是为了真正的叫做“html5播放器”？</font><h2 id="Demo地址"><a href="#Demo地址" class="headerlink" title="Demo地址"></a>Demo地址</h2><p><a href="https://github.com/zkalan/javaCV-rtmp-demo" target="_blank" rel="noopener">javaCV-rtmp-demo</a></p><p>浏览器效果图</p><p><img src="https://wx4.sinaimg.cn/mw690/005OmCBrly1gaa4n8lli6j30hd0cf42n.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;从设备获取视频流&quot;&gt;&lt;a href=&quot;#从设备获取视频流&quot; class=&quot;headerlink&quot; title=&quot;从设备获取视频流&quot;&gt;&lt;/a&gt;从设备获取视频流&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;参考链接&lt;br&gt;&lt;a href=&quot;https://blog.csd
+      
+    
+    </summary>
+    
+    
+      <category term="javaCV" scheme="http://zkalan.com/categories/javaCV/"/>
+    
+    
+      <category term="rtmp" scheme="http://zkalan.com/tags/rtmp/"/>
+    
+      <category term="javacv" scheme="http://zkalan.com/tags/javacv/"/>
+    
+      <category term="nginx" scheme="http://zkalan.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis第一节</title>
+    <link href="http://zkalan.com/Mybatis%E7%AC%AC%E4%B8%80%E8%8A%82.html"/>
+    <id>http://zkalan.com/Mybatis第一节.html</id>
+    <published>2019-12-16T13:49:09.000Z</published>
+    <updated>2019-12-19T14:05:26.893Z</updated>
+    
+    <content type="html"><![CDATA[<p>持久层技术解决方案有JDBC技术、Sping中对JDBC的简单封装、Apache的DBUtils等，这些都不是框架技术，后两者只是工具类。Mybatis是一个持久层框架，使用ORM思想实现了结果集的封装。ORM就是把数据库表和实体类及其实体类的属性对应起来。</p><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol><li>创建maven工程并导入坐标；</li><li>创建实体类和dao的接口；</li><li>创建Mybatis的主配置文件SqlMapConfig.xml</li><li>创建映射配置文件；</li></ol><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol><li>在Mybatis中把持久层的接口名称和映射文件也叫做Mapper；</li><li>Mybatis的映射配置文件位置必须和dao接口的包结构相同；</li><li>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名；</li><li>映射配置文件的操作配置，id属性的取值必须是dao接口的方法名；</li><li>遵守3、4和5，不需要自己写dao接口实现类；</li></ol><h2 id="Mybatis连接池"><a href="#Mybatis连接池" class="headerlink" title="Mybatis连接池"></a>Mybatis连接池</h2><p>提供了三种配置方式。<br>配置的位置：主配置文件SqlMapConfig.xml中的dataSource标签，type属性就是表示采用哪种连接池。</p><ul><li>POOLED：采用传统的javax.sql.DataSource规范中的连接池，mybatis中有针对规范的实现。</li><li>UNPOOLED：采用传统的获取连接的方式，虽然也实现Javax.sql.DataSource接口，但是并没有使用赤的思想。</li><li>JNDI：采用服务器提供的JNDI技术实现，来获取DataSource对象，不同的服务器能拿到的DataSource不同。web和maven的war工程才可使用。tomcat服务器采用的连接池是dbcp连接池。</li></ul><h2 id="Mybatis中的事务"><a href="#Mybatis中的事务" class="headerlink" title="Mybatis中的事务"></a>Mybatis中的事务</h2><p>通过sqlsession对象的commit方法和rollback方法实现事务的提交和回滚。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;持久层技术解决方案有JDBC技术、Sping中对JDBC的简单封装、Apache的DBUtils等，这些都不是框架技术，后两者只是工具类。Mybatis是一个持久层框架，使用ORM思想实现了结果集的封装。ORM就是把数据库表和实体类及其实体类的属性对应起来。&lt;/p&gt;
+&lt;h2
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://zkalan.com/categories/mybatis/"/>
+    
+    
+      <category term="mybatis" scheme="http://zkalan.com/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC第一节</title>
+    <link href="http://zkalan.com/SpringMVC%E7%AC%AC%E4%B8%80%E8%8A%82.html"/>
+    <id>http://zkalan.com/SpringMVC第一节.html</id>
+    <published>2019-12-10T09:08:49.000Z</published>
+    <updated>2019-12-11T14:40:12.430Z</updated>
+    
+    <content type="html"><![CDATA[<p>SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级web框架，属于Spring FrameWork的后续产品，以及融合在Spring Web Flow里面。Spring框架提供了构建Web应用程序的全部功能MVC模块，使用Spring可插入的MVC框架，从而在进行Web开发时，选择使用Spring MVC框架或集成其他MVC开发框架，如Struts2等。支持RESTful编程风格的请求。</p><ul><li>清晰的角色划分；</li><li>分工明确，扩展灵活；</li><li>等</li></ul><h2 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h2><h3 id="DispatcherServlet前端控制器"><a href="#DispatcherServlet前端控制器" class="headerlink" title="DispatcherServlet前端控制器"></a>DispatcherServlet前端控制器</h3><p>用户i请求到达前端控制器，相当于MVC模式中的C，DispatcherServlet是整个流程控制的中心，由它调用其他组件处理用户的请求，DispatcherServlet降低了组件之间的耦合。</p><h3 id="HandlerMapping处理器映射器"><a href="#HandlerMapping处理器映射器" class="headerlink" title="HandlerMapping处理器映射器*"></a>HandlerMapping处理器映射器*</h3><p>HandlerMapping负责根据用户请求找到Handler，SpingMVC提供了不同的映射器实现不同的映射方式，例如配置文件方式、实现接口方式、注解方式等。</p><h3 id="Handler处理器"><a href="#Handler处理器" class="headerlink" title="Handler处理器"></a>Handler处理器</h3><p>开发中需要编写的具体业务控制器，由DispatcherServlet把用户的请求转发到Handler，由Handler对具体的用户请求进行处理。</p><h3 id="HandlerAdapter处理器适配器"><a href="#HandlerAdapter处理器适配器" class="headerlink" title="HandlerAdapter处理器适配器*"></a>HandlerAdapter处理器适配器*</h3><p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p><h3 id="View-Resolver视图解析器"><a href="#View-Resolver视图解析器" class="headerlink" title="View Resolver视图解析器*"></a>View Resolver视图解析器*</h3><p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p><h3 id="View视图"><a href="#View视图" class="headerlink" title="View视图"></a>View视图</h3><p>SpringMVC框架提供了很多的View视图类型的支持，包括jstlView, freemarkerView, pdfView等。最常用的是jsp。一般情况下需要通过页面标签或页面模板技术将模型数据通过页面展示给用户。</p><h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.bind.annotation;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Documented;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.AliasFor;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以作用于类和方法，支持分级映射</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Mapping</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestMapping &#123;</span><br><span class="line"></span><br><span class="line"><span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//别名path和value通用，用于指定url</span></span><br><span class="line"><span class="meta">@AliasFor</span>(<span class="string">"path"</span>)</span><br><span class="line">String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">@AliasFor</span>(<span class="string">"value"</span>)</span><br><span class="line">String[] path() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//public enum RequestMethod &#123;</span></span><br><span class="line">    <span class="comment">//GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    RequestMethod[] method() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//限定传递的请求参数</span></span><br><span class="line">String[] params() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于指定限制请求的头条件</span></span><br><span class="line">String[] headers() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">String[] consumes() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">String[] produces() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="请求参数的绑定"><a href="#请求参数的绑定" class="headerlink" title="请求参数的绑定"></a>请求参数的绑定</h2><p>支持简单数据类型、对象、列表等。@RequestMapping(param={username=””})</p><h2 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h2><ol><li>首先实现Converter接口；</li><li>在spring配置文件中配置自定义类型转换器；</li></ol><h2 id="Servlet原生API"><a href="#Servlet原生API" class="headerlink" title="Servlet原生API"></a>Servlet原生API</h2><p>HttpServletRequest、HttpServletResponse、HttpSession、ServletContext。</p><h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><ol><li>@RequestParam</li><li>@RequestBody get方法不适用</li><li>@PathVariable RESTful风格 WebClient模拟发送请求</li><li>@RequestHeader</li><li>@CookieValue 获取cookie的值</li><li>@ModelAttribute</li><li>@SessionAttributes 用于多次执行控制器方法间的参数共享</li></ol><h2 id="ResponseBody相应json数据"><a href="#ResponseBody相应json数据" class="headerlink" title="ResponseBody相应json数据"></a>ResponseBody相应json数据</h2><p>DispatcherServlet会拦截所有资源，导致静态资源，如image、css、js等也会被拦截，解决方法就是需要配置静态资源不拦截。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级web框架，属于Spring FrameWork的后续产品，以及融合在Spring Web Flow里面。Spring框架提供了构建Web应用程序的全部功能MVC模块，使用Spring可插入的MV
+      
+    
+    </summary>
+    
+    
+      <category term="SpringMVC" scheme="http://zkalan.com/categories/SpringMVC/"/>
+    
+    
+      <category term="SpringMVC" scheme="http://zkalan.com/tags/SpringMVC/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker</title>
@@ -484,7 +568,7 @@
     <link href="http://zkalan.com/bean%E7%9A%84%E7%AC%94%E8%AE%B0.html"/>
     <id>http://zkalan.com/bean的笔记.html</id>
     <published>2019-10-30T03:32:11.000Z</published>
-    <updated>2019-10-30T04:21:21.401Z</updated>
+    <updated>2019-12-10T09:11:17.978Z</updated>
     
     <content type="html"><![CDATA[<h2 id="spring对bean的管理细节"><a href="#spring对bean的管理细节" class="headerlink" title="spring对bean的管理细节"></a>spring对bean的管理细节</h2><h3 id="创建bean的三种方式"><a href="#创建bean的三种方式" class="headerlink" title="创建bean的三种方式"></a>创建bean的三种方式</h3><h4 id="使用默认构造函数创建"><a href="#使用默认构造函数创建" class="headerlink" title="使用默认构造函数创建"></a>使用默认构造函数创建</h4><p>在spring的配置文件中使用bean标签，配以id和class属性之后，且没有其他属性和标签时，采用的是默认构造函数创建对象，此时必须存在无参数构造函数；</p><h4 id="使用普通工厂中的方法创建对象，并存入spring容器"><a href="#使用普通工厂中的方法创建对象，并存入spring容器" class="headerlink" title="使用普通工厂中的方法创建对象，并存入spring容器"></a>使用普通工厂中的方法创建对象，并存入spring容器</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"instanceFactory"</span> <span class="attr">class</span>=<span class="string">"com.factory.InstanceFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">factory-bean</span>=<span class="string">"instanceFactory"</span> <span class="attr">factory-method</span>=<span class="string">"getAccountService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="使用工厂中的静态方法创建对象"><a href="#使用工厂中的静态方法创建对象" class="headerlink" title="使用工厂中的静态方法创建对象"></a>使用工厂中的静态方法创建对象</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">class</span>=<span class="string">"com.factory.StaticFactory"</span> <span class="attr">factory-method</span>=<span class="string">"staticgetAccountService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="bean对象的作用范围"><a href="#bean对象的作用范围" class="headerlink" title="bean对象的作用范围"></a>bean对象的作用范围</h3><h4 id="bean标签的scope属性"><a href="#bean标签的scope属性" class="headerlink" title="bean标签的scope属性"></a>bean标签的scope属性</h4><ul><li>作用：用于指定bean的作用范围</li><li>取值：<ul><li>singleton：单例，默认值</li><li>prototype：多例</li><li>request：作用于web应用的请求范围</li><li>session：作用于web应用的会话范围</li><li>global-session：作用于集群的会话范围</li></ul></li></ul><h3 id="bean对象的生命周期"><a href="#bean对象的生命周期" class="headerlink" title="bean对象的生命周期"></a>bean对象的生命周期</h3><ol><li>单例对象：容器创建时对象创建，声明周期和容器相同；</li><li>多例对象：使用时spring框架创建对象，对象回收由JVM负责；</li></ol>]]></content>
     
@@ -504,102 +588,6 @@
       <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
     
       <category term="bean" scheme="http://zkalan.com/tags/bean/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring的IOC概述</title>
-    <link href="http://zkalan.com/Spring%E7%9A%84IOC%E6%A6%82%E8%BF%B0.html"/>
-    <id>http://zkalan.com/Spring的IOC概述.html</id>
-    <published>2019-10-29T09:18:55.000Z</published>
-    <updated>2019-10-30T03:30:05.475Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="通过工厂模式"><a href="#通过工厂模式" class="headerlink" title="通过工厂模式"></a>通过工厂模式</h2><p>通过工厂模式，应用和资源得以分开，降低耦合。</p><h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><p>把创建对象的权利交给框架或工厂，它包括依赖注入和依赖查找。</p><h2 id="spring基于XML的IOC环境搭建和入门"><a href="#spring基于XML的IOC环境搭建和入门" class="headerlink" title="spring基于XML的IOC环境搭建和入门"></a>spring基于XML的IOC环境搭建和入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取核心容器对象</span></span><br><span class="line">ApplicationContent ac = <span class="keyword">new</span> ClassPathXmlApplicationContent(<span class="string">"bena.xml"</span>);</span><br><span class="line"><span class="comment">//根据id获取Bean对象</span></span><br><span class="line">IAccountService as = (IAccountService)as.getBean(<span class="string">"accountService"</span>);</span><br><span class="line">IAccountDao adao = ac.getBean(<span class="string">"accountDao"</span>, IAccountDao.class);</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jpa</span>=<span class="string">"http://www.springframework.org/schema/data/jpa"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://www.springframework.org/schema/beans/spring-beans.xsd&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;!--把对象的创建交给spring来管理--&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    &lt;bean id="</span><span class="attr">accountService</span>" <span class="attr">class</span>=<span class="string">"com.service.impl.AccountServiceImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"com.dao.impl.AccountDaoImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="核心容器的两个接口"><a href="#核心容器的两个接口" class="headerlink" title="核心容器的两个接口"></a>核心容器的两个接口</h2><h3 id="ApplicationContent"><a href="#ApplicationContent" class="headerlink" title="ApplicationContent"></a>ApplicationContent</h3><p>在构建核心容器时，创建对象采用立即加载的方式；单例对象适用；</p><h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><p>在构建核心容器时，创建对象采用延时加载的范式；多例对象适用；</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;通过工厂模式&quot;&gt;&lt;a href=&quot;#通过工厂模式&quot; class=&quot;headerlink&quot; title=&quot;通过工厂模式&quot;&gt;&lt;/a&gt;通过工厂模式&lt;/h2&gt;&lt;p&gt;通过工厂模式，应用和资源得以分开，降低耦合。&lt;/p&gt;
-&lt;h2 id=&quot;控制反转&quot;&gt;&lt;a href=&quot;#控制反
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
-    
-    
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
-      <category term="IOC" scheme="http://zkalan.com/tags/IOC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring概述</title>
-    <link href="http://zkalan.com/Spring%E6%A6%82%E8%BF%B0.html"/>
-    <id>http://zkalan.com/Spring概述.html</id>
-    <published>2019-10-29T07:43:58.000Z</published>
-    <updated>2019-10-29T09:17:58.315Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="spring是什么"><a href="#spring是什么" class="headerlink" title="spring是什么"></a>spring是什么</h2><p>spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多的著名第三方框架和类库，逐渐成为使用最多的JavaEE企业应用开源框架。</p><h2 id="spring两大核心"><a href="#spring两大核心" class="headerlink" title="spring两大核心"></a>spring两大核心</h2><p>IoC（Inverse Of Control反转控制）和AOP（Aspect Oriented Programming面向切面编程）</p><h2 id="spring发展历程和优势"><a href="#spring发展历程和优势" class="headerlink" title="spring发展历程和优势"></a>spring发展历程和优势</h2><ul><li>方便解耦，简化开发</li><li>AOP编程的支持</li><li>声明式事务编程</li><li>方便程序测试</li><li>方便集成各种优秀框架</li><li>降低Java API的使用难度<h2 id="spring体系结构"><a href="#spring体系结构" class="headerlink" title="spring体系结构"></a>spring体系结构</h2></li></ul><h2 id="程序的耦合"><a href="#程序的耦合" class="headerlink" title="程序的耦合"></a>程序的耦合</h2><ol><li>内容耦合：当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另一个模块时，这样的耦合被称为内容耦合，内容耦合是最高程度的耦合，应该避免使用。</li><li>公共耦合：两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合，在具有大量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。</li><li>外部耦合：一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</li><li>控制耦合：一组模块通过接口向另一个模块传递一个控制信号，接收信号的模块根据信号值而进行适当的动作，这种耦合称为控制耦合。</li><li>标记耦合：若一个模块A通过接口向另外两个模块B和C传递一个公共参数，那么模块B和C之间存在标记耦合。</li><li>数据耦合：模块之间通过参数来传递数据，那么被称为数据耦合，数据耦合是最低的一种耦合形式。系统中一般都存在这种类型的耦合，因为为了完成一种有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。</li><li>非直接耦合：两个模块之间没有直接关系，他们之间的联系完全是通过主模块的控制和调用来实现的。<h2 id="解耦的思路"><a href="#解耦的思路" class="headerlink" title="解耦的思路"></a>解耦的思路</h2>第一步，应该采用反射来创建对象，避免使用new关键字；<br>第二步，通过读取配置文件来获取要创建的对象全限定类名；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br></pre></td></tr></table></figure></li></ol><p><strong>计算机语言中，bean有可重用组件的意思。</strong></p><h3 id="工厂模式解耦"><a href="#工厂模式解耦" class="headerlink" title="工厂模式解耦"></a>工厂模式解耦</h3><p>巧妙的使用properties配置文件和反射机制，通过map存储beans，将该map声明为static就能实现单例模式，它的作用被称为容器container。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;spring是什么&quot;&gt;&lt;a href=&quot;#spring是什么&quot; class=&quot;headerlink&quot; title=&quot;spring是什么&quot;&gt;&lt;/a&gt;spring是什么&lt;/h2&gt;&lt;p&gt;spring是分层的JavaSE/EE应用全栈式轻量级开源框架，以IoC（Inver
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
-    
-    
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
-      <category term="概述" scheme="http://zkalan.com/tags/%E6%A6%82%E8%BF%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java笔记：包装类</title>
-    <link href="http://zkalan.com/java%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%8C%85%E8%A3%85%E7%B1%BB.html"/>
-    <id>http://zkalan.com/java笔记：包装类.html</id>
-    <published>2019-10-16T12:29:20.000Z</published>
-    <updated>2019-10-16T12:34:05.675Z</updated>
-    
-    <content type="html"><![CDATA[<table><thead><tr><th align="left">基本数据类型</th><th align="left">包装类型</th></tr></thead><tbody><tr><td align="left">byte</td><td align="left">java.lang.Byte</td></tr><tr><td align="left">short</td><td align="left">java.lang.Short</td></tr><tr><td align="left">int</td><td align="left">java.lang.Integer</td></tr><tr><td align="left">long</td><td align="left">java.lang.Long</td></tr><tr><td align="left">boolean</td><td align="left">java.lang.Boolean</td></tr><tr><td align="left">char</td><td align="left">java.lang.Character</td></tr><tr><td align="left">float</td><td align="left">java.lang.Float</td></tr><tr><td align="left">double</td><td align="left">java.lang.Double</td></tr></tbody></table><p>关于包装类的内容在新版java中有变化，最好查阅文档里哦阿姐情况。例如jdk5之后的自动装箱和自动拆箱，基本数据类型和包装类型自动转化。</p><p>还知道整形常量池（-128-127）和字符串常量池吗？</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&quot;left&quot;&gt;基本数据类型&lt;/th&gt;
-&lt;th align=&quot;left&quot;&gt;包装类型&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td align=&quot;left&quot;&gt;byte&lt;/td&gt;
-&lt;td align
-      
-    
-    </summary>
-    
-    
-      <category term="java笔记" scheme="http://zkalan.com/categories/java%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="java" scheme="http://zkalan.com/tags/java/"/>
-    
-      <category term="常量池" scheme="http://zkalan.com/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
-    
-      <category term="包装类" scheme="http://zkalan.com/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/"/>
     
   </entry>
   
