@@ -13,10 +13,12 @@
 <meta property="og:site_name" content="麻绳先生">
 <meta property="og:description" content="hadoop历史2011年发布1.0版本，2012年发布稳定版，2013发布2.x版本（Yarn） 缺点 基于数据集的计算，所以面向数据。从存储介质中获取数据，然后进行计算，最后将结果存储到介质中。所以主要应用于一次性计算，不适合数据挖掘和机器学习这些迭代计算和图形挖掘计算。 mapreduce基于文件存储介质的操作，性能差 mapreduce和hadoop紧密耦合  Yarn版本Resource">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2020-01-02T13:02:29.757Z">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/005OmCBrly1gaftlh86wmj30uf0hsq3o.jpg">
+<meta property="og:updated_time" content="2020-01-03T07:35:52.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark第一次笔记">
 <meta name="twitter:description" content="hadoop历史2011年发布1.0版本，2012年发布稳定版，2013发布2.x版本（Yarn） 缺点 基于数据集的计算，所以面向数据。从存储介质中获取数据，然后进行计算，最后将结果存储到介质中。所以主要应用于一次性计算，不适合数据挖掘和机器学习这些迭代计算和图形挖掘计算。 mapreduce基于文件存储介质的操作，性能差 mapreduce和hadoop紧密耦合  Yarn版本Resource">
+<meta name="twitter:image" content="https://wx4.sinaimg.cn/mw690/005OmCBrly1gaftlh86wmj30uf0hsq3o.jpg">
   
   
   
@@ -120,8 +122,8 @@
 <h3 id="Yarn版本"><a href="#Yarn版本" class="headerlink" title="Yarn版本"></a>Yarn版本</h3><p>ResourceManager、ApplicationMaster、Driver、NodeManager</p>
 <h2 id="spark历史"><a href="#spark历史" class="headerlink" title="spark历史"></a>spark历史</h2><p>2013年6月正式发布，spark基于hadoop1.x架构思想设计思想。spark计算基于内存，并且基于Scala语法开发，所以天生适合迭代式计算。</p>
 <p><strong>HDFS-Yarn-Spark</strong></p>
-<h2 id="Spark下载地址"><a href="#Spark下载地址" class="headerlink" title="Spark下载地址"></a>Spark下载地址</h2><p>!(<a href="http://spark.apache.org)[http://spark.apache.org]" target="_blank" rel="noopener">http://spark.apache.org)[http://spark.apache.org]</a></p>
-<h2 id="重要角色"><a href="#重要角色" class="headerlink" title="重要角色"></a>重要角色</h2><h3 id="Driver（驱动器）"><a href="#Driver（驱动器）" class="headerlink" title="Driver（驱动器）"></a>Driver（驱动器）</h3><h3 id="Executer（执行器）"><a href="#Executer（执行器）" class="headerlink" title="Executer（执行器）"></a>Executer（执行器）</h3><h3 id="Spark-Yarn运行模式简图"><a href="#Spark-Yarn运行模式简图" class="headerlink" title="Spark-Yarn运行模式简图"></a>Spark-Yarn运行模式简图</h3><p>!(Spark-Yarn运行模式简图)[<a href="https://wx4.sinaimg.cn/mw690/005OmCBrly1gaftlh86wmj30uf0hsq3o.jpg]" target="_blank" rel="noopener">https://wx4.sinaimg.cn/mw690/005OmCBrly1gaftlh86wmj30uf0hsq3o.jpg]</a></p>
+<h2 id="Spark下载地址"><a href="#Spark下载地址" class="headerlink" title="Spark下载地址"></a>Spark下载地址</h2><p><a href="http://spark.apache.org" target="_blank" rel="noopener">http://spark.apache.org</a></p>
+<h2 id="重要角色"><a href="#重要角色" class="headerlink" title="重要角色"></a>重要角色</h2><h3 id="Driver（驱动器）"><a href="#Driver（驱动器）" class="headerlink" title="Driver（驱动器）"></a>Driver（驱动器）</h3><h3 id="Executer（执行器）"><a href="#Executer（执行器）" class="headerlink" title="Executer（执行器）"></a>Executer（执行器）</h3><h3 id="Spark-Yarn运行模式简图"><a href="#Spark-Yarn运行模式简图" class="headerlink" title="Spark-Yarn运行模式简图"></a>Spark-Yarn运行模式简图</h3><p><img src="https://wx4.sinaimg.cn/mw690/005OmCBrly1gaftlh86wmj30uf0hsq3o.jpg" alt="Spark-Yarn运行模式简图"></p>
 <h2 id="Standalone模式"><a href="#Standalone模式" class="headerlink" title="Standalone模式"></a>Standalone模式</h2><h2 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h2><p>RDD(Resilient Distributed Dataset)称为弹性分布式数据集，是Spark中最基本的数据或计算抽象。代码中是一个抽象类，代表一个不可变、可分区、里面的元素可进行并行计算的集合。</p>
 <h3 id="RDD属性"><a href="#RDD属性" class="headerlink" title="RDD属性"></a>RDD属性</h3><ul>
 <li>一组分区Partition，即数据集的基本组成单位</li>
@@ -183,7 +185,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spark第一次笔记.html" data-id="ck4xud68y000pkc54oyxmec2l" class="article-share-link">
+      <a data-url="http://zkalan.com/spark第一次笔记.html" data-id="ck4xugtzl0014vs54b0u36n3x" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
