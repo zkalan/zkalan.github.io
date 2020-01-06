@@ -78,6 +78,256 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-PyQt5小程序上传图片到七牛云" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/PyQt5小程序上传图片到七牛云.html">PyQt5小程序上传图片到七牛云</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/PyQt5小程序上传图片到七牛云.html" class="article-date"><time datetime="2020-01-05T13:50:18.000Z" itemprop="datePublished">2020-01-05</time></a>
+</div>
+
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PyQt5/">PyQt5</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p>
+</blockquote>
+<h2 id="绘制软件界面"><a href="#绘制软件界面" class="headerlink" title="绘制软件界面"></a>绘制软件界面</h2><p>使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：</p>
+<ul>
+<li>在pycharm中安装PyQt5</li>
+<li>在pycharm中安装PyQt5-tools</li>
+<li>配置pycharm，方便的通过tools界面启动dedigner和其他工具</li>
+</ul>
+<h2 id="slots和signals"><a href="#slots和signals" class="headerlink" title="slots和signals"></a>slots和signals</h2><p>这是两个PyQt中的概念，signal就是信号，是动作的发出者；slot就是槽，是动作的相应者。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br><span class="line"><span class="keyword">from</span> ui <span class="keyword">import</span> mainwindow</span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QMessageBox, QFileDialog</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> uploadtoqiniu</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WindowService</span><span class="params">(QMainWindow, mainwindow.Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(WindowService, self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">        <span class="comment"># bind slots and signals</span></span><br><span class="line">        self.pb_select.clicked.connect(self.pb_select_service)</span><br><span class="line"></span><br><span class="line">        self.pb_copy_url.clicked.connect(self.pb_copy_url_service)</span><br><span class="line">        self.pb_copy_markdown.clicked.connect(self.pb_copy_markdown_service)</span><br><span class="line">        self.pb_upload.clicked.connect(self.pb_upload_service)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_select_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filename, filetype = QFileDialog.getOpenFileName(self,</span><br><span class="line">                                                         <span class="string">'选择文件'</span>,</span><br><span class="line">                                                         os.getcwd(),</span><br><span class="line">                                                         <span class="string">"Images (*.jpg;*.jpeg;*.gif;*.png;*.ico);;All Files (*)"</span>)</span><br><span class="line">        <span class="keyword">if</span> filename == <span class="string">''</span>:</span><br><span class="line">            print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.le_selectimage.setText(filename)</span><br><span class="line">        print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">        print(<span class="string">'文件筛选器类型：'</span>, filetype)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_upload_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filepath = self.le_selectimage.text()</span><br><span class="line">        <span class="keyword">if</span> filepath == <span class="string">''</span>:</span><br><span class="line">            self.maessage_box(<span class="string">'select a image'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> os.path.exists(<span class="string">'settings.cfg'</span>):</span><br><span class="line">                back_url = uploadtoqiniu.upload(filepath)</span><br><span class="line">                self.le_url.setText(back_url)</span><br><span class="line">                self.le_md.setText(<span class="string">'![]('</span> + back_url + <span class="string">')'</span>)</span><br><span class="line">                img = QtGui.QImage(filepath)</span><br><span class="line">                scale = img.size().width()/<span class="number">411</span> <span class="keyword">if</span> ((img.size().width()/<span class="number">411</span>) &gt; (img.size().height()/<span class="number">201</span>)) <span class="keyword">else</span> img.size().height()/<span class="number">201</span></span><br><span class="line">                scale_width = img.size().width()/scale</span><br><span class="line">                scale_height = img.size().height() / scale</span><br><span class="line">                size = QtCore.QSize(scale_width, scale_height)</span><br><span class="line">                image = QtGui.QPixmap.fromImage(img.scaled(size, QtCore.Qt.IgnoreAspectRatio))</span><br><span class="line">                self.l_preview.setPixmap(image)</span><br><span class="line">                print(image.size())</span><br><span class="line">                print(type(image.size()))</span><br><span class="line">                self.maessage_box(<span class="string">'Success'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.maessage_box(<span class="string">'check setting.cfg'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_url_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        url = self.le_url.text()</span><br><span class="line">        clipboard.setText(url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_markdown_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        md_url = self.le_md.text()</span><br><span class="line">        clipboard.setText(md_url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maessage_box</span><span class="params">(self, message, title=<span class="string">'information'</span>)</span>:</span></span><br><span class="line">        box = QMessageBox(self)</span><br><span class="line">        box.setIcon(QMessageBox.Information)</span><br><span class="line">        box.setText(message)</span><br><span class="line">        box.setWindowTitle(title)</span><br><span class="line">        box.setStandardButtons(QMessageBox.Ok)</span><br><span class="line">        box.button(QMessageBox.Ok).animateClick(<span class="number">2</span>*<span class="number">1000</span>)</span><br><span class="line">        box.exec_()</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用pyinstaller打包"><a href="#使用pyinstaller打包" class="headerlink" title="使用pyinstaller打包"></a>使用pyinstaller打包</h2><p>pyinstaller打包总是问题百出，PyQt5自己也有不少bug。遇到这些问题</p>
+<h3 id="ImportError-unable-to-find-Qt5Core-dll-on-PATH"><a href="#ImportError-unable-to-find-Qt5Core-dll-on-PATH" class="headerlink" title="ImportError: unable to find Qt5Core.dll on PATH"></a>ImportError: unable to find Qt5Core.dll on PATH</h3><p>解决办法如下</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/zwyact/article/details/99778898" target="_blank" rel="noopener">https://blog.csdn.net/zwyact/article/details/99778898</a><br>在主程序中pyqt5库import之前就对系统变量进行手动设置</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="NameError-name-‘exit’-is-not-defined"><a href="#NameError-name-‘exit’-is-not-defined" class="headerlink" title="NameError: name ‘exit’ is not defined"></a>NameError: name ‘exit’ is not defined</h3><p>解决办法就是这样写sys.exit</p>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p>settings.cfg是配置文件，其中需要配置各个字段。可以配置是否使用水印。</p>
+<h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FnGYihfO9pvjDnA77RSIAtexgUkK" alt></p>
+<h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><p>上传完图片还能快速获取访问链接。</p>
+<p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FmM6w11zg5p5KhkNlnekF3mYpT6a" alt></p>
+<blockquote>
+<p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/PyQt5小程序上传图片到七牛云.html" data-id="ck5207kws000c5454ykwu2xgv" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyinstaller/">pyinstaller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyqt5/">pyqt5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
+    <article id="post-sparksql" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/sparksql.html">(no title)</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/sparksql.html" class="article-date"><time datetime="2020-01-04T02:39:49.609Z" itemprop="datePublished">2020-01-04</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SparkSQL介绍"><a href="#SparkSQL介绍" class="headerlink" title="SparkSQL介绍"></a>SparkSQL介绍</h2><p>Spark SQL是Spark用来处理结构化数据的一个模块，它提供了两个编程抽象：DataSet和DataFrame。</p>
+<p>Hive SQL转化为MapReduce，然后提交给集群执行，但是MapReduce计算模型执行效率太低，于是诞生了Spark SQL。</p>
+<p>将Spark SQL转化为RDD，然后提交给集群执行，效率很高！</p>
+<h2 id="RDD-DataSet-DataFrame"><a href="#RDD-DataSet-DataFrame" class="headerlink" title="RDD DataSet DataFrame"></a>RDD DataSet DataFrame</h2><p>DataFrame是一个分布式数据容器，更像传统关系数据库的二维表。DataSet是DataFrame API最新扩展，是强类型的数据结构，类似于类的概念。</p>
+<h2 id="SparkSQL编程"><a href="#SparkSQL编程" class="headerlink" title="SparkSQL编程"></a>SparkSQL编程</h2><h3 id="SparkSession"><a href="#SparkSession" class="headerlink" title="SparkSession"></a>SparkSession</h3><p>SparkSession是SparkContext和HiveContext的结合，实际计算由SparkContext负责。</p>
+<p>val df = spark.read.json(filepath)</p>
+<blockquote>
+<p>org.sparl.sql.DataFrame=[age:bigint,name:string]</p>
+</blockquote>
+<p>df.show</p>
+<p>df.createTempView()</p>
+<p>spark.sql(“select * from student”).show</p>
+<p>df.createGlobalTempView()</p>
+<h3 id="DSL风格语法"><a href="#DSL风格语法" class="headerlink" title="DSL风格语法"></a>DSL风格语法</h3><p>df.printSchema</p>
+<p>df.select(“name”).show()</p>
+<p>import spark,implicits._</p>
+<h3 id="DataSet基本操作"><a href="#DataSet基本操作" class="headerlink" title="DataSet基本操作"></a>DataSet基本操作</h3><p>df.rdd</p>
+<p>自定义用户聚合函数，有强类型和弱类型。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/sparksql.html" data-id="ck5207kxl001j5454dddcn5qr" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
+    <article id="post-Java虚拟机——内存区域与内存溢出异常" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Java虚拟机——内存区域与内存溢出异常.html">(no title)</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/Java虚拟机——内存区域与内存溢出异常.html" class="article-date"><time datetime="2020-01-03T07:43:16.225Z" itemprop="datePublished">2020-01-03</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Java虚拟机——内存区域与内存溢出异常（一）"><a href="#Java虚拟机——内存区域与内存溢出异常（一）" class="headerlink" title="Java虚拟机——内存区域与内存溢出异常（一）"></a>Java虚拟机——内存区域与内存溢出异常（一）</h2><h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><p><img src="http://cdn.zkalan.com/java%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" alt="运行时数据区"></p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，被称为线程私有内存。</p>
+<p>如果线程正在执行的是一个Java方法，这个计数器记录的时正在执行的虚拟机字节码指令的地址；如果正在执行的时Native方法，这个计数器值则为空（Undefined）。此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p>
+<h4 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h4><p>也是线程私有，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法执行都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。常说的“栈”一般指的是虚拟机栈中的局部变量表。</p>
+<p>局部变量表u从南方了编译期可知的各类基本数据类型、对象引用、returnAddress类型。</p>
+<p>局部变量表所需的内存空间在编译期间完成分配，在方法运行期间不会改变大小，但所处的栈顶可能动态扩展。</p>
+<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈动态扩展时无法申请足够的内存，就会抛出OutOfMemoryError异常。</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>虚拟机栈为虚拟机执行Java方法服务，也就是字节码，而本地方法栈则为虚拟机使用到的Native方法服务。</p>
+<h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><p>所有线程共享的一块区域。</p>
+<p>此内存区域的唯一目的就是存放对象实例，<strong>几乎</strong>所有的对象实例都在这里分配内存。</p>
+<p>Java堆是垃圾收集管理的主要区域，因此还被称为“GC堆”（Garbage Collected Heap）。</p>
+<p>根据虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只需要逻辑连续；在实现时，既可以是固定大小的，也可以是可扩展的，通过-Xmx和-Xms控制。</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>线程共享区域。主要用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。虽然Java虚拟机将方法区描述为堆的逻辑部分，但是他还有一个名字叫做Non-Heap，目的应该是与堆进行区分。</p>
+<p>Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样不需要连续的存储空间，还可以选择不实现垃圾回收</p>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池（Constant Pool Table），用于存放编译期生成的各种字面量和符号引用，这部分信息在类加载后进入方法去的运行时常量池存放。</p>
+<p>运行时常量池相对于Class文件常量池的另外的一个重要特征就是具备动态性，java语言并不要求常量只有编译期才能产生，也就是并非预置入Class文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能有新的常量放入池中，这种特性被开发人员利用较多的就是String.intern()。</p>
+<h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>Direct Memory并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域，但是这部分内存使用频繁，也可能导致OOM异常。</p>
+<p>NIO类引入了一种基于通道和缓冲区的IO方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样能在一定程度提升性能，避免了在Java堆和Native堆中来回复制数据。</p>
+<p>直接内存的分配不受Java堆大小限制，所以-Xmx等参数信息再加直接内存可能导致总和大于物理内存限制，导致OOM异常。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/Java虚拟机——内存区域与内存溢出异常.html" data-id="ck5207kwv000e5454t6v7yhzm" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+  
     <article id="post-spark第一次笔记" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -180,7 +430,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/spark第一次笔记.html" data-id="ck4xui8z200108454eoxnef5v" class="article-share-link">
+      <a data-url="http://zkalan.com/spark第一次笔记.html" data-id="ck5207kxj001e54546y2595bc" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -271,273 +521,12 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://zkalan.com/javaCV初步使用之rtmp推流和在线播放.html" data-id="ck4xui8yx000r8454j1s9rbjv" class="article-share-link">
+      <a data-url="http://zkalan.com/javaCV初步使用之rtmp推流和在线播放.html" data-id="ck5207kxe00145454s1bwv3jr" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javacv/">javacv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rtmp/">rtmp</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-</article>
-
-
-
-  
-    <article id="post-Mybatis第一节" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Mybatis第一节.html">Mybatis第一节</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/Mybatis第一节.html" class="article-date"><time datetime="2019-12-16T13:49:09.000Z" itemprop="datePublished">2019-12-16</time></a>
-</div>
-
-    <div class="article-author">tuanma</div>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/mybatis/">mybatis</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>持久层技术解决方案有JDBC技术、Sping中对JDBC的简单封装、Apache的DBUtils等，这些都不是框架技术，后两者只是工具类。Mybatis是一个持久层框架，使用ORM思想实现了结果集的封装。ORM就是把数据库表和实体类及其实体类的属性对应起来。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol>
-<li>创建maven工程并导入坐标；</li>
-<li>创建实体类和dao的接口；</li>
-<li>创建Mybatis的主配置文件SqlMapConfig.xml</li>
-<li>创建映射配置文件；</li>
-</ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>在Mybatis中把持久层的接口名称和映射文件也叫做Mapper；</li>
-<li>Mybatis的映射配置文件位置必须和dao接口的包结构相同；</li>
-<li>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名；</li>
-<li>映射配置文件的操作配置，id属性的取值必须是dao接口的方法名；</li>
-<li>遵守3、4和5，不需要自己写dao接口实现类；</li>
-</ol>
-<h2 id="Mybatis连接池"><a href="#Mybatis连接池" class="headerlink" title="Mybatis连接池"></a>Mybatis连接池</h2><p>提供了三种配置方式。<br>配置的位置：主配置文件SqlMapConfig.xml中的dataSource标签，type属性就是表示采用哪种连接池。</p>
-<ul>
-<li>POOLED：采用传统的javax.sql.DataSource规范中的连接池，mybatis中有针对规范的实现。</li>
-<li>UNPOOLED：采用传统的获取连接的方式，虽然也实现Javax.sql.DataSource接口，但是并没有使用赤的思想。</li>
-<li>JNDI：采用服务器提供的JNDI技术实现，来获取DataSource对象，不同的服务器能拿到的DataSource不同。web和maven的war工程才可使用。tomcat服务器采用的连接池是dbcp连接池。</li>
-</ul>
-<h2 id="Mybatis中的事务"><a href="#Mybatis中的事务" class="headerlink" title="Mybatis中的事务"></a>Mybatis中的事务</h2><p>通过sqlsession对象的commit方法和rollback方法实现事务的提交和回滚。</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://zkalan.com/Mybatis第一节.html" data-id="ck4xui8ye00068454a4cyxibn" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis/">mybatis</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-</article>
-
-
-
-  
-    <article id="post-SpringMVC第一节" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/SpringMVC第一节.html">SpringMVC第一节</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/SpringMVC第一节.html" class="article-date"><time datetime="2019-12-10T09:08:49.000Z" itemprop="datePublished">2019-12-10</time></a>
-</div>
-
-    <div class="article-author">团麻</div>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringMVC/">SpringMVC</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级web框架，属于Spring FrameWork的后续产品，以及融合在Spring Web Flow里面。Spring框架提供了构建Web应用程序的全部功能MVC模块，使用Spring可插入的MVC框架，从而在进行Web开发时，选择使用Spring MVC框架或集成其他MVC开发框架，如Struts2等。支持RESTful编程风格的请求。</p>
-<ul>
-<li>清晰的角色划分；</li>
-<li>分工明确，扩展灵活；</li>
-<li>等</li>
-</ul>
-<h2 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h2><h3 id="DispatcherServlet前端控制器"><a href="#DispatcherServlet前端控制器" class="headerlink" title="DispatcherServlet前端控制器"></a>DispatcherServlet前端控制器</h3><p>用户i请求到达前端控制器，相当于MVC模式中的C，DispatcherServlet是整个流程控制的中心，由它调用其他组件处理用户的请求，DispatcherServlet降低了组件之间的耦合。</p>
-<h3 id="HandlerMapping处理器映射器"><a href="#HandlerMapping处理器映射器" class="headerlink" title="HandlerMapping处理器映射器*"></a>HandlerMapping处理器映射器*</h3><p>HandlerMapping负责根据用户请求找到Handler，SpingMVC提供了不同的映射器实现不同的映射方式，例如配置文件方式、实现接口方式、注解方式等。</p>
-<h3 id="Handler处理器"><a href="#Handler处理器" class="headerlink" title="Handler处理器"></a>Handler处理器</h3><p>开发中需要编写的具体业务控制器，由DispatcherServlet把用户的请求转发到Handler，由Handler对具体的用户请求进行处理。</p>
-<h3 id="HandlerAdapter处理器适配器"><a href="#HandlerAdapter处理器适配器" class="headerlink" title="HandlerAdapter处理器适配器*"></a>HandlerAdapter处理器适配器*</h3><p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
-<h3 id="View-Resolver视图解析器"><a href="#View-Resolver视图解析器" class="headerlink" title="View Resolver视图解析器*"></a>View Resolver视图解析器*</h3><p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p>
-<h3 id="View视图"><a href="#View视图" class="headerlink" title="View视图"></a>View视图</h3><p>SpringMVC框架提供了很多的View视图类型的支持，包括jstlView, freemarkerView, pdfView等。最常用的是jsp。一般情况下需要通过页面标签或页面模板技术将模型数据通过页面展示给用户。</p>
-<h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.bind.annotation;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Documented;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.AliasFor;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以作用于类和方法，支持分级映射</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Mapping</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestMapping &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//别名path和value通用，用于指定url</span></span><br><span class="line">	<span class="meta">@AliasFor</span>(<span class="string">"path"</span>)</span><br><span class="line">	String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AliasFor</span>(<span class="string">"value"</span>)</span><br><span class="line">	String[] path() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//public enum RequestMethod &#123;</span></span><br><span class="line">    <span class="comment">//	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    RequestMethod[] method() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//限定传递的请求参数</span></span><br><span class="line">	String[] params() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于指定限制请求的头条件</span></span><br><span class="line">	String[] headers() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	String[] consumes() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	String[] produces() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="请求参数的绑定"><a href="#请求参数的绑定" class="headerlink" title="请求参数的绑定"></a>请求参数的绑定</h2><p>支持简单数据类型、对象、列表等。@RequestMapping(param={username=””})</p>
-<h2 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h2><ol>
-<li>首先实现Converter接口；</li>
-<li>在spring配置文件中配置自定义类型转换器；</li>
-</ol>
-<h2 id="Servlet原生API"><a href="#Servlet原生API" class="headerlink" title="Servlet原生API"></a>Servlet原生API</h2><p>HttpServletRequest、HttpServletResponse、HttpSession、ServletContext。</p>
-<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><ol>
-<li>@RequestParam</li>
-<li>@RequestBody get方法不适用</li>
-<li>@PathVariable RESTful风格 WebClient模拟发送请求</li>
-<li>@RequestHeader</li>
-<li>@CookieValue 获取cookie的值</li>
-<li>@ModelAttribute</li>
-<li>@SessionAttributes 用于多次执行控制器方法间的参数共享</li>
-</ol>
-<h2 id="ResponseBody相应json数据"><a href="#ResponseBody相应json数据" class="headerlink" title="ResponseBody相应json数据"></a>ResponseBody相应json数据</h2><p>DispatcherServlet会拦截所有资源，导致静态资源，如image、css、js等也会被拦截，解决方法就是需要配置静态资源不拦截。</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://zkalan.com/SpringMVC第一节.html" data-id="ck4xui8yl000b8454vcgqe0in" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-</article>
-
-
-
-  
-    <article id="post-Docker" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Docker.html">Docker</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/Docker.html" class="article-date"><time datetime="2019-12-10T07:18:05.000Z" itemprop="datePublished">2019-12-10</time></a>
-</div>
-
-    <div class="article-author">tuanma</div>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Docker/">Docker</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Docker是一个开源的应用容器引擎；支持将软件编译成一个镜像，然后在镜像中做好各种软件的配置工作，随后将镜像发不出去，其他使用者可以直接使用该镜像；运行中的这个镜像成为容器，其优点在于启动速度。</p>
-<h2 id="Docker核心概念"><a href="#Docker核心概念" class="headerlink" title="Docker核心概念"></a>Docker核心概念</h2><h3 id="Docker主机Host"><a href="#Docker主机Host" class="headerlink" title="Docker主机Host"></a>Docker主机Host</h3><p>一个物理或虚拟的机器，用于执行Docker守护进程和容器；</p>
-<h3 id="Docker镜像Images"><a href="#Docker镜像Images" class="headerlink" title="Docker镜像Images"></a>Docker镜像Images</h3><p>Docker镜像是用于创建Docker容器的模板；</p>
-<h3 id="Docker容器Container"><a href="#Docker容器Container" class="headerlink" title="Docker容器Container"></a>Docker容器Container</h3><p>容器是独立运行的一个或一组应用；</p>
-<h3 id="Docker客户端Client"><a href="#Docker客户端Client" class="headerlink" title="Docker客户端Client"></a>Docker客户端Client</h3><p>客户端通过命令行或者其他工具使用Docker API和Docker的守护进程通信；</p>
-<h3 id="Docker仓库Registry"><a href="#Docker仓库Registry" class="headerlink" title="Docker仓库Registry"></a>Docker仓库Registry</h3><p>Docker仓库用来保存镜像，可以理解为代码控制中的代码仓库，Docker Hub提供了庞大的镜像集合使用；</p>
-<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br><span class="line">docker -v</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search mysql #搜索mysql image</span><br><span class="line">docker pull mysql #拉取镜像</span><br><span class="line">docker images #查看镜像列表</span><br><span class="line">docker rmi images-id #移除镜像</span><br></pre></td></tr></table></figure>
-
-<h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mymysql -d mysql:TAG #启动容器</span><br><span class="line">docker ps #查看运行中的容器</span><br><span class="line">docker ps -a #查看所有容器</span><br><span class="line">docker stop container-id #停止容器</span><br><span class="line">docker rm -a # 删除所有容器</span><br><span class="line">docker run --name container-name iamge-name -d -p 1008:8080 #-p进行端口映射</span><br><span class="line">docker logs container-id/container-name</span><br></pre></td></tr></table></figure>
-
-<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3>
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://zkalan.com/Docker.html" data-id="ck4xui8ya00028454ph39jziv" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
 
 
     </footer>
@@ -579,7 +568,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/javaCV/">javaCV</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/杂项/">杂项</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/PyQt5/">PyQt5</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/javaCV/">javaCV</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/杂项/">杂项</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -587,7 +576,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/AOP/">AOP</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/javacv/">javacv</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/junit/">junit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/nginx/">nginx</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rtmp/">rtmp</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/web开发/">web开发</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/windows-to-go/">windows to go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/yaml/">yaml</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/入门/">入门</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/动态代理/">动态代理</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/声明式事务控制/">声明式事务控制</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/特殊的日期/">特殊的日期</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/装系统/">装系统</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/AOP/">AOP</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/javacv/">javacv</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/junit/">junit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/nginx/">nginx</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pycharm/">pycharm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pyinstaller/">pyinstaller</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pyqt5/">pyqt5</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rtmp/">rtmp</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/web开发/">web开发</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/windows-to-go/">windows to go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/yaml/">yaml</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/七牛云/">七牛云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/入门/">入门</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/动态代理/">动态代理</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/声明式事务控制/">声明式事务控制</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/特殊的日期/">特殊的日期</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/装系统/">装系统</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -596,7 +585,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/AOP/" style="font-size: 13.33px;">AOP</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javacv/" style="font-size: 10px;">javacv</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 16.67px;">spring-boot</a> <a href="/tags/web开发/" style="font-size: 10px;">web开发</a> <a href="/tags/windows-to-go/" style="font-size: 10px;">windows to go</a> <a href="/tags/yaml/" style="font-size: 10px;">yaml</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/入门/" style="font-size: 13.33px;">入门</a> <a href="/tags/动态代理/" style="font-size: 10px;">动态代理</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/声明式事务控制/" style="font-size: 10px;">声明式事务控制</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 13.33px;">注解</a> <a href="/tags/特殊的日期/" style="font-size: 10px;">特殊的日期</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a> <a href="/tags/装系统/" style="font-size: 10px;">装系统</a>
+      <a href="/tags/AOP/" style="font-size: 13.33px;">AOP</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javacv/" style="font-size: 10px;">javacv</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/pycharm/" style="font-size: 10px;">pycharm</a> <a href="/tags/pyinstaller/" style="font-size: 10px;">pyinstaller</a> <a href="/tags/pyqt5/" style="font-size: 10px;">pyqt5</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 16.67px;">spring-boot</a> <a href="/tags/web开发/" style="font-size: 10px;">web开发</a> <a href="/tags/windows-to-go/" style="font-size: 10px;">windows to go</a> <a href="/tags/yaml/" style="font-size: 10px;">yaml</a> <a href="/tags/七牛云/" style="font-size: 10px;">七牛云</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/入门/" style="font-size: 13.33px;">入门</a> <a href="/tags/动态代理/" style="font-size: 10px;">动态代理</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/声明式事务控制/" style="font-size: 10px;">声明式事务控制</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 13.33px;">注解</a> <a href="/tags/特殊的日期/" style="font-size: 10px;">特殊的日期</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a> <a href="/tags/装系统/" style="font-size: 10px;">装系统</a>
     </p>
   </div>
 
@@ -604,7 +593,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/01/">一月 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
   </div>
 
 
@@ -615,23 +604,23 @@
     <ul class="sidebar-module-list">
       
         <li>
+          <a href="/PyQt5小程序上传图片到七牛云.html">PyQt5小程序上传图片到七牛云</a>
+        </li>
+      
+        <li>
+          <a href="/sparksql.html">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/Java虚拟机——内存区域与内存溢出异常.html">(no title)</a>
+        </li>
+      
+        <li>
           <a href="/spark第一次笔记.html">spark第一次笔记</a>
         </li>
       
         <li>
           <a href="/javaCV初步使用之rtmp推流和在线播放.html">javaCV初步使用之rtmp推流和在线播放</a>
-        </li>
-      
-        <li>
-          <a href="/Mybatis第一节.html">Mybatis第一节</a>
-        </li>
-      
-        <li>
-          <a href="/SpringMVC第一节.html">SpringMVC第一节</a>
-        </li>
-      
-        <li>
-          <a href="/Docker.html">Docker</a>
         </li>
       
     </ul>

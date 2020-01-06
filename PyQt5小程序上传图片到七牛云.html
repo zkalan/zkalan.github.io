@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>PyQt5小程序上传图片到七牛云 | 麻绳先生</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="github地址https://github.com/zkalan/qiniu-image.git  绘制软件界面使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：  在pycharm中安装PyQt5 在pycharm中安装PyQt5-tools 配置pycharm，方便的通过tools界面启动dedigner和其他工具  slots和signals这">
+<meta name="keywords" content="pyqt5,python,七牛云,pyinstaller,pycharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt5小程序上传图片到七牛云">
+<meta property="og:url" content="http://zkalan.com/PyQt5小程序上传图片到七牛云.html">
+<meta property="og:site_name" content="麻绳先生">
+<meta property="og:description" content="github地址https://github.com/zkalan/qiniu-image.git  绘制软件界面使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：  在pycharm中安装PyQt5 在pycharm中安装PyQt5-tools 配置pycharm，方便的通过tools界面启动dedigner和其他工具  slots和signals这">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FnGYihfO9pvjDnA77RSIAtexgUkK">
+<meta property="og:image" content="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FmM6w11zg5p5KhkNlnekF3mYpT6a">
+<meta property="og:updated_time" content="2020-01-05T14:27:54.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyQt5小程序上传图片到七牛云">
+<meta name="twitter:description" content="github地址https://github.com/zkalan/qiniu-image.git  绘制软件界面使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：  在pycharm中安装PyQt5 在pycharm中安装PyQt5-tools 配置pycharm，方便的通过tools界面启动dedigner和其他工具  slots和signals这">
+<meta name="twitter:image" content="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FnGYihfO9pvjDnA77RSIAtexgUkK">
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+</html>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+          <li><a class=""
+                 href="/atom.xml">Rss</a></li>
+        
+          <li><a class=""
+                 href="/baidusitemap.xml">Sitemap</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">麻绳先生</h1>
+  
+    <p class="lead blog-description">做一些记录性的工作</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-PyQt5小程序上传图片到七牛云" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      PyQt5小程序上传图片到七牛云
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/PyQt5小程序上传图片到七牛云.html" class="article-date"><time datetime="2020-01-05T13:50:18.000Z" itemprop="datePublished">2020-01-05</time></a>
+</div>
+
+    <div class="article-author">团麻</div>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PyQt5/">PyQt5</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p>
+</blockquote>
+<h2 id="绘制软件界面"><a href="#绘制软件界面" class="headerlink" title="绘制软件界面"></a>绘制软件界面</h2><p>使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：</p>
+<ul>
+<li>在pycharm中安装PyQt5</li>
+<li>在pycharm中安装PyQt5-tools</li>
+<li>配置pycharm，方便的通过tools界面启动dedigner和其他工具</li>
+</ul>
+<h2 id="slots和signals"><a href="#slots和signals" class="headerlink" title="slots和signals"></a>slots和signals</h2><p>这是两个PyQt中的概念，signal就是信号，是动作的发出者；slot就是槽，是动作的相应者。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br><span class="line"><span class="keyword">from</span> ui <span class="keyword">import</span> mainwindow</span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QMessageBox, QFileDialog</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> uploadtoqiniu</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WindowService</span><span class="params">(QMainWindow, mainwindow.Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(WindowService, self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">        <span class="comment"># bind slots and signals</span></span><br><span class="line">        self.pb_select.clicked.connect(self.pb_select_service)</span><br><span class="line"></span><br><span class="line">        self.pb_copy_url.clicked.connect(self.pb_copy_url_service)</span><br><span class="line">        self.pb_copy_markdown.clicked.connect(self.pb_copy_markdown_service)</span><br><span class="line">        self.pb_upload.clicked.connect(self.pb_upload_service)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_select_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filename, filetype = QFileDialog.getOpenFileName(self,</span><br><span class="line">                                                         <span class="string">'选择文件'</span>,</span><br><span class="line">                                                         os.getcwd(),</span><br><span class="line">                                                         <span class="string">"Images (*.jpg;*.jpeg;*.gif;*.png;*.ico);;All Files (*)"</span>)</span><br><span class="line">        <span class="keyword">if</span> filename == <span class="string">''</span>:</span><br><span class="line">            print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.le_selectimage.setText(filename)</span><br><span class="line">        print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">        print(<span class="string">'文件筛选器类型：'</span>, filetype)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_upload_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filepath = self.le_selectimage.text()</span><br><span class="line">        <span class="keyword">if</span> filepath == <span class="string">''</span>:</span><br><span class="line">            self.maessage_box(<span class="string">'select a image'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> os.path.exists(<span class="string">'settings.cfg'</span>):</span><br><span class="line">                back_url = uploadtoqiniu.upload(filepath)</span><br><span class="line">                self.le_url.setText(back_url)</span><br><span class="line">                self.le_md.setText(<span class="string">'![]('</span> + back_url + <span class="string">')'</span>)</span><br><span class="line">                img = QtGui.QImage(filepath)</span><br><span class="line">                scale = img.size().width()/<span class="number">411</span> <span class="keyword">if</span> ((img.size().width()/<span class="number">411</span>) &gt; (img.size().height()/<span class="number">201</span>)) <span class="keyword">else</span> img.size().height()/<span class="number">201</span></span><br><span class="line">                scale_width = img.size().width()/scale</span><br><span class="line">                scale_height = img.size().height() / scale</span><br><span class="line">                size = QtCore.QSize(scale_width, scale_height)</span><br><span class="line">                image = QtGui.QPixmap.fromImage(img.scaled(size, QtCore.Qt.IgnoreAspectRatio))</span><br><span class="line">                self.l_preview.setPixmap(image)</span><br><span class="line">                print(image.size())</span><br><span class="line">                print(type(image.size()))</span><br><span class="line">                self.maessage_box(<span class="string">'Success'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.maessage_box(<span class="string">'check setting.cfg'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_url_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        url = self.le_url.text()</span><br><span class="line">        clipboard.setText(url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_markdown_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        md_url = self.le_md.text()</span><br><span class="line">        clipboard.setText(md_url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maessage_box</span><span class="params">(self, message, title=<span class="string">'information'</span>)</span>:</span></span><br><span class="line">        box = QMessageBox(self)</span><br><span class="line">        box.setIcon(QMessageBox.Information)</span><br><span class="line">        box.setText(message)</span><br><span class="line">        box.setWindowTitle(title)</span><br><span class="line">        box.setStandardButtons(QMessageBox.Ok)</span><br><span class="line">        box.button(QMessageBox.Ok).animateClick(<span class="number">2</span>*<span class="number">1000</span>)</span><br><span class="line">        box.exec_()</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用pyinstaller打包"><a href="#使用pyinstaller打包" class="headerlink" title="使用pyinstaller打包"></a>使用pyinstaller打包</h2><p>pyinstaller打包总是问题百出，PyQt5自己也有不少bug。遇到这些问题</p>
+<h3 id="ImportError-unable-to-find-Qt5Core-dll-on-PATH"><a href="#ImportError-unable-to-find-Qt5Core-dll-on-PATH" class="headerlink" title="ImportError: unable to find Qt5Core.dll on PATH"></a>ImportError: unable to find Qt5Core.dll on PATH</h3><p>解决办法如下</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/zwyact/article/details/99778898" target="_blank" rel="noopener">https://blog.csdn.net/zwyact/article/details/99778898</a><br>在主程序中pyqt5库import之前就对系统变量进行手动设置</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="NameError-name-‘exit’-is-not-defined"><a href="#NameError-name-‘exit’-is-not-defined" class="headerlink" title="NameError: name ‘exit’ is not defined"></a>NameError: name ‘exit’ is not defined</h3><p>解决办法就是这样写sys.exit</p>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p>settings.cfg是配置文件，其中需要配置各个字段。可以配置是否使用水印。</p>
+<h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FnGYihfO9pvjDnA77RSIAtexgUkK" alt></p>
+<h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><p>上传完图片还能快速获取访问链接。</p>
+<p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FmM6w11zg5p5KhkNlnekF3mYpT6a" alt></p>
+<blockquote>
+<p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://zkalan.com/PyQt5小程序上传图片到七牛云.html" data-id="ck5207kws000c5454ykwu2xgv" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyinstaller/">pyinstaller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyqt5/">pyqt5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/sparksql.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">(no title)</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>通过一个小小的网站，将自己的笔记记录在互联网上，甚至能传播出去。联系我zk@zkalan.com</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/PyQt5/">PyQt5</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Spring/">Spring</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/javaCV/">javaCV</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java笔记/">java笔记</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/杂项/">杂项</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/AOP/">AOP</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Docker/">Docker</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOC/">IOC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JdbcTemplate/">JdbcTemplate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SpringMVC/">SpringMVC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/bean/">bean</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/gradle/">gradle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/javacv/">javacv</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/junit/">junit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/mybatis/">mybatis</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/nginx/">nginx</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node/">node</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pycharm/">pycharm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pyinstaller/">pyinstaller</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/pyqt5/">pyqt5</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rtmp/">rtmp</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spark/">spark</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring/">spring</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/spring-boot/">spring-boot</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/web开发/">web开发</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/windows-to-go/">windows to go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/yaml/">yaml</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/七牛云/">七牛云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/依赖注入/">依赖注入</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/入门/">入门</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/动态代理/">动态代理</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/包装类/">包装类</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/声明式事务控制/">声明式事务控制</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/常量池/">常量池</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/概述/">概述</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/注解/">注解</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/特殊的日期/">特殊的日期</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/脚本/">脚本</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/装系统/">装系统</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/AOP/" style="font-size: 13.33px;">AOP</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javacv/" style="font-size: 10px;">javacv</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/pycharm/" style="font-size: 10px;">pycharm</a> <a href="/tags/pyinstaller/" style="font-size: 10px;">pyinstaller</a> <a href="/tags/pyqt5/" style="font-size: 10px;">pyqt5</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 16.67px;">spring-boot</a> <a href="/tags/web开发/" style="font-size: 10px;">web开发</a> <a href="/tags/windows-to-go/" style="font-size: 10px;">windows to go</a> <a href="/tags/yaml/" style="font-size: 10px;">yaml</a> <a href="/tags/七牛云/" style="font-size: 10px;">七牛云</a> <a href="/tags/依赖注入/" style="font-size: 10px;">依赖注入</a> <a href="/tags/入门/" style="font-size: 13.33px;">入门</a> <a href="/tags/动态代理/" style="font-size: 10px;">动态代理</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/声明式事务控制/" style="font-size: 10px;">声明式事务控制</a> <a href="/tags/常量池/" style="font-size: 10px;">常量池</a> <a href="/tags/概述/" style="font-size: 10px;">概述</a> <a href="/tags/注解/" style="font-size: 13.33px;">注解</a> <a href="/tags/特殊的日期/" style="font-size: 10px;">特殊的日期</a> <a href="/tags/脚本/" style="font-size: 10px;">脚本</a> <a href="/tags/装系统/" style="font-size: 10px;">装系统</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/01/">一月 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/12/">十二月 2019</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">十一月 2019</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">十月 2019</a><span class="sidebar-module-list-count">8</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/PyQt5小程序上传图片到七牛云.html">PyQt5小程序上传图片到七牛云</a>
+        </li>
+      
+        <li>
+          <a href="/sparksql.html">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/Java虚拟机——内存区域与内存溢出异常.html">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/spark第一次笔记.html">spark第一次笔记</a>
+        </li>
+      
+        <li>
+          <a href="/javaCV初步使用之rtmp推流和在线播放.html">javaCV初步使用之rtmp推流和在线播放</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+        &copy; 2020 Zhang Kai<br>
+        <span><a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备19037772号</a></span><br>
+        <div style="width:300px;margin:0 auto;">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41168102000053" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="http://zkalan.com/gongan.png" style="float:left;width:20px;height:20px;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">豫公网安备 41168102000053号</p></a>
+        </div>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?3f220079664f7d8b2ccac061b79df015";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

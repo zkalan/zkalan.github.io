@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zkalan.com/"/>
-  <updated>2020-01-03T07:36:59.419Z</updated>
+  <updated>2020-01-05T14:27:54.992Z</updated>
   <id>http://zkalan.com/</id>
   
   <author>
@@ -15,6 +15,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyQt5小程序上传图片到七牛云</title>
+    <link href="http://zkalan.com/PyQt5%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E4%B8%83%E7%89%9B%E4%BA%91.html"/>
+    <id>http://zkalan.com/PyQt5小程序上传图片到七牛云.html</id>
+    <published>2020-01-05T13:50:18.000Z</published>
+    <updated>2020-01-05T14:27:54.992Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p></blockquote><h2 id="绘制软件界面"><a href="#绘制软件界面" class="headerlink" title="绘制软件界面"></a>绘制软件界面</h2><p>使用Qt Designer绘制程序界面，设置图标，修改控件id等。这个过程还包括几个配置步骤：</p><ul><li>在pycharm中安装PyQt5</li><li>在pycharm中安装PyQt5-tools</li><li>配置pycharm，方便的通过tools界面启动dedigner和其他工具</li></ul><h2 id="slots和signals"><a href="#slots和signals" class="headerlink" title="slots和signals"></a>slots和signals</h2><p>这是两个PyQt中的概念，signal就是信号，是动作的发出者；slot就是槽，是动作的相应者。代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br><span class="line"><span class="keyword">from</span> ui <span class="keyword">import</span> mainwindow</span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QMessageBox, QFileDialog</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> uploadtoqiniu</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WindowService</span><span class="params">(QMainWindow, mainwindow.Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(WindowService, self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">        <span class="comment"># bind slots and signals</span></span><br><span class="line">        self.pb_select.clicked.connect(self.pb_select_service)</span><br><span class="line"></span><br><span class="line">        self.pb_copy_url.clicked.connect(self.pb_copy_url_service)</span><br><span class="line">        self.pb_copy_markdown.clicked.connect(self.pb_copy_markdown_service)</span><br><span class="line">        self.pb_upload.clicked.connect(self.pb_upload_service)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_select_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filename, filetype = QFileDialog.getOpenFileName(self,</span><br><span class="line">                                                         <span class="string">'选择文件'</span>,</span><br><span class="line">                                                         os.getcwd(),</span><br><span class="line">                                                         <span class="string">"Images (*.jpg;*.jpeg;*.gif;*.png;*.ico);;All Files (*)"</span>)</span><br><span class="line">        <span class="keyword">if</span> filename == <span class="string">''</span>:</span><br><span class="line">            print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.le_selectimage.setText(filename)</span><br><span class="line">        print(<span class="string">'filename is'</span> + filename)</span><br><span class="line">        print(<span class="string">'文件筛选器类型：'</span>, filetype)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_upload_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        filepath = self.le_selectimage.text()</span><br><span class="line">        <span class="keyword">if</span> filepath == <span class="string">''</span>:</span><br><span class="line">            self.maessage_box(<span class="string">'select a image'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> os.path.exists(<span class="string">'settings.cfg'</span>):</span><br><span class="line">                back_url = uploadtoqiniu.upload(filepath)</span><br><span class="line">                self.le_url.setText(back_url)</span><br><span class="line">                self.le_md.setText(<span class="string">'![]('</span> + back_url + <span class="string">')'</span>)</span><br><span class="line">                img = QtGui.QImage(filepath)</span><br><span class="line">                scale = img.size().width()/<span class="number">411</span> <span class="keyword">if</span> ((img.size().width()/<span class="number">411</span>) &gt; (img.size().height()/<span class="number">201</span>)) <span class="keyword">else</span> img.size().height()/<span class="number">201</span></span><br><span class="line">                scale_width = img.size().width()/scale</span><br><span class="line">                scale_height = img.size().height() / scale</span><br><span class="line">                size = QtCore.QSize(scale_width, scale_height)</span><br><span class="line">                image = QtGui.QPixmap.fromImage(img.scaled(size, QtCore.Qt.IgnoreAspectRatio))</span><br><span class="line">                self.l_preview.setPixmap(image)</span><br><span class="line">                print(image.size())</span><br><span class="line">                print(type(image.size()))</span><br><span class="line">                self.maessage_box(<span class="string">'Success'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.maessage_box(<span class="string">'check setting.cfg'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_url_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        url = self.le_url.text()</span><br><span class="line">        clipboard.setText(url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pb_copy_markdown_service</span><span class="params">(self)</span>:</span></span><br><span class="line">        clipboard = QApplication.clipboard()</span><br><span class="line">        md_url = self.le_md.text()</span><br><span class="line">        clipboard.setText(md_url)</span><br><span class="line">        self.maessage_box(<span class="string">'copy to clipkboard'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maessage_box</span><span class="params">(self, message, title=<span class="string">'information'</span>)</span>:</span></span><br><span class="line">        box = QMessageBox(self)</span><br><span class="line">        box.setIcon(QMessageBox.Information)</span><br><span class="line">        box.setText(message)</span><br><span class="line">        box.setWindowTitle(title)</span><br><span class="line">        box.setStandardButtons(QMessageBox.Ok)</span><br><span class="line">        box.button(QMessageBox.Ok).animateClick(<span class="number">2</span>*<span class="number">1000</span>)</span><br><span class="line">        box.exec_()</span><br></pre></td></tr></table></figure><h2 id="使用pyinstaller打包"><a href="#使用pyinstaller打包" class="headerlink" title="使用pyinstaller打包"></a>使用pyinstaller打包</h2><p>pyinstaller打包总是问题百出，PyQt5自己也有不少bug。遇到这些问题</p><h3 id="ImportError-unable-to-find-Qt5Core-dll-on-PATH"><a href="#ImportError-unable-to-find-Qt5Core-dll-on-PATH" class="headerlink" title="ImportError: unable to find Qt5Core.dll on PATH"></a>ImportError: unable to find Qt5Core.dll on PATH</h3><p>解决办法如下</p><blockquote><p><a href="https://blog.csdn.net/zwyact/article/details/99778898" target="_blank" rel="noopener">https://blog.csdn.net/zwyact/article/details/99778898</a><br>在主程序中pyqt5库import之前就对系统变量进行手动设置</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line"><span class="keyword">if</span> hasattr(sys, <span class="string">'frozen'</span>):</span><br><span class="line">    os.environ[<span class="string">'PATH'</span>] = sys._MEIPASS + <span class="string">";"</span> + os.environ[<span class="string">'PATH'</span>]</span><br></pre></td></tr></table></figure><h3 id="NameError-name-‘exit’-is-not-defined"><a href="#NameError-name-‘exit’-is-not-defined" class="headerlink" title="NameError: name ‘exit’ is not defined"></a>NameError: name ‘exit’ is not defined</h3><p>解决办法就是这样写sys.exit</p><h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p>settings.cfg是配置文件，其中需要配置各个字段。可以配置是否使用水印。</p><h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FnGYihfO9pvjDnA77RSIAtexgUkK" alt></p><h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><p>上传完图片还能快速获取访问链接。</p><p><img src="http://cdn.zkalan.com/VJOdMYuW8Ti4om0gBQvx08Ckr44=/FmM6w11zg5p5KhkNlnekF3mYpT6a" alt></p><blockquote><p>github地址<br><a href="https://github.com/zkalan/qiniu-image.git" target="_blank" rel="noopener">https://github.com/zkalan/qiniu-image.git</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;github地址&lt;br&gt;&lt;a href=&quot;https://github.com/zkalan/qiniu-image.git&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/zkalan/qin
+      
+    
+    </summary>
+    
+    
+      <category term="PyQt5" scheme="http://zkalan.com/categories/PyQt5/"/>
+    
+    
+      <category term="pyqt5" scheme="http://zkalan.com/tags/pyqt5/"/>
+    
+      <category term="python" scheme="http://zkalan.com/tags/python/"/>
+    
+      <category term="七牛云" scheme="http://zkalan.com/tags/%E4%B8%83%E7%89%9B%E4%BA%91/"/>
+    
+      <category term="pyinstaller" scheme="http://zkalan.com/tags/pyinstaller/"/>
+    
+      <category term="pycharm" scheme="http://zkalan.com/tags/pycharm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://zkalan.com/sparksql.html"/>
+    <id>http://zkalan.com/sparksql.html</id>
+    <published>2020-01-04T02:39:49.609Z</published>
+    <updated>2020-01-04T12:32:38.713Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SparkSQL介绍"><a href="#SparkSQL介绍" class="headerlink" title="SparkSQL介绍"></a>SparkSQL介绍</h2><p>Spark SQL是Spark用来处理结构化数据的一个模块，它提供了两个编程抽象：DataSet和DataFrame。</p><p>Hive SQL转化为MapReduce，然后提交给集群执行，但是MapReduce计算模型执行效率太低，于是诞生了Spark SQL。</p><p>将Spark SQL转化为RDD，然后提交给集群执行，效率很高！</p><h2 id="RDD-DataSet-DataFrame"><a href="#RDD-DataSet-DataFrame" class="headerlink" title="RDD DataSet DataFrame"></a>RDD DataSet DataFrame</h2><p>DataFrame是一个分布式数据容器，更像传统关系数据库的二维表。DataSet是DataFrame API最新扩展，是强类型的数据结构，类似于类的概念。</p><h2 id="SparkSQL编程"><a href="#SparkSQL编程" class="headerlink" title="SparkSQL编程"></a>SparkSQL编程</h2><h3 id="SparkSession"><a href="#SparkSession" class="headerlink" title="SparkSession"></a>SparkSession</h3><p>SparkSession是SparkContext和HiveContext的结合，实际计算由SparkContext负责。</p><p>val df = spark.read.json(filepath)</p><blockquote><p>org.sparl.sql.DataFrame=[age:bigint,name:string]</p></blockquote><p>df.show</p><p>df.createTempView()</p><p>spark.sql(“select * from student”).show</p><p>df.createGlobalTempView()</p><h3 id="DSL风格语法"><a href="#DSL风格语法" class="headerlink" title="DSL风格语法"></a>DSL风格语法</h3><p>df.printSchema</p><p>df.select(“name”).show()</p><p>import spark,implicits._</p><h3 id="DataSet基本操作"><a href="#DataSet基本操作" class="headerlink" title="DataSet基本操作"></a>DataSet基本操作</h3><p>df.rdd</p><p>自定义用户聚合函数，有强类型和弱类型。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;SparkSQL介绍&quot;&gt;&lt;a href=&quot;#SparkSQL介绍&quot; class=&quot;headerlink&quot; title=&quot;SparkSQL介绍&quot;&gt;&lt;/a&gt;SparkSQL介绍&lt;/h2&gt;&lt;p&gt;Spark SQL是Spark用来处理结构化数据的一个模块，它提供了两个编程
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://zkalan.com/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8.html"/>
+    <id>http://zkalan.com/Java虚拟机——内存区域与内存溢出异常.html</id>
+    <published>2020-01-03T07:43:16.225Z</published>
+    <updated>2020-01-03T13:50:49.263Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java虚拟机——内存区域与内存溢出异常（一）"><a href="#Java虚拟机——内存区域与内存溢出异常（一）" class="headerlink" title="Java虚拟机——内存区域与内存溢出异常（一）"></a>Java虚拟机——内存区域与内存溢出异常（一）</h2><h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><p><img src="http://cdn.zkalan.com/java%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" alt="运行时数据区"></p><h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，被称为线程私有内存。</p><p>如果线程正在执行的是一个Java方法，这个计数器记录的时正在执行的虚拟机字节码指令的地址；如果正在执行的时Native方法，这个计数器值则为空（Undefined）。此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p><h4 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h4><p>也是线程私有，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法执行都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。常说的“栈”一般指的是虚拟机栈中的局部变量表。</p><p>局部变量表u从南方了编译期可知的各类基本数据类型、对象引用、returnAddress类型。</p><p>局部变量表所需的内存空间在编译期间完成分配，在方法运行期间不会改变大小，但所处的栈顶可能动态扩展。</p><p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈动态扩展时无法申请足够的内存，就会抛出OutOfMemoryError异常。</p><h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>虚拟机栈为虚拟机执行Java方法服务，也就是字节码，而本地方法栈则为虚拟机使用到的Native方法服务。</p><h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><p>所有线程共享的一块区域。</p><p>此内存区域的唯一目的就是存放对象实例，<strong>几乎</strong>所有的对象实例都在这里分配内存。</p><p>Java堆是垃圾收集管理的主要区域，因此还被称为“GC堆”（Garbage Collected Heap）。</p><p>根据虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只需要逻辑连续；在实现时，既可以是固定大小的，也可以是可扩展的，通过-Xmx和-Xms控制。</p><h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>线程共享区域。主要用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。虽然Java虚拟机将方法区描述为堆的逻辑部分，但是他还有一个名字叫做Non-Heap，目的应该是与堆进行区分。</p><p>Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样不需要连续的存储空间，还可以选择不实现垃圾回收</p><h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池（Constant Pool Table），用于存放编译期生成的各种字面量和符号引用，这部分信息在类加载后进入方法去的运行时常量池存放。</p><p>运行时常量池相对于Class文件常量池的另外的一个重要特征就是具备动态性，java语言并不要求常量只有编译期才能产生，也就是并非预置入Class文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能有新的常量放入池中，这种特性被开发人员利用较多的就是String.intern()。</p><h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>Direct Memory并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域，但是这部分内存使用频繁，也可能导致OOM异常。</p><p>NIO类引入了一种基于通道和缓冲区的IO方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样能在一定程度提升性能，避免了在Java堆和Native堆中来回复制数据。</p><p>直接内存的分配不受Java堆大小限制，所以-Xmx等参数信息再加直接内存可能导致总和大于物理内存限制，导致OOM异常。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Java虚拟机——内存区域与内存溢出异常（一）&quot;&gt;&lt;a href=&quot;#Java虚拟机——内存区域与内存溢出异常（一）&quot; class=&quot;headerlink&quot; title=&quot;Java虚拟机——内存区域与内存溢出异常（一）&quot;&gt;&lt;/a&gt;Java虚拟机——内存区域与内存溢
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>spark第一次笔记</title>
@@ -503,90 +582,6 @@
       <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
     
       <category term="junit" scheme="http://zkalan.com/tags/junit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring中的注解二</title>
-    <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3%E4%BA%8C.html"/>
-    <id>http://zkalan.com/spring中的注解二.html</id>
-    <published>2019-11-01T10:27:48.000Z</published>
-    <updated>2019-11-01T11:40:43.846Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong><a href="http://www.zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html" target="_blank" rel="noopener">前文中的注解</a>能够对自己实现的类进行处理，但是对第三方的类则无法处理，只能使用XML的方式，为了解决这个问题，有必要提出新的注解。</strong></p><p>创建一个新类，它是一个配置作用的类，作用与applicationcontent.xml一致。</p><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>作用：指定当前类是一个配置类<br>细节：当配置类作为AnnotationConfigApplicationContext对象创建时的参数时，该注解可以省略</p><h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><p>作用：用于通过注解指定spring在创建容器时需要扫描的包路径<br>属性：value，它和basePackages的作用一致，都是用于指定创建容器时扫描的包路径，它替代了xml配置文件中的</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.zkalan"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.zkalan"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfigurtaion</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure><h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>作用：用于把当前方法的返回值作为bean对象存入到spring中的ioc容器中<br>属性：name，用于指定bean的id，当不写时，默认值是当前方法的名字<br>细节：当我们使用注解配置方法时，如果方法有参数，spring矿建回去容器中查找有没有可用的bean对象，查找方式和@AutoWired注解一样</p><p><strong>使用纯注解方式时，使用AnnotationConfigApplicationContext方法获取容器对象。</strong></p><h3 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h3><p>设置bean对象的实现模式，例如singleton、prototype</p><h2 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h2><p>作用：用于导入其他的配置类<br>属性：value，用于指定其他配置类的字节码；有Import注解的类是父配置类，被import的是子配置类</p><h2 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:config.properties"</span>)</span><br></pre></td></tr></table></figure><p>在实际中，自己写的类使用注解更方便，第三方类使用XML配置更方便。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;前文中的注解&lt;/a&gt;能够对自己实现的
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
-    
-    
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
-      <category term="注解" scheme="http://zkalan.com/tags/%E6%B3%A8%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring中的注解</title>
-    <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3.html"/>
-    <id>http://zkalan.com/spring中的注解.html</id>
-    <published>2019-10-30T09:16:45.000Z</published>
-    <updated>2019-11-01T03:15:37.247Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="用于创建对象的注解"><a href="#用于创建对象的注解" class="headerlink" title="用于创建对象的注解"></a>用于创建对象的注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@component</span>(value=<span class="string">"accountService"</span>)</span><br><span class="line">puclic <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure><ul><li>作用：用于当前类对象存入spring容器中</li><li>属性value用于指定bean的id，默认为当前类名，并且首字母小写</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">content:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.package"</span>&gt;</span><span class="tag">&lt;/<span class="name">content:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure><p>Controller（表现层）、Service（业务层）、Repository（持久层）作用和属性与component完全一致，区分的意义在于使得三层对象更加清晰。</p><h3 id="用于注入数据的注解"><a href="#用于注入数据的注解" class="headerlink" title="用于注入数据的注解"></a>用于注入数据的注解</h3><p>@Autowired</p><ul><li>作用：自动按照类型注入。只要容器中有唯一的bean对象类型和要注入的变量类型匹配；可以是变量上注解，也可以是方法上；如果ioc容器中没有任何bean和要注入的类型匹配，则报错；如果ioc容器中有多个类型匹配时，变量名和某个bean的id匹配时也可注入成功；</li><li>在使用注解注入时，set方法是不必要的</li></ul><p>@Qualifier</p><ul><li>作用：在按照类型注入的基础上再按照名称注入，它在给类成员变量注入时不能单独使用，要和autowired组合；但是在给成员方法参数进行注入时可以单独使用；</li><li>属性value用于指定注入的bean的id</li></ul><p>@Resource</p><ul><li>作用：直接按照bean的id注入，可以单独使用</li><li>属性name用于指定bean的id<br>以上三个注解只能注入其他bean类型数据，而基本类型和String类型无法使用上述注解实现，另外，集合类型的注入只能通过xml来实现。</li></ul><p>@Value</p><ul><li>作用：用于注入基本数据类型和String类型的数据</li><li>属性value用于指定数据的值，它可以使用spring中的SpEL，也就是spring的el表达式，SpEL的写法：${表达式}</li></ul><h3 id="用于改变作用范围的注解"><a href="#用于改变作用范围的注解" class="headerlink" title="用于改变作用范围的注解"></a>用于改变作用范围的注解</h3><p>@Scope</p><ul><li>作用：用于指定bean的作用范围</li><li>属性value指定范围的取值，singleton、prototype</li></ul><h3 id="和生命周期有关的注解"><a href="#和生命周期有关的注解" class="headerlink" title="和生命周期有关的注解"></a>和生命周期有关的注解</h3><p>@PreDestroy：指定销毁方法<br>@PostConstruct：指定初始化方法</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;用于创建对象的注解&quot;&gt;&lt;a href=&quot;#用于创建对象的注解&quot; class=&quot;headerlink&quot; title=&quot;用于创建对象的注解&quot;&gt;&lt;/a&gt;用于创建对象的注解&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
-    
-    
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
-      <category term="注解" scheme="http://zkalan.com/tags/%E6%B3%A8%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring中的依赖注入</title>
-    <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5.html"/>
-    <id>http://zkalan.com/spring中的依赖注入.html</id>
-    <published>2019-10-30T07:22:34.000Z</published>
-    <updated>2019-11-01T09:18:10.443Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>依赖注入Dependency Injection；IOC的作用：降低程序之间的耦合、依赖关系；依赖关系的管理都交给spring维护；在当前类中需要的其他类的对象，由spring提供，只需要在配置文件中说明；依赖关系的维护称之为依赖注入。</strong></p><h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>能够注入的数据有三类</p><ul><li>基本数据类型和String</li><li>其他bean类型（在配置文件或注解配置过的bean）</li><li>复杂类型/集合类型<br>注入的方式，三种</li><li>使用构造函数提供</li><li>使用set方法提供</li><li>使用注解提供</li></ul><h3 id="构造函数注入"><a href="#构造函数注入" class="headerlink" title="构造函数注入"></a>构造函数注入</h3><p>使用的标签：constructor-arg<br>标签出现的位置：bean标签的内部</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br></pre></td></tr></table></figure><p>标签中的属性：</p><ul><li>type：用于指定要注入的构造函数参数列表中数据的数据类型</li><li>index：用于指定要注入的数据在构造函数参数列表中的索引值，从零开始</li><li>name：指定构造函数中的形式参数名称</li><li>value：用于提供基本数据类型和String类型的数据</li><li>ref：用于指定其他的bean类型数据，必须是在spring核心容器中出现过的bean对象</li></ul><h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>在获取bean对象时，注入数据是必须的操作，否则无法创建对象</p><h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>改变了bean对象的实例化方式，使我们在创建对象时必须提供指定的数据</p><h3 id="set方法注入-更常用"><a href="#set方法注入-更常用" class="headerlink" title="set方法注入(更常用)"></a>set方法注入(更常用)</h3><p>涉及的标签：property<br>出现的位置：bean标签内部<br>标签的属性</p><ul><li>name：用于指定注入时使用的set方法名字，改名字是set方法去掉set后余下的部分，并且首字母小写</li><li>value：用于提供基本类型和String类型的数据</li><li>ref：用于指定其他的bean数据类型，必须是在spring核心容器中出现过的bean对象<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul><h3 id="复杂类型注入"><a href="#复杂类型注入" class="headerlink" title="复杂类型注入"></a>复杂类型注入</h3><p>用于给list结构集合注入使用标签list、array、set，可通用；<br>用于给map结构集合注入使用标签map、props，可通用；</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mystring"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"myarray"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"myset"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>abc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mymap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"a"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"b"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"myprop"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"a"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"b"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;依赖注入Dependency Injection；IOC的作用：降低程序之间的耦合、依赖关系；依赖关系的管理都交给spring维护；在当前类中需要的其他类的对象，由spring提供，只需要在配置文件中说明；依赖关系的维护称之为依赖注入。&lt;/strong&gt;&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
-    
-    
-      <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
-    
-      <category term="依赖注入" scheme="http://zkalan.com/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
