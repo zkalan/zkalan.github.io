@@ -14,12 +14,12 @@
     
   </author>
   
-  <generator uri="http://hexo.io/">Hexo</generator>
+  <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
     <title>PyQt5小程序上传图片到七牛云</title>
     <link href="http://zkalan.com/PyQt5%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E4%B8%83%E7%89%9B%E4%BA%91.html"/>
-    <id>http://zkalan.com/PyQt5小程序上传图片到七牛云.html</id>
+    <id>http://zkalan.com/PyQt5%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E4%B8%83%E7%89%9B%E4%BA%91.html</id>
     <published>2020-01-05T13:50:18.000Z</published>
     <updated>2020-01-05T14:27:54.992Z</updated>
     
@@ -76,7 +76,7 @@
   <entry>
     <title></title>
     <link href="http://zkalan.com/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8.html"/>
-    <id>http://zkalan.com/Java虚拟机——内存区域与内存溢出异常.html</id>
+    <id>http://zkalan.com/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8.html</id>
     <published>2020-01-03T07:43:16.225Z</published>
     <updated>2020-01-03T13:50:49.263Z</updated>
     
@@ -98,7 +98,7 @@
   <entry>
     <title>spark第一次笔记</title>
     <link href="http://zkalan.com/spark%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AC%94%E8%AE%B0.html"/>
-    <id>http://zkalan.com/spark第一次笔记.html</id>
+    <id>http://zkalan.com/spark%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AC%94%E8%AE%B0.html</id>
     <published>2019-12-28T07:47:52.000Z</published>
     <updated>2020-01-03T07:36:59.419Z</updated>
     
@@ -125,7 +125,7 @@
   <entry>
     <title>javaCV初步使用之rtmp推流和在线播放</title>
     <link href="http://zkalan.com/javaCV%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8%E4%B9%8Brtmp%E6%8E%A8%E6%B5%81%E5%92%8C%E5%9C%A8%E7%BA%BF%E6%92%AD%E6%94%BE.html"/>
-    <id>http://zkalan.com/javaCV初步使用之rtmp推流和在线播放.html</id>
+    <id>http://zkalan.com/javaCV%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8%E4%B9%8Brtmp%E6%8E%A8%E6%B5%81%E5%92%8C%E5%9C%A8%E7%BA%BF%E6%92%AD%E6%94%BE.html</id>
     <published>2019-12-26T06:06:07.000Z</published>
     <updated>2020-01-03T07:32:33.600Z</updated>
     
@@ -156,7 +156,7 @@
   <entry>
     <title>Mybatis第一节</title>
     <link href="http://zkalan.com/Mybatis%E7%AC%AC%E4%B8%80%E8%8A%82.html"/>
-    <id>http://zkalan.com/Mybatis第一节.html</id>
+    <id>http://zkalan.com/Mybatis%E7%AC%AC%E4%B8%80%E8%8A%82.html</id>
     <published>2019-12-16T13:49:09.000Z</published>
     <updated>2019-12-19T14:05:26.893Z</updated>
     
@@ -183,7 +183,7 @@
   <entry>
     <title>SpringMVC第一节</title>
     <link href="http://zkalan.com/SpringMVC%E7%AC%AC%E4%B8%80%E8%8A%82.html"/>
-    <id>http://zkalan.com/SpringMVC第一节.html</id>
+    <id>http://zkalan.com/SpringMVC%E7%AC%AC%E4%B8%80%E8%8A%82.html</id>
     <published>2019-12-10T09:08:49.000Z</published>
     <updated>2019-12-11T14:40:12.430Z</updated>
     
@@ -236,7 +236,7 @@
   <entry>
     <title>spring-boot和web开发</title>
     <link href="http://zkalan.com/spring-boot%E5%92%8Cweb%E5%BC%80%E5%8F%91.html"/>
-    <id>http://zkalan.com/spring-boot和web开发.html</id>
+    <id>http://zkalan.com/spring-boot%E5%92%8Cweb%E5%BC%80%E5%8F%91.html</id>
     <published>2019-12-06T13:33:07.000Z</published>
     <updated>2019-12-09T14:52:47.226Z</updated>
     
@@ -359,7 +359,7 @@
   <entry>
     <title>spring boot入门</title>
     <link href="http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html"/>
-    <id>http://zkalan.com/spring-boot入门.html</id>
+    <id>http://zkalan.com/spring-boot%E5%85%A5%E9%97%A8.html</id>
     <published>2019-12-02T09:08:16.000Z</published>
     <updated>2019-12-05T09:00:37.433Z</updated>
     
@@ -388,7 +388,7 @@
   <entry>
     <title>spring的声明式事务控制</title>
     <link href="http://zkalan.com/spring%E7%9A%84%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6.html"/>
-    <id>http://zkalan.com/spring的声明式事务控制.html</id>
+    <id>http://zkalan.com/spring%E7%9A%84%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6.html</id>
     <published>2019-11-15T12:18:11.000Z</published>
     <updated>2019-11-18T13:29:41.915Z</updated>
     
@@ -416,7 +416,7 @@
   <entry>
     <title>spring中的JdbctTemplate</title>
     <link href="http://zkalan.com/spring%E4%B8%AD%E7%9A%84JdbctTemplate.html"/>
-    <id>http://zkalan.com/spring中的JdbctTemplate.html</id>
+    <id>http://zkalan.com/spring%E4%B8%AD%E7%9A%84JdbctTemplate.html</id>
     <published>2019-11-14T12:50:49.000Z</published>
     <updated>2019-11-15T12:15:58.147Z</updated>
     
@@ -448,7 +448,7 @@
   <entry>
     <title>spring基于XML的AOP</title>
     <link href="http://zkalan.com/spring%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP.html"/>
-    <id>http://zkalan.com/spring基于XML的AOP.html</id>
+    <id>http://zkalan.com/spring%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP.html</id>
     <published>2019-11-11T12:12:00.000Z</published>
     <updated>2019-11-14T12:07:52.747Z</updated>
     
@@ -478,7 +478,7 @@
   <entry>
     <title>特殊的日期</title>
     <link href="http://zkalan.com/%E7%89%B9%E6%AE%8A%E7%9A%84%E6%97%A5%E6%9C%9F.html"/>
-    <id>http://zkalan.com/特殊的日期.html</id>
+    <id>http://zkalan.com/%E7%89%B9%E6%AE%8A%E7%9A%84%E6%97%A5%E6%9C%9F.html</id>
     <published>2019-11-07T11:36:58.000Z</published>
     <updated>2019-11-07T11:41:55.987Z</updated>
     
@@ -503,7 +503,7 @@
   <entry>
     <title>AOP相关概念</title>
     <link href="http://zkalan.com/AOP%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5.html"/>
-    <id>http://zkalan.com/AOP相关概念.html</id>
+    <id>http://zkalan.com/AOP%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5.html</id>
     <published>2019-11-06T03:13:52.000Z</published>
     <updated>2019-11-08T03:29:06.063Z</updated>
     
@@ -531,7 +531,7 @@
   <entry>
     <title>安装程序不支持配置安装通过usb或IEEE 1394端口链接的磁盘</title>
     <link href="http://zkalan.com/%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%94%AF%E6%8C%81%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85%E9%80%9A%E8%BF%87usb%E6%88%96IEEE-1394%E7%AB%AF%E5%8F%A3%E9%93%BE%E6%8E%A5%E7%9A%84%E7%A3%81%E7%9B%98.html"/>
-    <id>http://zkalan.com/安装程序不支持配置安装通过usb或IEEE-1394端口链接的磁盘.html</id>
+    <id>http://zkalan.com/%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%94%AF%E6%8C%81%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85%E9%80%9A%E8%BF%87usb%E6%88%96IEEE-1394%E7%AB%AF%E5%8F%A3%E9%93%BE%E6%8E%A5%E7%9A%84%E7%A3%81%E7%9B%98.html</id>
     <published>2019-11-04T11:20:43.000Z</published>
     <updated>2019-11-04T11:31:06.285Z</updated>
     
@@ -559,7 +559,7 @@
   <entry>
     <title>spring整合junit</title>
     <link href="http://zkalan.com/spring%E6%95%B4%E5%90%88junit.html"/>
-    <id>http://zkalan.com/spring整合junit.html</id>
+    <id>http://zkalan.com/spring%E6%95%B4%E5%90%88junit.html</id>
     <published>2019-11-01T11:44:08.000Z</published>
     <updated>2019-11-01T12:09:52.306Z</updated>
     
