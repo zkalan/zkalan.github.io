@@ -524,9 +524,9 @@
       <category term="Spring" scheme="http://zkalan.com/categories/Spring/"/>
     
     
-      <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
-    
       <category term="spring" scheme="http://zkalan.com/tags/spring/"/>
+    
+      <category term="AOP" scheme="http://zkalan.com/tags/AOP/"/>
     
   </entry>
   
